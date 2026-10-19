@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching English to Young Learners — Methods</title>
+<style>
+:root{
+  --bg:#f5f9fc; --bg-alt:#ffffff; --text:#1a2b3c; --text-muted:#5a6b7c;
+  --navy:#1e3a5f; --blue:#3b7bbf; --blue-light:#d6e6f5; --border:#dbe4ed;
+  --card:#ffffff; --success:#2e7d32; --danger:#c62828;
+  --hl-yellow:#fff59d; --shadow:0 1px 3px rgba(30,58,95,.08); --fs:17px;
+}
+[data-theme="dark"]{
+  --bg:#0f1a25; --bg-alt:#16232f; --text:#e2eaf1; --text-muted:#9aabb8;
+  --navy:#8ec1f0; --blue:#5aa9e6; --blue-light:#1e3a5f; --border:#2a3a4a;
+  --card:#16232f; --shadow:0 1px 3px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;font-family:Arial,"Helvetica Neue",Helvetica,system-ui,sans-serif;
+  background:var(--bg);color:var(--text);font-size:var(--fs);line-height:1.65;
+  transition:background .2s,color .2s}
+header{position:sticky;top:0;z-index:100;background:var(--card);
+  border-bottom:1px solid var(--border);padding:10px 16px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand h1{margin:0;font-size:1.05rem;color:var(--navy)}
+.brand p{margin:2px 0 0;font-size:.78rem;color:var(--text-muted)}
+.header-tools{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.header-tools input[type=search]{padding:6px 10px;border:1px solid var(--border);
+  border-radius:6px;font-size:.85rem;background:var(--bg-alt);color:var(--text);
+  min-width:200px}
+button{font-family:inherit;font-size:.85rem;padding:6px 10px;border:1px solid var(--border);
+  background:var(--bg-alt);color:var(--text);border-radius:6px;cursor:pointer;transition:background .15s}
+button:hover{background:var(--blue-light)}
+button:focus{outline:2px solid var(--blue);outline-offset:1px}
+button.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+button.danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+#menuToggle{display:none}
+.progress-wrap{height:4px;background:var(--border);overflow:hidden}
+.progress-bar{height:100%;width:0;background:var(--blue);transition:width .3s}
+.progress-label{padding:6px 16px;font-size:.78rem;color:var(--text-muted);
+  background:var(--bg-alt);border-bottom:1px solid var(--border);display:flex;
+  justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 120px)}
+aside#sidebar{background:var(--card);border-right:1px solid var(--border);
+  padding:16px 0;position:sticky;top:92px;height:calc(100vh - 92px);
+  overflow-y:auto;transition:transform .2s}
+aside#sidebar nav{display:flex;flex-direction:column}
+aside#sidebar a{padding:8px 20px;color:var(--text);text-decoration:none;
+  border-left:3px solid transparent;font-size:.9rem;transition:background .15s,border-color .15s}
+aside#sidebar a:hover{background:var(--blue-light)}
+aside#sidebar a.active{border-left-color:var(--blue);background:var(--blue-light);
+  font-weight:600;color:var(--navy)}
+aside#sidebar a.done::after{content:" ✓";color:var(--success)}
+main#content{padding:24px 32px 60px;max-width:900px;margin:0 auto;width:100%}
+.chapter{background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:24px 28px;margin-bottom:28px;box-shadow:var(--shadow);scroll-margin-top:100px}
+.chapter-header{display:flex;justify-content:space-between;align-items:center;
+  gap:12px;border-bottom:2px solid var(--blue-light);padding-bottom:12px;
+  margin-bottom:16px;flex-wrap:wrap}
+.chapter-header h2{margin:0;color:var(--navy);font-size:1.4rem}
+.chapter-done-label{font-size:.85rem;color:var(--text-muted);
+  display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.chapter-body h3{color:var(--navy);font-size:1.1rem;margin:22px 0 10px;
+  border-left:4px solid var(--blue);padding-left:10px}
+.chapter-body h4{color:var(--navy);font-size:1rem;margin:16px 0 8px}
+.chapter-body p{margin:8px 0}
+.chapter-body ul,.chapter-body ol{padding-left:22px}
+.chapter-body li{margin:4px 0}
+.box{border-radius:8px;padding:12px 16px;margin:12px 0;
+  border-left:4px solid var(--blue);background:var(--bg)}
+.box.concept{border-left-color:#3b7bbf;background:rgba(59,123,191,.06)}
+.box.pros{border-left-color:#2e7d32;background:rgba(46,125,50,.06)}
+.box.cons{border-left-color:#c62828;background:rgba(198,40,40,.06)}
+.box.example{border-left-color:#ef6c00;background:rgba(239,108,0,.06)}
+.box.note{border-left-color:#6a1b9a;background:rgba(106,27,154,.06)}
+.box.tip{border-left-color:#00838f;background:rgba(0,131,143,.06)}
+.box-title{font-weight:700;font-size:.9rem;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:6px;color:var(--navy)}
+.table-wrap{overflow-x:auto;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{border:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--blue-light);color:var(--navy);font-weight:700}
+tr:nth-child(even) td{background:rgba(0,0,0,.02)}
+[data-theme="dark"] tr:nth-child(even) td{background:rgba(255,255,255,.03)}
+.notes-section{margin-top:20px;padding-top:16px;border-top:1px dashed var(--border)}
+.notes-section textarea{width:100%;min-height:90px;padding:10px;
+  border:1px solid var(--border);border-radius:6px;font-family:inherit;
+  font-size:.92rem;background:var(--bg-alt);color:var(--text);resize:vertical}
+.notes-actions{margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.save-status{font-size:.82rem;color:var(--success);margin-left:8px}
+mark.user-highlight{background:var(--hl-yellow);padding:1px 0;border-radius:2px}
+mark.user-highlight.hl-yellow{background:#fff59d}
+mark.user-highlight.hl-blue{background:#bbdefb}
+mark.user-highlight.hl-green{background:#c8e6c9}
+mark.user-highlight.hl-pink{background:#f8bbd0}
+mark.user-highlight.hl-orange{background:#ffe0b2}
+[data-theme="dark"] mark.user-highlight.hl-yellow{background:#5d5420}
+[data-theme="dark"] mark.user-highlight.hl-blue{background:#1e3a5f}
+[data-theme="dark"] mark.user-highlight.hl-green{background:#1e4220}
+[data-theme="dark"] mark.user-highlight.hl-pink{background:#4a1e30}
+[data-theme="dark"] mark.user-highlight.hl-orange{background:#4a2e10}
+.highlight-popup{position:fixed;display:none;background:var(--card);
+  border:1px solid var(--border);border-radius:8px;padding:6px;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:1000;
+  gap:4px;align-items:center}
+.highlight-popup.show{display:flex}
+.highlight-popup button{width:26px;height:26px;padding:0;border-radius:4px;
+  border:1px solid var(--border)}
+.highlight-popup button[data-color="yellow"]{background:#fff59d}
+.highlight-popup button[data-color="blue"]{background:#bbdefb}
+.highlight-popup button[data-color="green"]{background:#c8e6c9}
+.highlight-popup button[data-color="pink"]{background:#f8bbd0}
+.highlight-popup button[data-color="orange"]{background:#ffe0b2}
+.highlight-popup button.clear-btn{width:auto;padding:0 8px;font-size:.78rem}
+body.highlight-mode .chapter-body{cursor:text}
+body.highlight-mode .chapter-body ::selection{background:rgba(255,235,59,.5)}
+.quiz-question{border:1px solid var(--border);border-radius:8px;padding:14px;
+  margin:12px 0;background:var(--bg-alt)}
+.quiz-question h5{margin:0 0 10px;font-size:.98rem;color:var(--navy)}
+.quiz-option{display:flex;align-items:flex-start;gap:8px;padding:8px 10px;
+  margin:4px 0;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.quiz-option:hover{background:var(--blue-light)}
+.quiz-option input{margin-top:4px}
+.quiz-feedback{margin-top:8px;padding:8px 10px;border-radius:6px;font-size:.88rem}
+.quiz-feedback.correct{background:rgba(46,125,50,.12);border-left:3px solid var(--success)}
+.quiz-feedback.incorrect{background:rgba(198,40,40,.12);border-left:3px solid var(--danger)}
+.quiz-option.correct-answer{background:rgba(46,125,50,.15);border-color:var(--success)}
+.quiz-option.incorrect-answer{background:rgba(198,40,40,.15);border-color:var(--danger)}
+.quiz-score{font-size:1.05rem;font-weight:700;color:var(--navy);padding:12px;
+  background:var(--blue-light);border-radius:8px;margin:12px 0}
+.quiz-controls{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.flashcard{perspective:1000px;height:230px;margin:16px 0}
+.flashcard-inner{position:relative;width:100%;height:100%;
+  transition:transform .5s;transform-style:preserve-3d;cursor:pointer}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg)}
+.flashcard-face{position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:10px;padding:20px;display:flex;align-items:center;
+  justify-content:center;text-align:center;font-size:1.02rem;
+  border:2px solid var(--border);background:var(--card);box-shadow:var(--shadow);
+  overflow-y:auto}
+.flashcard-face.front{background:var(--blue-light);color:var(--navy);font-weight:600}
+.flashcard-face.back{transform:rotateY(180deg);display:block;text-align:left;font-size:.95rem}
+.flashcard-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.glossary-search{width:100%;padding:8px 12px;border:1px solid var(--border);
+  border-radius:6px;margin-bottom:12px;font-size:.92rem;background:var(--bg-alt);color:var(--text)}
+.glossary-item{border:1px solid var(--border);border-radius:8px;padding:12px;
+  margin:8px 0;background:var(--bg-alt)}
+.glossary-item h5{margin:0 0 6px;color:var(--navy);font-size:.98rem}
+.glossary-item p{margin:4px 0;font-size:.9rem}
+.data-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--navy);color:#fff;
+  padding:10px 16px;border-radius:8px;z-index:2000;box-shadow:0 4px 12px rgba(0,0,0,.2);
+  opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+@media (max-width:900px){
+  #menuToggle{display:inline-block}
+  .layout{grid-template-columns:1fr}
+  aside#sidebar{position:fixed;left:0;top:0;bottom:0;height:100vh;width:260px;
+    z-index:200;transform:translateX(-100%);box-shadow:2px 0 12px rgba(0,0,0,.15)}
+  aside#sidebar.open{transform:translateX(0)}
+  main#content{padding:16px}
+  .chapter{padding:16px}
+  .header-tools input[type=search]{min-width:120px;flex:1}
+}
+@media print{
+  header,aside#sidebar,.progress-wrap,.progress-label,.chapter-done-label,
+  .notes-section,.highlight-popup,#menuToggle,.header-tools,
+  .quiz-controls,.flashcard-controls,.data-actions,.no-print{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .chapter{border:none;box-shadow:none;padding:0;margin:0 0 20pt;page-break-inside:avoid}
+  .layout{display:block}
+  main#content{max-width:100%;padding:0}
+  .chapter-header h2{color:#000}
+  .chapter-body h3{color:#000;border-left-color:#333}
+  a{color:#000;text-decoration:none}
+  .table-wrap{overflow:visible}
+  table{font-size:9pt}
+  .box{break-inside:avoid}
+  .flashcard{height:auto}
+  .flashcard-inner{transform:none!important}
+  .flashcard-face{position:static;backface-visibility:visible;transform:none!important;
+    margin-bottom:8px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button id="menuToggle" aria-label="Toggle menu">☰</button>
+  <div class="brand">
+    <h1>Teaching English to Young Learners</h1>
+    <p>Methods & Approaches — Study Material</p>
+  </div>
+  <div class="header-tools">
+    <input id="searchBox" type="search" placeholder="Search all content..." aria-label="Search">
+    <button id="highlightBtn" title="Toggle highlight mode">🖍️ Highlight: OFF</button>
+    <button id="fontBtn" title="Change font size">A+</button>
+    <button id="themeBtn" title="Toggle dark mode">🌙</button>
+    <button id="printBtn" title="Print / Save PDF">🖨️</button>
+  </div>
+</header>
+
+<div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+<div class="progress-label">
+  <span id="progressLabel">0 / 8 chapters completed</span>
+  <span id="searchStatus"></span>
+</div>
+
+<div class="layout">
+  <aside id="sidebar">
+    <nav id="nav">
+      <a href="#overview">1. Overview</a>
+      <a href="#traditional">2. Traditional Methods</a>
+      <a href="#modern">3. Modern Methods</a>
+      <a href="#comparison">4. Comparison Table</a>
+      <a href="#selection">5. Selection Guide</a>
+      <a href="#lesson">6. Sample Lesson (45 min)</a>
+      <a href="#quiz">7. Knowledge Quiz</a>
+      <a href="#references">8. References</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#flashcards">Flashcards</a>
+      <a href="#data-management">Data Management</a>
+    </nav>
+  </aside>
+
+  <main id="content">
+
+  <!-- ============ CHAPTER 1: OVERVIEW ============ -->
+  <section id="overview" class="chapter" data-chapter="overview">
+    <div class="chapter-header">
+      <h2>1. Overview</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="overview"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <h3>1.1 Why the choice of method matters</h3>
+      <p>Teaching English to young learners is a process of developing language competence through exposure, interaction, practice, and meaningful use of English. It is not only about memorising vocabulary and grammar structures, but also about helping children develop listening, speaking, reading, and writing appropriate to their age.</p>
+      <p>The choice of method should be based on several factors: age, language proficiency, learning objectives, cognitive characteristics, classroom conditions, and teaching resources. No single method is best for every child or every educational situation. Teachers must select and combine methods flexibly, with professional justification, and in line with lesson objectives.</p>
+
+      <div class="box concept">
+        <div class="box-title">Three main benefits</div>
+        <ul>
+          <li><strong>Enhancing learning effectiveness</strong> — appropriate content and activities help children understand, retain, and apply language knowledge better.</li>
+          <li><strong>Increasing learning motivation</strong> — meaningful, achievable, and interactive activities help children stay engaged and reduce pressure when using the new language.</li>
+          <li><strong>Developing long-term language competence</strong> — combining exposure, guided practice, and authentic communication creates conditions for balanced skill development.</li>
+        </ul>
+      </div>
+
+      <h3>1.2 Basic principles</h3>
+      <ul>
+        <li><strong>Appropriate to level</strong> — tasks should be suitably challenging with appropriate support.</li>
+        <li><strong>Enhance interaction</strong> — children need opportunities to listen, speak, and use English in situations with clear purposes.</li>
+        <li><strong>Combine practice and communication</strong> — vocabulary, pronunciation, and grammar practice should support language use rather than become the sole goal.</li>
+        <li><strong>Regular assessment</strong> — teachers should observe, check, and adjust activities based on children's actual progress.</li>
+        <li><strong>Flexible organisation</strong> — images, audio, movement, and games should serve learning objectives, not just entertain.</li>
+      </ul>
+
+      <div class="box note">
+        <div class="box-title">Caution about learning styles</div>
+        <p>Children's learning preferences vary, but there is insufficient evidence to claim that categorising children into fixed groups such as "visual learners", "auditory learners", or "kinesthetic learners" and teaching each group separately improves learning outcomes. Instead, teachers should choose presentation formats appropriate to the content and combine supports when needed (Pashler et al., 2008).</p>
+      </div>
+
+      <h3>1.3 Key terminology to know</h3>
+      <ul>
+        <li><strong>Method</strong> — an overall plan for presenting language material, based on a theory of language and language learning (e.g., Grammar-Translation, Audio-Lingual).</li>
+        <li><strong>Approach</strong> — a set of assumptions about language and learning (e.g., TBLT, TPR).</li>
+        <li><strong>Technique</strong> — a specific classroom activity or procedure (e.g., a substitution drill, a picture-matching game).</li>
+        <li><strong>Strategy</strong> — a learner's own plan for learning (e.g., Spaced Repetition, Retrieval Practice).</li>
+      </ul>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="overview" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="overview">Save note</button>
+        <span class="save-status" id="status-overview"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2: TRADITIONAL METHODS ============ -->
+  <section id="traditional" class="chapter" data-chapter="traditional">
+    <div class="chapter-header">
+      <h2>2. Traditional Methods</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="traditional"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <p>In this document, <strong>traditional</strong> describes approaches typically associated with explanation of knowledge, controlled practice, and pattern-based practice. This grouping serves learning purposes and does not mean these methods are obsolete or lack value.</p>
+
+      <h3>2.1 Grammar-Translation Method</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>Focuses on teaching grammar rules, vocabulary, and translating texts between the mother tongue and the target language. Teachers explain, give examples, and have students apply rules through exercises such as verb conjugation, sentence transformation, translation, and reading comprehension. The method typically uses L1 to explain difficult points. Reading and writing are prominent; spontaneous communication may not be emphasised.</p>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Helps students recognise and analyse grammatical structures systematically.</li>
+          <li>Supports vocabulary, reading comprehension, and text translation.</li>
+          <li>Suitable for tasks requiring grammatical accuracy and language analysis.</li>
+          <li>Easy to organise in resource-limited classrooms (no technology required).</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>If used as the main method, may limit opportunities to practise listening and speaking.</li>
+          <li>Memorising rules and translating sentences does not automatically ensure communicative use.</li>
+          <li>Repetitive, decontextualised activities may reduce children's engagement.</li>
+          <li>Heavy reliance on translation may hinder processing information directly in English.</li>
+        </ul>
+      </div>
+      <div class="box example">
+        <div class="box-title">Classroom example (children)</div>
+        <p>When teaching the present simple for habits, the teacher displays a short illustrated text about a character's day, explains the rule in Vietnamese, and asks children to complete sentence-transformation exercises. To keep it age-appropriate, pair the explanation with a picture-matching activity and one short oral question round.</p>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Use GTM selectively for specific grammar points or reading tasks. Supplement with visual aids and short communicative activities. Avoid long grammar lectures for young children.</p>
+      </div>
+
+      <h3>2.2 Audio-Lingual Method</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>Emerged strongly in the 20th century, influenced by behaviourism and structural views of language. Emphasises listening to language models, imitation, pattern practice, and reinforcement of appropriate responses.</p>
+        <p><strong>Typical activities:</strong></p>
+        <ul>
+          <li>Repeating words, phrases, and model sentences.</li>
+          <li>Pattern-dialogue practice.</li>
+          <li>Substitution drills (replacing one element in a sentence).</li>
+          <li>Transformation drills (e.g., affirmative → negative → question).</li>
+          <li>Pronunciation and intonation practice through listening and imitation.</li>
+        </ul>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Provides opportunities to practise pronunciation, stress, intonation, and common sentence patterns.</li>
+          <li>Helps beginners become familiar with language structures through guided practice.</li>
+          <li>Supports initial fluency with frequently practised patterns.</li>
+          <li>Can be organised with the teacher modelling directly; recording equipment is a support, not a requirement.</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>Mechanical practice may lead to memorisation without deep understanding of usage.</li>
+          <li>Excessive focus on accuracy may reduce experimentation and personal expression.</li>
+          <li>Does not automatically ensure balanced development of all four skills.</li>
+          <li>Repetition must be supplemented with meaningful communication.</li>
+        </ul>
+      </div>
+      <div class="box example">
+        <div class="box-title">Classroom example (children)</div>
+        <p>Teacher: "I like apples." → Students repeat. Teacher substitutes: "bananas" → Students: "I like bananas." Continue with "I don't like…" using a thumbs-down gesture. Finish with a 2-minute "chain game" where each child adds one item.</p>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Keep drills short (2–3 minutes). Connect patterns to a clear context. Follow up with a quick communicative activity so students use the pattern purposefully.</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="traditional" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="traditional">Save note</button>
+        <span class="save-status" id="status-traditional"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3: MODERN METHODS ============ -->
+  <section id="modern" class="chapter" data-chapter="modern">
+    <div class="chapter-header">
+      <h2>3. Modern Methods &amp; Strategies</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="modern"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+
+      <h3>3.1 Task-Based Language Teaching (TBLT)</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>An approach in which learners use language to complete a task with a specific goal and outcome. Instead of isolated structure practice, students use English to exchange information, solve problems, or create a product.</p>
+        <p>Three features of a task:</p>
+        <ul>
+          <li>Focus on meaning and communicative goals.</li>
+          <li>Requires learners to use their language resources to complete the task.</li>
+          <li>Has an identifiable outcome or product (a plan, decision, or presentation).</li>
+        </ul>
+        <p>TBLT has many implementation variants. It does not require teachers to eliminate grammar or vocabulary teaching entirely; form-focused activities can be combined when needed (Ellis, 2009).</p>
+      </div>
+      <div class="box example">
+        <div class="box-title">Classroom example</div>
+        <p>Groups plan a one-day healthy menu, choose suitable foods, discuss choices, and present their menu in English.</p>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Creates opportunities to use English in purpose-driven situations.</li>
+          <li>Encourages information exchange, cooperation, and problem-solving.</li>
+          <li>Can combine listening, speaking, reading, and writing depending on the task.</li>
+          <li>Allows teachers to observe language application during task completion.</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>Task design requires clear objectives, language support, and assessment criteria.</li>
+          <li>Low-proficiency students may struggle if tasks exceed their current level.</li>
+          <li>Some students may participate less if roles are not well assigned.</li>
+          <li>Assessment must consider both outcome and language use, not only product completion.</li>
+        </ul>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Design short tasks (5–10 minutes). Provide sentence frames and key vocabulary. Assign roles. Monitor and support all groups. Debrief language use after the task.</p>
+      </div>
+
+      <h3>3.2 Gamification</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>Using game elements — points, challenges, levels, badges, immediate feedback — in a non-game activity to support engagement and motivation.</p>
+        <p>In English teaching, gamification can be implemented through classroom activities such as vocabulary challenges, team missions, sentence-matching games, or online quiz apps.</p>
+        <p><strong>Distinguish from Game-Based Learning (GBL):</strong> in gamification, game elements are integrated into learning activities; in GBL, the game itself is the main vehicle for organising the learning experience.</p>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Increases interaction and feedback opportunities.</li>
+          <li>Can help students maintain attention and engagement.</li>
+          <li>Creates practice opportunities for vocabulary, grammar, and patterns.</li>
+          <li>Allows quick comprehension checks through student responses.</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>Students may focus on points or rewards more than on learning objectives.</li>
+          <li>Public competition may pressure some children, especially speed-only activities.</li>
+          <li>Games disconnected from objectives may entertain without producing learning.</li>
+          <li>Some online activities require devices and internet; however, gamification can also be implemented with paper cards, whiteboards, and group activities.</li>
+        </ul>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Align games with language objectives. Avoid elimination games. Use cooperative formats. Always debrief after the game so play connects to learning.</p>
+      </div>
+
+      <h3>3.3 Total Physical Response (TPR)</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>Developed by James J. Asher, TPR emphasises the connection between listening comprehension and physical responses. In the early stages, the teacher gives commands in English and students perform the corresponding actions.</p>
+        <p><strong>Examples:</strong></p>
+        <ul>
+          <li>"Stand up." — Students stand up.</li>
+          <li>"Touch your head." — Students touch their head.</li>
+          <li>"Walk to the door." — Students walk to the door.</li>
+        </ul>
+        <p>After comprehension opportunities, the teacher can encourage students to give commands themselves or use similar structures in communication.</p>
+        <p>TPR was presented by Asher (1969) as an approach to second-language learning through the coordination of speech and action.</p>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Supports understanding and retention of vocabulary, especially action verbs, body parts, and instructions.</li>
+          <li>Allows physical response before verbal expression.</li>
+          <li>Suitable for visual, interactive listening comprehension activities.</li>
+          <li>Can reduce speaking pressure for beginners.</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>Insufficient on its own for comprehensive language development.</li>
+          <li>Less suitable for abstract content or complex reasoning tasks.</li>
+          <li>Physical activities need appropriate space, class size, and safety arrangements.</li>
+          <li>Repetition without expansion may become monotonous.</li>
+        </ul>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Keep sessions short (5–10 minutes). Combine with songs. Gradually increase complexity. Use humour. Later, let students give the commands.</p>
+      </div>
+
+      <h3>3.4 Spaced Repetition</h3>
+      <div class="box concept">
+        <div class="box-title">Concept &amp; features</div>
+        <p>A learning strategy in which learners review knowledge multiple times over spaced intervals rather than massing study in one session. It can be combined with <strong>retrieval practice</strong> — actively trying to recall information without immediately looking at the answer.</p>
+        <p>Example: after learning new words, students review by recalling meanings, naming objects in English, or using words in sentences in later sessions.</p>
+        <p>Intervals need not be fixed; they can be adjusted based on content difficulty, retention level, and review results. Carpenter, Pan &amp; Butler (2022) show that spacing and retrieval practice are research-supported learning strategies. However, the specific effect depends on content, timing, and assessment method.</p>
+      </div>
+      <div class="box pros">
+        <div class="box-title">Advantages</div>
+        <ul>
+          <li>Supports long-term knowledge retention.</li>
+          <li>Encourages active recall instead of passive rereading.</li>
+          <li>Can reveal words or structures students have not yet mastered.</li>
+          <li>Easy to combine with flashcards, short questions, and on-class or at-home review.</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Limitations</div>
+        <ul>
+          <li>Requires a consistent and reasonable review schedule.</li>
+          <li>Reviewing isolated words may lead to knowing meanings but not usage.</li>
+          <li>Flashcard systems must be accurately designed with context and level-appropriate content.</li>
+          <li>Technology can support organisation but is not a requirement.</li>
+        </ul>
+      </div>
+      <div class="box tip">
+        <div class="box-title">Teacher tips</div>
+        <p>Build short 5-minute review slots into each lesson. Use flashcards. Connect review to usage (e.g., "Use last week's word in a sentence").</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="modern" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="modern">Save note</button>
+        <span class="save-status" id="status-modern"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4: COMPARISON ============ -->
+  <section id="comparison" class="chapter" data-chapter="comparison">
+    <div class="chapter-header">
+      <h2>4. Comparison Table</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="comparison"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th><th>Core features</th><th>Key strengths</th>
+              <th>Main limitations</th><th>Suitable applications</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grammar-Translation</td>
+              <td>Grammar explanation, text translation</td>
+              <td>Structure analysis, reading comprehension</td>
+              <td>Limited communication if used alone</td>
+              <td>Grammar, reading, translation</td>
+            </tr>
+            <tr>
+              <td>Audio-Lingual</td>
+              <td>Model listening, imitation, drill</td>
+              <td>Pronunciation, pattern practice</td>
+              <td>May become inflexible</td>
+              <td>Pronunciation, model dialogues</td>
+            </tr>
+            <tr>
+              <td>TBLT</td>
+              <td>Complete tasks using language</td>
+              <td>Purpose-driven communication</td>
+              <td>Requires careful design and support</td>
+              <td>Projects, problem-solving</td>
+            </tr>
+            <tr>
+              <td>Gamification</td>
+              <td>Integrate game elements</td>
+              <td>Increased interaction and feedback</td>
+              <td>May distract from objectives</td>
+              <td>Review, practice, consolidation</td>
+            </tr>
+            <tr>
+              <td>TPR</td>
+              <td>Listen and respond physically</td>
+              <td>Supports vocabulary comprehension</td>
+              <td>Limited scope if used alone</td>
+              <td>Commands, actions, locations</td>
+            </tr>
+            <tr>
+              <td>Spaced Repetition</td>
+              <td>Spaced review with retrieval</td>
+              <td>Long-term retention</td>
+              <td>Does not replace communicative practice</td>
+              <td>Vocabulary, phrases, structures</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="box note">
+        <div class="box-title">Note on classification</div>
+        <p>Grammar-Translation and Audio-Lingual are <strong>methods</strong>; TBLT is an <strong>approach</strong>; Gamification is a <strong>design technique</strong>; TPR is an <strong>approach</strong>; Spaced Repetition is a <strong>learning strategy</strong>. They are not at the same theoretical level.</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="comparison" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="comparison">Save note</button>
+        <span class="save-status" id="status-comparison"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5: SELECTION GUIDE ============ -->
+  <section id="selection" class="chapter" data-chapter="selection">
+    <div class="chapter-header">
+      <h2>5. Selection Guide</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="selection"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <p>The age groups below are <strong>directional only</strong>. Teachers should consider each child's proficiency, cognitive ability, learning experience, and actual needs.</p>
+
+      <h3>Preschool (ages ~3–5)</h3>
+      <p>Prioritise TPR, songs, picture books, games, and short listening activities. Use simple language, model directly, and create opportunities for children to respond physically before requiring verbal expression.</p>
+
+      <h3>Early primary (ages ~6–8)</h3>
+      <p>Combine TPR, games, pattern practice, and short communicative activities. Begin establishing regular spaced-review habits. Develop reading and writing at an appropriate level.</p>
+
+      <h3>Late primary (ages ~9–12)</h3>
+      <p>Increase communicative tasks, group projects, reading, writing, and discussion. Combine selective grammar explanation, pattern practice, and spaced repetition to consolidate knowledge.</p>
+
+      <h3>Combining methods by lesson objective</h3>
+      <ul>
+        <li><strong>Introduce new vocabulary</strong> → TPR + flashcards + game.</li>
+        <li><strong>Practise structures</strong> → short Audio-Lingual drills + a task.</li>
+        <li><strong>Develop speaking</strong> → TBLT + role-play.</li>
+        <li><strong>Consolidate</strong> → spaced review + quiz game.</li>
+        <li><strong>Explain grammar to older learners</strong> → short grammar explanation + application task.</li>
+      </ul>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="selection" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="selection">Save note</button>
+        <span class="save-status" id="status-selection"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6: SAMPLE LESSON ============ -->
+  <section id="lesson" class="chapter" data-chapter="lesson">
+    <div class="chapter-header">
+      <h2>6. Sample 45-minute Lesson — Healthy Food</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="lesson"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+
+      <h3>Step 1 (5 min) — Warm-up with TPR</h3>
+      <div class="box concept">
+        <p><strong>Objective:</strong> Activate prior knowledge; review food vocabulary.</p>
+        <p><strong>Teacher:</strong> Give commands — "Touch the apple", "Point to the banana", "Stand up if you like rice."</p>
+        <p><strong>Students:</strong> Listen and perform actions.</p>
+        <p><strong>English examples:</strong> "Touch the apple.", "Point to the banana.", "Show me a healthy food."</p>
+        <p><strong>Check:</strong> Observe correct physical responses.</p>
+      </div>
+
+      <h3>Step 2 (10 min) — Introduce language and guided practice</h3>
+      <div class="box concept">
+        <p><strong>Objective:</strong> Introduce target vocabulary and structures.</p>
+        <p><strong>Teacher:</strong> Present vocabulary (apple, banana, rice, vegetables, milk) with visuals. Model "I like…", "I don't like…", "My favourite food is…".</p>
+        <p><strong>Students:</strong> Listen, repeat, complete sentence frames.</p>
+        <p><strong>English examples:</strong> "I like apples.", "I don't like soda.", "My favourite food is rice."</p>
+        <p><strong>Check:</strong> Monitor pair practice; correct errors gently.</p>
+      </div>
+
+      <h3>Step 3 (15 min) — Communicative task (TBLT)</h3>
+      <div class="box concept">
+        <p><strong>Objective:</strong> Use language to complete a meaningful task.</p>
+        <p><strong>Teacher:</strong> Assign group task — "Plan a healthy lunch menu." Provide sentence frames and key vocabulary. Circulate and support.</p>
+        <p><strong>Students:</strong> Work in groups: discuss, choose foods, prepare presentation.</p>
+        <p><strong>English examples:</strong> "Let's have rice and vegetables.", "Do you like fish?", "Our menu has…"</p>
+        <p><strong>Check:</strong> Observe collaboration and language use; check each group's menu.</p>
+      </div>
+
+      <h3>Step 4 (10 min) — Consolidation with Gamification</h3>
+      <div class="box concept">
+        <p><strong>Objective:</strong> Reinforce vocabulary and structures.</p>
+        <p><strong>Teacher:</strong> Run "Healthy Food Bingo" or "Picture Match" in teams. Award points for correct answers.</p>
+        <p><strong>Students:</strong> Participate in teams; respond quickly.</p>
+        <p><strong>English examples:</strong> "Bingo! Apple!", "Is this healthy? Yes!"</p>
+        <p><strong>Check:</strong> Note which items students miss for future review.</p>
+      </div>
+
+      <h3>Step 5 (5 min) — Assessment and homework</h3>
+      <div class="box concept">
+        <p><strong>Objective:</strong> Consolidate learning; assign spaced review.</p>
+        <p><strong>Teacher:</strong> Ask each student to say one new word and one sentence about their favourite food. Assign short review for the next sessions.</p>
+        <p><strong>Students:</strong> Say or write words and sentence.</p>
+        <p><strong>English examples:</strong> "Apple. My favourite food is apple."</p>
+        <p><strong>Check:</strong> Quick oral check; collect a 1-sentence exit ticket.</p>
+      </div>
+
+      <div class="box note">
+        <div class="box-title">Method integration</div>
+        <p>TPR supports comprehension; guided practice supports form; TBLT creates purposeful use; gamification consolidates; spaced repetition maintains knowledge after the lesson.</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="lesson" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="lesson">Save note</button>
+        <span class="save-status" id="status-lesson"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 7: QUIZ ============ -->
+  <section id="quiz" class="chapter" data-chapter="quiz">
+    <div class="chapter-header">
+      <h2>7. Knowledge Quiz</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="quiz"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <p>30 questions (15 multiple-choice, 10 true/false, 5 classroom scenarios). Questions and options are shuffled each attempt. Answers are hidden until you submit.</p>
+      <div class="quiz-controls">
+        <button class="primary" id="startQuizBtn">Start / Restart Quiz</button>
+        <button id="submitQuizBtn" disabled>Submit Answers</button>
+        <button id="showWrongBtn" disabled>Review Mistakes</button>
+      </div>
+      <div id="quizScoreBox"></div>
+      <div id="quizContainer"></div>
+      <div id="quizHistory" style="margin-top:16px;font-size:.85rem;color:var(--text-muted)"></div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8: REFERENCES ============ -->
+  <section id="references" class="chapter" data-chapter="references">
+    <div class="chapter-header">
+      <h2>8. References</h2>
+      <label class="chapter-done-label">
+        <input type="checkbox" class="chapter-done" data-chapter="references"> Mark as studied
+      </label>
+    </div>
+    <div class="chapter-body">
+      <p>The following references follow APA 7 and prioritise verifiable scholarly sources.</p>
+      <ul>
+        <li>Asher, J. J. (1969). The total physical response approach to second language learning. <em>The Modern Language Journal, 53</em>(1), 3–17. <a href="https://doi.org/10.1111/j.1540-4781.1969.tb04552.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1540-4781.1969.tb04552.x</a></li>
+        <li>Carpenter, S. K., Pan, S. C., &amp; Butler, A. C. (2022). The science of effective learning with spacing and retrieval practice. <em>Nature Reviews Psychology, 1</em>, 496–511. <a href="https://doi.org/10.1038/s44159-022-00089-1" target="_blank" rel="noopener">https://doi.org/10.1038/s44159-022-00089-1</a></li>
+        <li>Ellis, R. (2009). Task-based language teaching: Sorting out the misunderstandings. <em>International Journal of Applied Linguistics, 19</em>(3), 221–246. <a href="https://doi.org/10.1111/j.1473-4192.2009.00231.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1473-4192.2009.00231.x</a></li>
+        <li>Ellis, R. (2020). Task-based language teaching for beginner-level young learners. <em>Language Teaching for Young Learners, 2</em>(1), 4–27. <a href="https://doi.org/10.1075/ltyl.19005.ell" target="_blank" rel="noopener">https://doi.org/10.1075/ltyl.19005.ell</a></li>
+        <li>Pashler, H., McDaniel, M., Rohrer, D., &amp; Bjork, R. (2008). Learning styles: Concepts and evidence. <em>Psychological Science in the Public Interest, 9</em>(3), 105–119. <a href="https://doi.org/10.1111/j.1539-6053.2009.01038.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1539-6053.2009.01038.x</a></li>
+        <li>British Council. (n.d.). <em>Communicative approach</em>. TeachingEnglish. <a href="https://www.teachingenglish.org.uk/professional-development/teachers/teaching-knowledge-database/c/communicative-approach" target="_blank" rel="noopener">https://www.teachingenglish.org.uk/professional-development/teachers/teaching-knowledge-database/c/communicative-approach</a></li>
+        <li>British Council. (n.d.). <em>TPR</em>. TeachingEnglish. <a href="https://www.teachingenglish.org.uk/professional-development/teachers/teaching-knowledge-database/t-w/tpr" target="_blank" rel="noopener">https://www.teachingenglish.org.uk/professional-development/teachers/teaching-knowledge-database/t-w/tpr</a></li>
+      </ul>
+      <div class="box note">
+        <div class="box-title">Academic note</div>
+        <p>This material has been standardised in concept and wording, but it is a study document — not an experimental research paper. For essays or course reports, consult your instructor's requirements, verify the original sources, and add citations at specific claims.</p>
+      </div>
+    </div>
+    <div class="notes-section">
+      <h4>My Notes</h4>
+      <textarea class="notes-input" data-chapter="references" placeholder="Write your notes for this chapter..."></textarea>
+      <div class="notes-actions">
+        <button class="save-note-btn" data-chapter="references">Save note</button>
+        <span class="save-status" id="status-references"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GLOSSARY ============ -->
+  <section id="glossary" class="chapter" data-chapter="glossary">
+    <div class="chapter-header"><h2>Glossary</h2></div>
+    <div class="chapter-body">
+      <input class="glossary-search" id="glossarySearch" type="search" placeholder="Search glossary terms...">
+      <div id="glossaryList"></div>
+    </div>
+  </section>
+
+  <!-- ============ FLASHCARDS ============ -->
+  <section id="flashcards" class="chapter" data-chapter="flashcards">
+    <div class="chapter-header"><h2>Flashcards</h2></div>
+    <div class="chapter-body">
+      <p>Click a card to flip. Mark <strong>Remembered</strong> or <strong>Need review</strong> — your state is saved.</p>
+      <div id="flashcardArea"></div>
+    </div>
+  </section>
+
+  <!-- ============ DATA MANAGEMENT ============ -->
+  <section id="data-management" class="chapter" data-chapter="data-management">
+    <div class="chapter-header"><h2>Data Management</h2></div>
+    <div class="chapter-body">
+      <p>Export your notes, progress, highlights, and flashcard state to a JSON file. Import a previously exported file to restore your data.</p>
+      <div class="data-actions">
+        <button class="primary" id="exportBtn">⬇️ Export data (JSON)</button>
+        <label class="no-print" style="display:inline-block">
+          <input type="file" id="importFile" accept="application/json" style="display:none">
+          <button id="importBtn">⬆️ Import data (JSON)</button>
+        </label>
+        <button class="danger" id="resetAllBtn">🗑️ Delete all personal data</button>
+      </div>
+      <div id="importStatus" style="font-size:.9rem;color:var(--text-muted);margin-top:8px"></div>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<div class="highlight-popup" id="highlightPopup">
+  <button data-color="yellow" title="Yellow"></button>
+  <button data-color="blue" title="Blue"></button>
+  <button data-color="green" title="Green"></button>
+  <button data-color="pink" title="Pink"></button>
+  <button data-color="orange" title="Orange"></button>
+  <button class="clear-btn" id="clearHighlightBtn" title="Remove highlight">Clear</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   STORAGE HELPERS
+   ============================================================ */
+const STORE = {
+  get(key, fallback) {
+    try {
+      const v = localStorage.getItem(key);
+      return v === null ? fallback : JSON.parse(v);
+    } catch (e) { return fallback; }
+  },
+  set(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); return true; }
+    catch (e) { console.warn('localStorage not available', e); return false; }
+  },
+  remove(key) { try { localStorage.removeItem(key); } catch (e) {} }
+};
+
+const CHAPTERS = ['overview','traditional','modern','comparison','selection','lesson','quiz','references'];
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ============================================================
+   THEME + FONT SIZE
+   ============================================================ */
+function initTheme() {
+  const theme = STORE.get('teyl_theme', 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('themeBtn').textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+document.getElementById('themeBtn').addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', cur);
+  STORE.set('teyl_theme', cur);
+  document.getElementById('themeBtn').textContent = cur === 'dark' ? '☀️' : '🌙';
+});
+initTheme();
+
+function applyFontSize() {
+  const fs = STORE.get('teyl_font', 17);
+  document.documentElement.style.setProperty('--fs', fs + 'px');
+}
+applyFontSize();
+document.getElementById('fontBtn').addEventListener('click', () => {
+  let fs = STORE.get('teyl_font', 17);
+  fs = fs >= 22 ? 15 : fs + 1;
+  STORE.set('teyl_font', fs);
+  applyFontSize();
+  showToast('Font size: ' + fs + 'px');
+});
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+document.getElementById('nav').addEventListener('click', (e) => {
+  if (e.target.tagName === 'A' && window.innerWidth <= 900) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+});
+
+/* ============================================================
+   PROGRESS TRACKING
+   ============================================================ */
+function getProgress() { return STORE.get('teyl_progress', {}); }
+function setProgress(p) { STORE.set('teyl_progress', p); }
+function renderProgress() {
+  const p = getProgress();
+  let done = 0;
+  CHAPTERS.forEach(id => {
+    const cb = document.querySelector('.chapter-done[data-chapter="' + id + '"]');
+    if (cb) cb.checked = !!p[id];
+    const navA = document.querySelector('#nav a[href="#' + id + '"]');
+    if (navA) navA.classList.toggle('done', !!p[id]);
+    if (p[id]) done++;
+  });
+  const pct = Math.round((done / CHAPTERS.length) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = done + ' / ' + CHAPTERS.length + ' chapters completed (' + pct + '%)';
+}
+document.querySelectorAll('.chapter-done').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const p = getProgress();
+    p[cb.dataset.chapter] = cb.checked;
+    setProgress(p);
+    renderProgress();
+  });
+});
+renderProgress();
+
+/* ============================================================
+   NOTES
+   ============================================================ */
+function noteKey(id) { return 'teyl_notes_' + id; }
+function loadNotes() {
+  CHAPTERS.forEach(id => {
+    const ta = document.querySelector('.notes-input[data-chapter="' + id + '"]');
+    if (ta) ta.value = STORE.get(noteKey(id), '');
+  });
+}
+function saveNote(id, value) {
+  STORE.set(noteKey(id), value);
+  const st = document.getElementById('status-' + id);
+  if (st) {
+    st.textContent = 'Saved ✓';
+    clearTimeout(st._t);
+    st._t = setTimeout(() => { st.textContent = ''; }, 1800);
+  }
+}
+document.querySelectorAll('.save-note-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.chapter;
+    const ta = document.querySelector('.notes-input[data-chapter="' + id + '"]');
+    saveNote(id, ta.value);
+  });
+});
+document.querySelectorAll('.notes-input').forEach(ta => {
+  let timer;
+  ta.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => saveNote(ta.dataset.chapter, ta.value), 800);
+  });
+});
+loadNotes();
+
+/* ============================================================
+   HIGHLIGHT SYSTEM
+   ============================================================ */
+let highlightMode = false;
+let pendingRange = null;
+
+function getHighlightStore() { return STORE.get('teyl_highlights', {}); }
+function setHighlightStore(s) { STORE.set('teyl_highlights', s); }
+
+function getTextOffsetIn(container, node, offset) {
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  let count = 0, cur;
+  while ((cur = walker.nextNode())) {
+    if (cur === node) return count + offset;
+    count += cur.textContent.length;
+  }
+  return -1;
+}
+
+function clearUserMarks(container) {
+  container.querySelectorAll('mark.user-highlight').forEach(m => {
+    const parent = m.parentNode;
+    while (m.firstChild) parent.insertBefore(m.firstChild, m);
+    parent.removeChild(m);
+  });
+  container.normalize();
+}
+
+function wrapRange(container, start, end, colorClass) {
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null);
+  const textNodes = [];
+  let count = 0, cur;
+  while ((cur = walker.nextNode())) {
+    const len = cur.textContent.length;
+    if (count + len > start && count < end) {
+      textNodes.push({
+        node: cur,
+        from: Math.max(0, start - count),
+        to: Math.min(len, end - count)
+      });
+    }
+    count += len;
+  }
+  // Wrap from the end so earlier offsets stay valid
+  for (let i = textNodes.length - 1; i >= 0; i--) {
+    const { node, from, to } = textNodes[i];
+    if (from >= to) continue;
+    const r = document.createRange();
+    r.setStart(node, from);
+    r.setEnd(node, to);
+    const mark = document.createElement('mark');
+    mark.className = 'user-highlight ' + colorClass;
+    try { r.surroundContents(mark); } catch (e) { /* skip if fails */ }
+  }
+}
+
+function renderChapterHighlights(chapterId) {
+  const section = document.getElementById(chapterId);
+  if (!section) return;
+  const body = section.querySelector('.chapter-body');
+  if (!body) return;
+  clearUserMarks(body);
+  const all = getHighlightStore();
+  const list = all[chapterId] || [];
+  list.forEach(h => wrapRange(body, h.start, h.end, 'hl-' + h.color));
+}
+
+function renderAllHighlights() {
+  CHAPTERS.concat(['glossary']).forEach(id => {
+    if (document.getElementById(id)) renderChapterHighlights(id);
+  });
+}
+
+// Toggle highlight mode
+document.getElementById('highlightBtn').addEventListener('click', () => {
+  highlightMode = !highlightMode;
+  document.body.classList.toggle('highlight-mode', highlightMode);
+  document.getElementById('highlightBtn').textContent = '🖍️ Highlight: ' + (highlightMode ? 'ON' : 'OFF');
+  if (!highlightMode) hideHighlightPopup();
+  showToast(highlightMode ? 'Highlight mode ON — select text to highlight' : 'Highlight mode OFF');
+});
+
+function hideHighlightPopup() {
+  document.getElementById('highlightPopup').classList.remove('show');
+  pendingRange = null;
+}
+
+document.addEventListener('mouseup', (e) => {
+  if (!highlightMode) return;
+  if (e.target.closest('#highlightPopup')) return;
+  setTimeout(() => {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) {
+      hideHighlightPopup();
+      return;
+    }
+    const range = sel.getRangeAt(0);
+    const chapterBody = range.commonAncestorContainer.nodeType === 1
+      ? range.commonAncestorContainer.closest('.chapter-body')
+      : range.commonAncestorContainer.parentElement?.closest('.chapter-body');
+    if (!chapterBody) { hideHighlightPopup(); return; }
+    pendingRange = { range: range.cloneRange(), container: chapterBody };
+    const rect = range.getBoundingClientRect();
+    const pop = document.getElementById('highlightPopup');
+    pop.classList.add('show');
+    pop.style.left = Math.max(8, rect.left + window.scrollX - 20) + 'px';
+    pop.style.top = (rect.top + window.scrollY - 48) + 'px';
+  }, 10);
+});
+
+// Also handle touchend for mobile
+document.addEventListener('touchend', (e) => {
+  if (!highlightMode) return;
+  if (e.target.closest('#highlightPopup')) return;
+  setTimeout(() => {
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+    const range = sel.getRangeAt(0);
+    const chapterBody = range.commonAncestorContainer.nodeType === 1
+      ? range.commonAncestorContainer.closest('.chapter-body')
+      : range.commonAncestorContainer.parentElement?.closest('.chapter-body');
+    if (!chapterBody) return;
+    pendingRange = { range: range.cloneRange(), container: chapterBody };
+    const rect = range.getBoundingClientRect();
+    const pop = document.getElementById('highlightPopup');
+    pop.classList.add('show');
+    pop.style.left = Math.max(8, rect.left + window.scrollX - 20) + 'px';
+    pop.style.top = (rect.top + window.scrollY - 48) + 'px';
+  }, 10);
+});
+
+document.getElementById('highlightPopup').addEventListener('click', (e) => {
+  const colorBtn = e.target.closest('button[data-color]');
+  if (colorBtn) {
+    applyHighlightFromSelection(colorBtn.dataset.color);
+    return;
+  }
+  if (e.target.id === 'clearHighlightBtn') {
+    clearCurrentSelectionHighlights();
+  }
+});
+
+function applyHighlightFromSelection(color) {
+  if (!pendingRange) return;
+  const { range, container } = pendingRange;
+  const start = getTextOffsetIn(container, range.startContainer, range.startOffset);
+  const end = getTextOffsetIn(container, range.endContainer, range.endOffset);
+  if (start < 0 || end <= start) { hideHighlightPopup(); return; }
+  const section = container.closest('.chapter');
+  if (!section) { hideHighlightPopup(); return; }
+  const chapterId = section.id;
+  const all = getHighlightStore();
+  if (!all[chapterId]) all[chapterId] = [];
+  all[chapterId].push({ start, end, color });
+  setHighlightStore(all);
+  window.getSelection().removeAllRanges();
+  hideHighlightPopup();
+  renderChapterHighlights(chapterId);
+  showToast('Highlighted');
+}
+
+function clearCurrentSelectionHighlights() {
+  if (!pendingRange) { hideHighlightPopup(); return; }
+  const { range, container } = pendingRange;
+  const start = getTextOffsetIn(container, range.startContainer, range.startOffset);
+  const end = getTextOffsetIn(container, range.endContainer, range.endOffset);
+  if (start < 0 || end <= start) { hideHighlightPopup(); return; }
+  const section = container.closest('.chapter');
+  if (!section) { hideHighlightPopup(); return; }
+  const chapterId = section.id;
+  const all = getHighlightStore();
+  const list = all[chapterId] || [];
+  all[chapterId] = list.filter(h => !(h.start < end && h.end > start));
+  setHighlightStore(all);
+  window.getSelection().removeAllRanges();
+  hideHighlightPopup();
+  renderChapterHighlights(chapterId);
+  showToast('Highlight removed');
+}
+
+// Initial render of highlights
+renderAllHighlights();
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+document.getElementById('searchBox').addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  const status = document.getElementById('searchStatus');
+  if (q.length < 2) { status.textContent = ''; return; }
+  let foundChapters = 0, totalMatches = 0;
+  let firstMatch = null;
+  CHAPTERS.concat(['glossary']).forEach(id => {
+    const section = document.getElementById(id);
+    if (!section) return;
+    const body = section.querySelector('.chapter-body');
+    if (!body) return;
+    const text = body.textContent.toLowerCase();
+    let idx = text.indexOf(q);
+    if (idx !== -1) {
+      foundChapters++;
+      while (idx !== -1) { totalMatches++; idx = text.indexOf(q, idx + q.length); }
+      if (!firstMatch) firstMatch = section;
+    }
+  });
+  status.textContent = totalMatches === 0
+    ? 'No matches'
+    : totalMatches + ' match(es) in ' + foundChapters + ' section(s)';
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    firstMatch.classList.add('search-flash');
+    setTimeout(() => firstMatch.classList.remove('search-flash'), 1600);
+  }
+});
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+const QUIZ_DATA = [
+  // --- MCQ (15) ---
+  { type:'mcq', q:'Which method emphasises translation between the first language and the target language?',
+    opts:['Task-Based Language Teaching','Grammar-Translation Method','Total Physical Response','Spaced Repetition'], correct:1,
+    exp:'The Grammar-Translation Method focuses on grammar rules, vocabulary, and translating texts between the mother tongue and the target language.' },
+  { type:'mcq', q:'TPR is primarily associated with which researcher?',
+    opts:['Rod Ellis','James J. Asher','Stephen Krashen','H. Douglas Brown'], correct:1,
+    exp:'TPR was developed by James J. Asher, who published on it in 1969.' },
+  { type:'mcq', q:'In TBLT, the primary focus is on:',
+    opts:['Grammar drills','Translation exercises','Completing meaningful tasks','Memorising vocabulary lists'], correct:2,
+    exp:'TBLT centres on learners using language to complete meaningful tasks with identifiable outcomes.' },
+  { type:'mcq', q:'Which is NOT a typical activity of the Audio-Lingual Method?',
+    opts:['Substitution drills','Transformation drills','Translation of literary texts','Pattern dialogues'], correct:2,
+    exp:'Translation of literary texts is more typical of Grammar-Translation; Audio-Lingual focuses on pattern drills.' },
+  { type:'mcq', q:'Gamification differs from Game-Based Learning because:',
+    opts:['It uses no games at all','Game elements are integrated into non-game learning activities','It requires technology','It is only for children'], correct:1,
+    exp:'Gamification integrates game elements into non-game activities; GBL uses games as the main learning vehicle.' },
+  { type:'mcq', q:'Spaced Repetition works best when combined with:',
+    opts:['Massed practice','Retrieval practice','Translation practice','Silent reading'], correct:1,
+    exp:'Spacing and retrieval practice complement each other, as shown in the Carpenter et al. (2022) review.' },
+  { type:'mcq', q:'Which is a learning strategy rather than a teaching method?',
+    opts:['Total Physical Response','Task-Based Language Teaching','Spaced Repetition','Grammar-Translation Method'], correct:2,
+    exp:'Spaced Repetition is a learning strategy; the others are teaching methods/approaches.' },
+  { type:'mcq', q:'Which is a limitation of the Grammar-Translation Method?',
+    opts:['Too much technology','Insufficient listening and speaking practice if used alone','Lack of grammar rules','It cannot be used with any learners'], correct:1,
+    exp:'If used alone, GTM may limit opportunities for listening and speaking practice.' },
+  { type:'mcq', q:'TPR is most effective for teaching:',
+    opts:['Abstract grammar rules','Action verbs and commands','Complex essay writing','Literary criticism'], correct:1,
+    exp:'TPR connects listening comprehension with physical responses — ideal for action verbs, body parts, and commands.' },
+  { type:'mcq', q:'According to the document, learning styles (visual/auditory/kinesthetic grouping):',
+    opts:['Are proven to improve outcomes','Lack strong evidence for grouping-based teaching','Are the main basis for method selection','Should replace other approaches'], correct:1,
+    exp:'The document cites Pashler et al. (2008), noting insufficient evidence for grouping-based teaching by learning style.' },
+  { type:'mcq', q:'The task in TBLT should have:',
+    opts:['No clear outcome','An identifiable outcome or product','Only grammar focus','No student interaction'], correct:1,
+    exp:'Tasks in TBLT require meaning focus, language use, and an identifiable outcome/product.' },
+  { type:'mcq', q:'Which is true about the Audio-Lingual Method?',
+    opts:['It entirely ignores speaking','It uses only translation','It emphasises imitation and pattern practice','It requires no teacher modelling'], correct:2,
+    exp:'ALM emphasises listening to models, imitation, and pattern practice.' },
+  { type:'mcq', q:'In the sample 45-minute lesson, which activity is used in the warm-up?',
+    opts:['Translation','TPR','Essay writing','Grammar lecture'], correct:1,
+    exp:'The warm-up uses TPR commands such as "Touch the apple" and "Stand up".' },
+  { type:'mcq', q:'According to the document, TBLT:',
+    opts:['Requires eliminating grammar teaching entirely','Can include form-focused activities when needed','Is only for advanced learners','Uses only written tasks'], correct:1,
+    exp:'TBLT can combine form-focused activities when needed (Ellis, 2009).' },
+  { type:'mcq', q:'Which researcher is cited for the learning styles critique?',
+    opts:['Asher','Ellis','Pashler et al.','Carpenter'], correct:2,
+    exp:'Pashler et al. (2008) is cited for the learning styles critique.' },
+
+  // --- True/False (10) ---
+  { type:'tf', q:'Grammar-Translation and Audio-Lingual are both "approaches" at the same theoretical level as TBLT.', correct:1,
+    exp:'False — they are methods; TBLT is an approach. The document distinguishes these levels.' },
+  { type:'tf', q:'The document states that no single method is best for all children.', correct:0,
+    exp:'True — the document explicitly states no single method fits every child or situation.' },
+  { type:'tf', q:'Spaced Repetition should always follow a fixed interval schedule.', correct:1,
+    exp:'False — intervals can be adjusted based on difficulty, retention, and review results.' },
+  { type:'tf', q:'TPR is only suitable for preschool children.', correct:1,
+    exp:'False — TPR can also be used with older students when appropriate to the lesson.' },
+  { type:'tf', q:'Gamification and Game-Based Learning are the same thing.', correct:1,
+    exp:'False — they are distinct: gamification integrates game elements into non-game activities; GBL uses games as the main vehicle.' },
+  { type:'tf', q:'TBLT tasks should focus on meaning and have an identifiable outcome.', correct:0,
+    exp:'True — these are two of the three key features of a task.' },
+  { type:'tf', q:'The Audio-Lingual Method can be organised using only teacher modelling, without recording equipment.', correct:0,
+    exp:'True — recording is a support, not a requirement.' },
+  { type:'tf', q:'Grammar-Translation Method is described as having no value in modern teaching.', correct:1,
+    exp:'False — the document notes it has value in specific contexts (grammar, reading, translation).' },
+  { type:'tf', q:'Retrieval practice involves actively trying to recall information without looking at the answer.', correct:0,
+    exp:'True — that is the definition given in the document.' },
+  { type:'tf', q:'Age-based method grouping in the document is presented as a strict rule.', correct:1,
+    exp:'False — the document states age groups are directional only.' },
+
+  // --- Scenarios (5) ---
+  { type:'scenario', q:'A teacher of 4-year-olds wants to introduce body parts. Which combination is most aligned with the document?',
+    opts:['Grammar explanation + translation','TPR + songs + games','Essay writing','Silent reading'], correct:1,
+    exp:'For preschool (3–5), the document recommends TPR, songs, picture books, games, and short listening activities.' },
+  { type:'scenario', q:'A teacher wants students to practise "I like…" in a meaningful way. Which is best?',
+    opts:['Translation drill','Group task: plan a healthy menu','Silent copying','Reading a grammar rule'], correct:1,
+    exp:'TBLT-style tasks let students use "I like…" purposefully, e.g., planning a menu.' },
+  { type:'scenario', q:'A class struggles with retaining new vocabulary. What should the teacher add?',
+    opts:['Longer grammar lectures','Spaced review and retrieval practice','Only written tests','More grammar rules'], correct:1,
+    exp:'Spaced Repetition combined with Retrieval Practice supports long-term retention.' },
+  { type:'scenario', q:'During a TBLT task, one group finishes early and dominates. What should the teacher do?',
+    opts:['Ignore the issue','Assign clear roles and provide extension tasks','Cancel the task','Give them a written test'], correct:1,
+    exp:'The document notes group tasks need clear roles; teachers should monitor and support all students.' },
+  { type:'scenario', q:'A teacher notices students are engaged in a game but not learning. What should they do?',
+    opts:['Continue as is','Align game elements with language objectives and debrief','Remove all games','Add more points'], correct:1,
+    exp:'The document cautions games should serve language objectives; debriefing connects play to learning.' }
+];
+
+let currentQuiz = null;
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function shuffleQuestion(q) {
+  if (q.type === 'tf') {
+    return { ...q, opts: ['True', 'False'], correct: q.correct };
+  }
+  const indices = shuffle([0, 1, 2, 3]);
+  return {
+    ...q,
+    opts: indices.map(i => q.opts[i]),
+    correct: indices.indexOf(q.correct)
+  };
+}
+
+function startQuiz() {
+  const all = QUIZ_DATA.map(shuffleQuestion);
+  // Also shuffle question order
+  currentQuiz = { questions: shuffle(all), answers: new Array(all.length).fill(null), submitted: false };
+  renderQuiz();
+  document.getElementById('submitQuizBtn').disabled = false;
+  document.getElementById('showWrongBtn').disabled = true;
+  document.getElementById('quizScoreBox').innerHTML = '';
+}
+
+function renderQuiz() {
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  if (!currentQuiz) {
+    c.innerHTML = '<p style="color:var(--text-muted)">Click "Start / Restart Quiz" to begin.</p>';
+    return;
+  }
+  currentQuiz.questions.forEach((q, idx) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'quiz-question';
+    wrap.id = 'q-' + idx;
+
+    const h = document.createElement('h5');
+    h.textContent = 'Q' + (idx + 1) + '. ' + q.q;
+    wrap.appendChild(h);
+
+    q.opts.forEach((opt, oi) => {
+      const label = document.createElement('label');
+      label.className = 'quiz-option';
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'q-' + idx;
+      input.value = oi;
+      if (currentQuiz.submitted) input.disabled = true;
+      if (currentQuiz.answers[idx] === oi) input.checked = true;
+      input.addEventListener('change', () => {
+        if (currentQuiz.submitted) return;
+        currentQuiz.answers[idx] = oi;
+      });
+      label.appendChild(input);
+      const span = document.createElement('span');
+      span.textContent = opt;
+      label.appendChild(span);
+      wrap.appendChild(label);
+    });
+
+    if (currentQuiz.submitted) {
+      const correctIdx = q.correct;
+      const userIdx = currentQuiz.answers[idx];
+      wrap.querySelectorAll('.quiz-option').forEach((el, oi) => {
+        if (oi === correctIdx) el.classList.add('correct-answer');
+        if (userIdx !== null && userIdx !== correctIdx && oi === userIdx) el.classList.add('incorrect-answer');
+      });
+      const fb = document.createElement('div');
+      fb.className = 'quiz-feedback ' + (userIdx === correctIdx ? 'correct' : 'incorrect');
+      const correctText = q.type === 'tf'
+        ? (q.correct === 0 ? 'True' : 'False')
+        : q.opts[q.correct];
+      fb.textContent = 'Correct answer: ' + correctText + ' — ' + q.exp;
+      wrap.appendChild(fb);
+    }
+    c.appendChild(wrap);
+  });
+}
+
+function submitQuiz() {
+  if (!currentQuiz) return;
+  const unanswered = currentQuiz.answers.filter(a => a === null).length;
+  if (unanswered > 0) {
+    if (!confirm(unanswered + ' question(s) unanswered. Submit anyway?')) return;
+  }
+  currentQuiz.submitted = true;
+  renderQuiz();
+
+  let correct = 0;
+  currentQuiz.questions.forEach((q, i) => {
+    if (currentQuiz.answers[i] === q.correct) correct++;
+  });
+  const total = currentQuiz.questions.length;
+  const wrong = total - correct;
+  const pct = Math.round((correct / total) * 100);
+  document.getElementById('quizScoreBox').innerHTML =
+    '<div class="quiz-score">Score: ' + correct + ' / ' + total + ' (' + pct + '%) — Correct: ' + correct + ', Wrong: ' + wrong + '</div>';
+
+  STORE.set('teyl_quiz_history', {
+    score: correct, total, pct, wrong, date: new Date().toISOString()
+  });
+  renderQuizHistory();
+
+  document.getElementById('submitQuizBtn').disabled = true;
+  document.getElementById('showWrongBtn').disabled = false;
+  document.getElementById('quizScoreBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function showWrongAnswers() {
+  if (!currentQuiz || !currentQuiz.submitted) return;
+  const wrongIdxs = [];
+  currentQuiz.questions.forEach((q, i) => {
+    if (currentQuiz.answers[i] !== q.correct) wrongIdxs.push(i);
+  });
+  if (wrongIdxs.length === 0) {
+    showToast('All answers correct! 🎉');
+    return;
+  }
+  const first = document.getElementById('q-' + wrongIdxs[0]);
+  if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  showToast(wrongIdxs.length + ' question(s) to review');
+}
+
+function renderQuizHistory() {
+  const h = STORE.get('teyl_quiz_history', null);
+  const el = document.getElementById('quizHistory');
+  if (!h) { el.textContent = ''; return; }
+  const d = new Date(h.date);
+  el.textContent = 'Last attempt: ' + h.score + ' / ' + h.total + ' (' + h.pct + '%) on ' + d.toLocaleString();
+}
+
+document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+document.getElementById('submitQuizBtn').addEventListener('click', submitQuiz);
+document.getElementById('showWrongBtn').addEventListener('click', showWrongAnswers);
+renderQuiz();
+renderQuizHistory();
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+const FLASHCARDS = [
+  { id: 'gtm', front: 'Grammar-Translation Method', back: 'A method emphasising grammar rules, vocabulary, and translation between L1 and the target language. Reading and writing are prominent; spontaneous communication may not be emphasised.' },
+  { id: 'alm', front: 'Audio-Lingual Method', back: 'A method emphasising listening to models, imitation, pattern drills, and reinforcement. Recordings are supportive but not required.' },
+  { id: 'tblt', front: 'Task-Based Language Teaching (TBLT)', back: 'An approach where learners use language to complete meaningful tasks with a clear goal and identifiable outcome. Focus on meaning; form-focused work can still be included when needed.' },
+  { id: 'gam', front: 'Gamification', back: 'Integrating game elements (points, challenges, levels, badges, immediate feedback) into non-game activities to support engagement and motivation.' },
+  { id: 'gbl', front: 'Game-Based Learning', back: 'A form of learning in which the game itself is the main vehicle for organising the learning experience — distinct from gamification.' },
+  { id: 'tpr', front: 'Total Physical Response (TPR)', back: 'An approach developed by James J. Asher connecting listening comprehension with physical responses. Teacher gives commands; students perform actions.' },
+  { id: 'sr', front: 'Spaced Repetition', back: 'A learning strategy where review sessions are distributed over time (rather than massed) to support long-term retention. Often combined with retrieval practice.' },
+  { id: 'rp', front: 'Retrieval Practice', back: 'Actively trying to recall information without immediately looking at the answer. Pairs well with spacing to strengthen memory.' },
+  { id: 'ls', front: 'Learning Styles — caution', back: 'Categorising learners into fixed "visual/auditory/kinesthetic" groups and teaching each group separately lacks strong evidence (Pashler et al., 2008). Choose formats based on content, not labels.' },
+  { id: 'task', front: 'Task (in TBLT)', back: 'An activity where (1) the primary focus is on meaning, (2) learners must use their language resources, and (3) there is an identifiable outcome/product.' }
+];
+
+let currentCardIndex = 0;
+let cardStates = STORE.get('teyl_flashcards', {});
+
+function saveCardStates() { STORE.set('teyl_flashcards', cardStates); }
+
+function renderFlashcard() {
+  const area = document.getElementById('flashcardArea');
+  if (!area) return;
+  const card = FLASHCARDS[currentCardIndex];
+  const state = cardStates[card.id] || '';
+  area.innerHTML = '';
+
+  const cardDiv = document.createElement('div');
+  cardDiv.className = 'flashcard';
+  cardDiv.id = 'flashcard';
+  cardDiv.innerHTML =
+    '<div class="flashcard-inner">' +
+      '<div class="flashcard-face front"></div>' +
+      '<div class="flashcard-face back"></div>' +
+    '</div>';
+  cardDiv.querySelector('.front').textContent = card.front;
+  cardDiv.querySelector('.back').textContent = card.back;
+  cardDiv.addEventListener('click', () => cardDiv.classList.toggle('flipped'));
+  area.appendChild(cardDiv);
+
+  const ctrl = document.createElement('div');
+  ctrl.className = 'flashcard-controls';
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = '← Previous';
+  prevBtn.addEventListener('click', () => {
+    currentCardIndex = (currentCardIndex - 1 + FLASHCARDS.length) % FLASHCARDS.length;
+    renderFlashcard();
+  });
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = 'Next →';
+  nextBtn.addEventListener('click', () => {
+    currentCardIndex = (currentCardIndex + 1) % FLASHCARDS.length;
+    renderFlashcard();
+  });
+  const knownBtn = document.createElement('button');
+  knownBtn.className = 'primary';
+  knownBtn.textContent = '✓ Remembered';
+  knownBtn.addEventListener('click', () => {
+    cardStates[card.id] = 'remembered';
+    saveCardStates();
+    renderFlashcard();
+    showToast('Marked as remembered');
+  });
+  const reviewBtn = document.createElement('button');
+  reviewBtn.textContent = '↻ Need review';
+  reviewBtn.addEventListener('click', () => {
+    cardStates[card.id] = 'review';
+    saveCardStates();
+    renderFlashcard();
+    showToast('Marked for review');
+  });
+  ctrl.appendChild(prevBtn);
+  ctrl.appendChild(reviewBtn);
+  ctrl.appendChild(knownBtn);
+  ctrl.appendChild(nextBtn);
+  area.appendChild(ctrl);
+
+  const meta = document.createElement('div');
+  meta.style.cssText = 'text-align:center;font-size:.85rem;color:var(--text-muted);margin-top:8px';
+  const known = Object.values(cardStates).filter(v => v === 'remembered').length;
+  meta.textContent = 'Card ' + (currentCardIndex + 1) + ' / ' + FLASHCARDS.length +
+    ' — Remembered: ' + known + ' / ' + FLASHCARDS.length +
+    (state ? ' — This card: ' + state : '');
+  area.appendChild(meta);
+}
+renderFlashcard();
+
+/* ============================================================
+   GLOSSARY
+   ============================================================ */
+const GLOSSARY = [
+  { term: 'Grammar-Translation Method', def: 'A teaching method focused on grammar rules, vocabulary, and translation between L1 and the target language. Reading and writing are prominent.', ex: 'Explaining the present simple rule and having students translate sentences.' },
+  { term: 'Audio-Lingual Method', def: 'A teaching method based on listening to models, imitation, and pattern drills, influenced by behaviourism and structural linguistics.', ex: 'Substitution drill: "I like apples" → "I like bananas."' },
+  { term: 'Task-Based Language Teaching (TBLT)', def: 'An approach in which learners complete meaningful tasks with clear goals and identifiable outcomes.', ex: 'Planning a healthy menu in groups and presenting it in English.' },
+  { term: 'Gamification', def: 'Integrating game elements (points, levels, badges, feedback) into non-game learning activities.', ex: 'A vocabulary team challenge with points and small rewards.' },
+  { term: 'Game-Based Learning (GBL)', def: 'Learning in which the game itself is the main vehicle for organising the learning experience — distinct from gamification.', ex: 'A language-learning board game used as the lesson itself.' },
+  { term: 'Total Physical Response (TPR)', def: 'An approach developed by James J. Asher that links listening comprehension with physical responses.', ex: 'Teacher says "Touch your nose" — students perform the action.' },
+  { term: 'Spaced Repetition', def: 'A learning strategy of reviewing material at increasing intervals to support long-term retention.', ex: 'Reviewing new words on day 1, day 3, day 7, day 14.' },
+  { term: 'Retrieval Practice', def: 'Actively trying to recall information without looking at the answer, strengthening memory.', ex: 'Closing the book and saying the new vocabulary from memory.' },
+  { term: 'Task (in TBLT)', def: 'An activity with a primary focus on meaning, requiring learners to use language resources, with an identifiable outcome/product.', ex: 'Creating a class survey about favourite foods.' },
+  { term: 'Form-focused activity', def: 'An activity that draws attention to grammar, vocabulary, or pronunciation, often integrated into communicative lessons.', ex: 'Briefly highlighting the -s ending after a task.' },
+  { term: 'Learning styles (caution)', def: 'The idea that learners have fixed preferred modalities. Evidence for teaching different groups separately is weak (Pashler et al., 2008).', ex: 'Use varied presentations for content, not fixed labels for students.' },
+  { term: 'Behaviourism', def: 'A psychological theory emphasising observable behaviour and reinforcement; influenced the Audio-Lingual Method.', ex: 'Repetition and positive feedback in pattern drills.' }
+];
+
+function renderGlossary(filter) {
+  const list = document.getElementById('glossaryList');
+  if (!list) return;
+  list.innerHTML = '';
+  const f = (filter || '').toLowerCase();
+  const items = f
+    ? GLOSSARY.filter(g => (g.term + ' ' + g.def + ' ' + (g.ex || '')).toLowerCase().includes(f))
+    : GLOSSARY;
+  if (items.length === 0) {
+    list.innerHTML = '<p style="color:var(--text-muted)">No matching terms.</p>';
+    return;
+  }
+  items.forEach(g => {
+    const div = document.createElement('div');
+    div.className = 'glossary-item';
+    const h = document.createElement('h5');
+    h.textContent = g.term;
+    div.appendChild(h);
+    const p1 = document.createElement('p');
+    p1.textContent = g.def;
+    div.appendChild(p1);
+    if (g.ex) {
+      const p2 = document.createElement('p');
+      p2.style.color = 'var(--text-muted)';
+      p2.textContent = 'Example: ' + g.ex;
+      div.appendChild(p2);
+    }
+    list.appendChild(div);
+  });
+}
+renderGlossary('');
+document.getElementById('glossarySearch').addEventListener('input', (e) => {
+  renderGlossary(e.target.value.trim());
+});
+
+/* ============================================================
+   EXPORT / IMPORT / RESET
+   ============================================================ */
+function collectAllData() {
+  const notes = {};
+  CHAPTERS.forEach(id => {
+    const v = STORE.get(noteKey(id), '');
+    if (v) notes[id] = v;
+  });
+  return {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    progress: getProgress(),
+    notes: notes,
+    highlights: getHighlightStore(),
+    flashcards: STORE.get('teyl_flashcards', {}),
+    quizHistory: STORE.get('teyl_quiz_history', null),
+    theme: STORE.get('teyl_theme', 'light'),
+    fontSize: STORE.get('teyl_font', 17)
+  };
+}
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const data = collectAllData();
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'teyl-data-' + new Date().toISOString().slice(0, 10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('Data exported');
+});
+
+function validateImport(data) {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return 'Invalid JSON structure.';
+  if (typeof data.version !== 'number') return 'Missing "version" field.';
+  if (data.progress && typeof data.progress !== 'object') return '"progress" must be an object.';
+  if (data.notes && typeof data.notes !== 'object') return '"notes" must be an object.';
+  if (data.highlights && typeof data.highlights !== 'object') return '"highlights" must be an object.';
+  if (data.flashcards && typeof data.flashcards !== 'object') return '"flashcards" must be an object.';
+  return '';
+}
+
+document.getElementById('importBtn').addEventListener('click', () => {
+  document.getElementById('importFile').click();
+});
+
+document.getElementById('importFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const status = document.getElementById('importStatus');
+    try {
+      const data = JSON.parse(reader.result);
+      const err = validateImport(data);
+      if (err) { status.textContent = 'Import failed: ' + err; return; }
+      if (!confirm('Import will overwrite current personal data. Continue?')) {
+        status.textContent = 'Import cancelled.';
+        return;
+      }
+      STORE.set('teyl_progress', data.progress || {});
+      if (data.notes) {
+        Object.keys(data.notes).forEach(k => STORE.set(noteKey(k), data.notes[k]));
+      }
+      STORE.set('teyl_highlights', data.highlights || {});
+      STORE.set('teyl_flashcards', data.flashcards || {});
+      if (data.quizHistory) STORE.set('teyl_quiz_history', data.quizHistory);
+      if (data.theme) STORE.set('teyl_theme', data.theme);
+      if (data.fontSize) STORE.set('teyl_font', data.fontSize);
+
+      status.textContent = 'Import successful. Reloading...';
+      setTimeout(() => location.reload(), 800);
+    } catch (err) {
+      status.textContent = 'Import failed: invalid JSON file.';
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('resetAllBtn').addEventListener('click', () => {
+  if (!confirm('Delete ALL personal data (notes, progress, highlights, flashcards, quiz history)? This cannot be undone.')) return;
+  CHAPTERS.forEach(id => STORE.remove(noteKey(id)));
+  STORE.remove('teyl_progress');
+  STORE.remove('teyl_highlights');
+  STORE.remove('teyl_flashcards');
+  STORE.remove('teyl_quiz_history');
+  showToast('All personal data deleted');
+  setTimeout(() => location.reload(), 800);
+});
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+document.getElementById('printBtn').addEventListener('click', () => {
+  window.print();
+});
+
+/* ============================================================
+   NAV ACTIVE SECTION
+   ============================================================ */
+const sections = document.querySelectorAll('main .chapter');
+const navLinks = document.querySelectorAll('#nav a');
+function updateActiveNav() {
+  const scrollY = window.scrollY + 120;
+  let active = null;
+  sections.forEach(sec => {
+    if (sec.offsetTop <= scrollY) active = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
+</script>
+</body>
+</html>
