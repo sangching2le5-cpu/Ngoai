@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vai trò &amp; Trách nhiệm của Giáo viên Tiếng Anh | ELT Course</title>
+<title>The Core Roles of an English Language Teacher | ELT Course</title>
 <style>
 /* ==========================================================
    DESIGN SYSTEM
@@ -21,7 +21,7 @@
   --shadow:0 1px 3px rgba(26,47,74,.06), 0 1px 2px rgba(26,47,74,.04);
   --shadow-md:0 4px 12px rgba(26,47,74,.08);
   --fs:16px; --lh:1.7;
-  --sidebar-w:280px;
+  --sidebar-w:290px;
 }
 [data-theme="dark"]{
   --navy:#a9c8e8; --navy-soft:#8fb3d9; --slate:#7ba8d9;
@@ -58,26 +58,25 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .app-header{
   position:sticky; top:0; z-index:100;
   background:var(--card); border-bottom:1px solid var(--border);
-  padding:10px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:10px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
 }
 .brand{display:flex; flex-direction:column; line-height:1.2; min-width:0}
 .brand .course{font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
   color:var(--muted); font-weight:600}
 .brand h1{margin:2px 0 0; font-size:1.02rem; color:var(--navy); font-weight:700;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.header-actions{margin-left:auto; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.header-actions{margin-left:auto; display:flex; align-items:center; gap:6px; flex-wrap:wrap}
 .icon-btn{
-  width:38px; height:38px; border-radius:8px; border:1px solid var(--border);
+  width:36px; height:36px; border-radius:8px; border:1px solid var(--border);
   background:var(--card); color:var(--text); display:inline-flex;
-  align-items:center; justify-content:center; font-size:1rem; transition:background .15s;
+  align-items:center; justify-content:center; font-size:.95rem; transition:background .15s;
 }
 .icon-btn:hover{background:var(--light-blue)}
 .icon-btn.active{background:var(--slate); color:#fff; border-color:var(--slate)}
 #searchBox{
-  padding:8px 12px; border:1px solid var(--border); border-radius:8px;
-  font-size:.88rem; background:var(--off-white); color:var(--text); min-width:200px;
+  padding:7px 12px; border:1px solid var(--border); border-radius:8px;
+  font-size:.85rem; background:var(--off-white); color:var(--text); min-width:180px;
 }
-#menuBtn{display:none}
 .progress-bar{height:3px; background:var(--border); overflow:hidden}
 .progress-bar>div{height:100%; width:0; background:linear-gradient(90deg, var(--slate), var(--navy)); transition:width .4s}
 .progress-line{
@@ -87,23 +86,35 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 }
 
 /* ==========================================================
-   LAYOUT
+   LAYOUT (collapsible sidebar)
    ========================================================== */
-.app-layout{display:grid; grid-template-columns:var(--sidebar-w) 1fr; min-height:calc(100vh - 110px)}
+.app-layout{
+  display:grid;
+  grid-template-columns:var(--sidebar-w) 1fr;
+  min-height:calc(100vh - 110px);
+  transition:grid-template-columns .25s ease;
+}
+.app-layout.sidebar-hidden{grid-template-columns:0 1fr}
 aside#sidebar{
   background:var(--card); border-right:1px solid var(--border);
   position:sticky; top:96px; height:calc(100vh - 96px); overflow-y:auto;
   padding:16px 0 40px;
+  transition:transform .25s, opacity .25s;
+  overflow-x:hidden;
 }
-aside#sidebar nav{display:flex; flex-direction:column; gap:2px}
+.app-layout.sidebar-hidden aside#sidebar{
+  transform:translateX(-100%); opacity:0; pointer-events:none; border-right:none;
+}
+aside#sidebar nav{display:flex; flex-direction:column; gap:2px; min-width:var(--sidebar-w)}
 .nav-group-title{
   font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
   color:var(--muted); font-weight:700; padding:14px 20px 6px;
 }
 .nav-link{
   display:flex; align-items:center; gap:8px; padding:8px 20px;
-  color:var(--text); text-decoration:none; font-size:.88rem;
+  color:var(--text); text-decoration:none; font-size:.86rem;
   border-left:3px solid transparent; transition:background .12s, border-color .12s;
+  white-space:nowrap;
 }
 .nav-link:hover{background:var(--light-blue)}
 .nav-link.active{border-left-color:var(--slate); background:var(--light-blue);
@@ -117,11 +128,10 @@ aside#sidebar nav{display:flex; flex-direction:column; gap:2px}
   font-size:.7rem; font-weight:700; color:var(--muted);
   background:var(--bg); border-radius:4px; padding:1px 6px; flex-shrink:0;
 }
-.nav-subgroup{padding-left:12px}
 .nav-toggle{
   display:flex; align-items:center; gap:8px; width:100%;
   padding:8px 20px; border:none; background:transparent; text-align:left;
-  color:var(--text); font-size:.88rem; font-weight:600;
+  color:var(--text); font-size:.86rem; font-weight:600;
   border-left:3px solid transparent;
 }
 .nav-toggle:hover{background:var(--light-blue)}
@@ -132,8 +142,24 @@ aside#sidebar nav{display:flex; flex-direction:column; gap:2px}
 
 main#content{
   padding:28px clamp(20px, 4vw, 56px) 80px;
-  max-width:920px; width:100%;
+  max-width:920px; width:100%; margin:0 auto;
+  transition:max-width .25s;
 }
+.app-layout.sidebar-hidden main#content{max-width:1040px}
+
+/* Floating TOC button (shows when sidebar hidden) */
+#floatingToc{
+  position:fixed; left:20px; bottom:20px; z-index:90;
+  width:52px; height:52px; border-radius:50%;
+  background:var(--slate); color:#fff; border:none;
+  font-size:1.3rem; box-shadow:var(--shadow-md);
+  display:none; align-items:center; justify-content:center;
+  transition:background .15s, transform .15s;
+}
+#floatingToc:hover{background:var(--slate-dark); transform:scale(1.05)}
+body.sidebar-is-hidden #floatingToc{display:flex}
+#menuBtn{display:none}
+body.sidebar-is-hidden #menuBtn{display:none}
 
 /* ==========================================================
    SECTIONS
@@ -158,9 +184,11 @@ main#content{
 .section-head h2{
   margin:0; color:var(--navy); font-size:1.5rem; line-height:1.3; flex:1 1 auto; min-width:0;
 }
-.section-head h2 .vi-sub{display:block; font-size:1rem; color:var(--muted); font-weight:500; margin-top:4px}
+.section-head h2 .sub{
+  display:block; font-size:.92rem; color:var(--muted); font-weight:500; margin-top:4px;
+}
 .done-toggle{
-  display:inline-flex; align-items:center; gap:6px; font-size:.82rem;
+  display:inline-flex; align-items:center; gap:6px; font-size:.8rem;
   color:var(--muted); cursor:pointer; user-select:none; white-space:nowrap;
   padding:6px 12px; border:1px solid var(--border); border-radius:20px;
   background:var(--off-white);
@@ -168,20 +196,19 @@ main#content{
 .done-toggle:hover{background:var(--light-blue)}
 .done-toggle input{margin:0}
 
-.lesson-body h3{color:var(--navy); font-size:1.08rem; margin:24px 0 10px; font-weight:700}
+.lesson-body h3{color:var(--navy); font-size:1.06rem; margin:24px 0 10px; font-weight:700}
 .lesson-body h3.subhead{
   display:flex; align-items:center; gap:8px; border-left:4px solid var(--slate); padding-left:10px;
 }
-.lesson-body h4{color:var(--navy-soft); font-size:.98rem; margin:16px 0 6px}
+.lesson-body h4{color:var(--navy-soft); font-size:.96rem; margin:16px 0 6px}
 .lesson-body p{margin:8px 0 12px}
 .lesson-body ul, .lesson-body ol{padding-left:22px; margin:8px 0}
 .lesson-body li{margin:5px 0}
 .lesson-body strong{color:var(--navy)}
-.vi-text{color:var(--text); font-size:1rem}
-.en-text{font-family:Georgia, "Times New Roman", serif; font-style:italic; color:var(--navy-soft); font-size:.96rem}
 
-/* Boxes / cards */
-.def-card, .scenario-card, .reflect-card, .term-card, .takeaway-card, .quick-check, .concept-card, .note-card{
+/* Cards */
+.def-card, .scenario-card, .reflect-card, .term-card, .takeaway-card,
+.quick-check, .concept-card, .note-card{
   border-radius:10px; padding:14px 18px; margin:14px 0;
   background:var(--off-white); border:1px solid var(--border);
 }
@@ -192,11 +219,9 @@ main#content{
 .takeaway-card{border-left:4px solid var(--success); background:var(--success-bg)}
 .quick-check{border-left:4px solid #2c7a7b; background:rgba(44,122,123,.06)}
 .concept-card{border-left:4px solid var(--navy); background:var(--light-blue)}
-.note-card{border-left:4px solid var(--slate)}
 [data-theme="dark"] .scenario-card{background:#2e2515}
 [data-theme="dark"] .reflect-card{background:#1e1a2e}
 [data-theme="dark"] .quick-check{background:#152a2b}
-[data-theme="dark"] .concept-card{background:#1a2a3a}
 .card-label{
   font-size:.72rem; text-transform:uppercase; letter-spacing:.08em;
   font-weight:700; color:var(--muted); margin-bottom:6px;
@@ -215,33 +240,33 @@ main#content{
 .qc-opt{
   display:flex; gap:8px; align-items:flex-start; padding:8px 12px;
   border-radius:8px; border:1px solid var(--border); background:var(--card);
-  cursor:pointer; transition:background .12s, border-color .12s; font-size:.92rem;
+  cursor:pointer; transition:background .12s, border-color .12s; font-size:.9rem;
 }
 .qc-opt:hover{background:var(--light-blue)}
 .qc-opt.selected{border-color:var(--slate)}
 .qc-opt.correct{background:var(--success-bg); border-color:var(--success)}
 .qc-opt.incorrect{background:var(--danger-bg); border-color:var(--danger)}
 .qc-opt input{margin-top:4px; flex-shrink:0}
-.qc-fb{margin-top:10px; padding:10px 12px; border-radius:8px; font-size:.88rem; display:none}
+.qc-fb{margin-top:10px; padding:10px 12px; border-radius:8px; font-size:.86rem; display:none}
 .qc-fb.show{display:block}
 .qc-fb.ok{background:var(--success-bg); color:var(--success); border-left:3px solid var(--success)}
 .qc-fb.no{background:var(--danger-bg); color:var(--danger); border-left:3px solid var(--danger)}
 
 /* Notes */
 .note-wrap{margin-top:22px; padding-top:16px; border-top:1px dashed var(--border)}
-.note-wrap label{display:block; font-size:.8rem; text-transform:uppercase;
+.note-wrap label{display:block; font-size:.78rem; text-transform:uppercase;
   letter-spacing:.06em; color:var(--muted); font-weight:700; margin-bottom:6px}
 .note-input{
   width:100%; min-height:90px; padding:10px 12px;
   border:1px solid var(--border); border-radius:8px; font-family:inherit;
-  font-size:.92rem; background:var(--off-white); color:var(--text);
+  font-size:.9rem; background:var(--off-white); color:var(--text);
   resize:vertical; line-height:1.6;
 }
 .note-actions{margin-top:8px; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-.note-status{font-size:.8rem; color:var(--success)}
+.note-status{font-size:.78rem; color:var(--success)}
 .btn{
   padding:7px 14px; border-radius:8px; border:1px solid var(--border);
-  background:var(--card); color:var(--text); font-size:.86rem; font-weight:500;
+  background:var(--card); color:var(--text); font-size:.84rem; font-weight:500;
   transition:background .12s;
 }
 .btn:hover{background:var(--light-blue)}
@@ -252,16 +277,14 @@ main#content{
 
 /* Tables */
 .table-wrap{overflow-x:auto; margin:14px 0; border:1px solid var(--border); border-radius:10px}
-table{width:100%; border-collapse:collapse; font-size:.88rem; min-width:720px}
+table{width:100%; border-collapse:collapse; font-size:.86rem; min-width:720px}
 th, td{border-bottom:1px solid var(--border); padding:10px 12px; text-align:left; vertical-align:top}
-th{background:var(--light-blue); color:var(--navy); font-weight:700; font-size:.82rem;
-  text-transform:uppercase; letter-spacing:.04em; position:sticky; top:0}
+th{background:var(--light-blue); color:var(--navy); font-weight:700; font-size:.78rem;
+  text-transform:uppercase; letter-spacing:.04em}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--off-white)}
 
-/* ==========================================================
-   HIGHLIGHT
-   ========================================================== */
+/* Highlight */
 mark.user-hl{padding:1px 0; border-radius:2px}
 mark.user-hl.hl-yellow{background:var(--hl-yellow)}
 mark.user-hl.hl-green{background:var(--hl-green)}
@@ -284,36 +307,34 @@ body.highlight-mode .lesson-body{cursor:text}
 .hl-popup button[data-color="green"]{background:#d3f9d8}
 .hl-popup button[data-color="blue"]{background:#d0ebff}
 .hl-popup button[data-color="pink"]{background:#ffdeeb}
-.hl-popup .clear-hl{width:auto; padding:0 10px; font-size:.78rem}
+.hl-popup .clear-hl{width:auto; padding:0 10px; font-size:.75rem}
 
-/* ==========================================================
-   QUIZ
-   ========================================================== */
+/* Quiz */
 .quiz-q{
   border:1px solid var(--border); border-radius:10px; padding:16px;
   margin:12px 0; background:var(--off-white);
 }
 .quiz-q .qnum{
-  display:inline-block; background:var(--slate); color:#fff; font-size:.72rem;
+  display:inline-block; background:var(--slate); color:#fff; font-size:.7rem;
   font-weight:700; padding:2px 8px; border-radius:4px; margin-right:8px;
 }
 .quiz-q .qtext{font-weight:600; color:var(--navy-soft); margin-bottom:10px; display:block}
 .quiz-opt{
   display:flex; gap:8px; align-items:flex-start; padding:9px 12px;
   border-radius:8px; border:1px solid var(--border); background:var(--card);
-  cursor:pointer; margin:5px 0; font-size:.9rem; transition:background .12s;
+  cursor:pointer; margin:5px 0; font-size:.88rem; transition:background .12s;
 }
 .quiz-opt:hover{background:var(--light-blue)}
 .quiz-opt.correct{background:var(--success-bg); border-color:var(--success)}
 .quiz-opt.incorrect{background:var(--danger-bg); border-color:var(--danger)}
 .quiz-opt input{margin-top:3px}
-.quiz-fb{margin-top:8px; padding:10px 12px; border-radius:8px; font-size:.86rem; display:none}
+.quiz-fb{margin-top:8px; padding:10px 12px; border-radius:8px; font-size:.84rem; display:none}
 .quiz-fb.show{display:block}
 .quiz-fb.ok{background:var(--success-bg); border-left:3px solid var(--success)}
 .quiz-fb.no{background:var(--danger-bg); border-left:3px solid var(--danger)}
 .quiz-score{
   background:var(--light-blue); border-radius:10px; padding:14px 18px;
-  font-size:1.05rem; font-weight:700; color:var(--navy); margin:16px 0;
+  font-size:1.02rem; font-weight:700; color:var(--navy); margin:16px 0;
 }
 .quiz-controls{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0}
 
@@ -322,7 +343,7 @@ body.highlight-mode .lesson-body{cursor:text}
 .match-col{display:flex; flex-direction:column; gap:6px}
 .match-item{
   padding:10px 12px; border:1px solid var(--border); border-radius:8px;
-  background:var(--card); cursor:pointer; font-size:.88rem; user-select:none;
+  background:var(--card); cursor:pointer; font-size:.86rem; user-select:none;
 }
 .match-item:hover{background:var(--light-blue)}
 .match-item.selected{border-color:var(--slate); background:var(--light-blue); font-weight:600}
@@ -332,24 +353,22 @@ body.highlight-mode .lesson-body{cursor:text}
 
 /* Short answer */
 .sa-q{border:1px solid var(--border); border-radius:10px; padding:14px; margin:12px 0; background:var(--off-white)}
-.sa-q textarea{width:100%; min-height:90px; padding:10px; border:1px solid var(--border);
-  border-radius:8px; font-family:inherit; font-size:.9rem; background:var(--card); color:var(--text); resize:vertical; margin-top:8px}
-.sa-model{margin-top:10px; padding:12px; background:var(--light-blue); border-radius:8px; font-size:.88rem; display:none}
+.sa-q textarea{width:100%; min-height:80px; padding:10px; border:1px solid var(--border);
+  border-radius:8px; font-family:inherit; font-size:.88rem; background:var(--card); color:var(--text); resize:vertical; margin-top:8px}
+.sa-model{margin-top:10px; padding:12px; background:var(--light-blue); border-radius:8px; font-size:.86rem; display:none}
 .sa-model.show{display:block}
 .sa-model strong{color:var(--navy)}
 
-/* ==========================================================
-   GLOSSARY
-   ========================================================== */
+/* Glossary */
 .glossary-controls{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
 .glossary-controls input{
   flex:1; min-width:200px; padding:8px 12px; border:1px solid var(--border);
-  border-radius:8px; font-size:.9rem; background:var(--off-white); color:var(--text);
+  border-radius:8px; font-size:.88rem; background:var(--off-white); color:var(--text);
 }
 .alpha-bar{display:flex; flex-wrap:wrap; gap:3px; margin-bottom:14px}
 .alpha-bar button{
   min-width:28px; height:28px; padding:0 6px; border:1px solid var(--border);
-  border-radius:6px; background:var(--card); font-size:.78rem; font-weight:600; color:var(--muted);
+  border-radius:6px; background:var(--card); font-size:.75rem; font-weight:600; color:var(--muted);
 }
 .alpha-bar button.active{background:var(--slate); color:#fff; border-color:var(--slate)}
 .gloss-item{
@@ -357,114 +376,105 @@ body.highlight-mode .lesson-body{cursor:text}
   margin:8px 0; background:var(--off-white);
 }
 .gloss-item.learned{border-color:var(--success); background:var(--success-bg)}
-.gloss-item h4{margin:0 0 4px; color:var(--navy); font-size:1rem}
-.gloss-item .gloss-cat{font-size:.72rem; color:var(--muted); font-style:italic; text-transform:lowercase}
-.gloss-item .gloss-vi{color:var(--slate-dark); font-weight:600; margin:4px 0 6px}
+.gloss-item h4{margin:0 0 4px; color:var(--navy); font-size:.98rem}
+.gloss-item .gloss-cat{font-size:.7rem; color:var(--muted); font-style:italic; text-transform:lowercase}
 .gloss-item .gloss-def{font-size:.88rem; font-family:Georgia, serif; font-style:italic; color:var(--navy-soft); margin:6px 0}
-.gloss-item .gloss-vi-expl{font-size:.9rem; margin:6px 0}
-.gloss-item .gloss-ex{font-size:.85rem; color:var(--muted); margin:6px 0; border-left:2px solid var(--border); padding-left:10px}
+.gloss-item .gloss-expl{font-size:.88rem; margin:6px 0}
+.gloss-item .gloss-ex{font-size:.84rem; color:var(--muted); margin:6px 0; border-left:2px solid var(--border); padding-left:10px}
 .gloss-item .gloss-actions{margin-top:8px; display:flex; gap:6px}
-.gloss-learn-btn{padding:4px 10px; font-size:.78rem; border-radius:6px; border:1px solid var(--border); background:var(--card)}
+.gloss-learn-btn{padding:4px 10px; font-size:.75rem; border-radius:6px; border:1px solid var(--border); background:var(--card)}
 
-/* ==========================================================
-   CONCEPT MAP
-   ========================================================== */
+/* Concept map */
 .concept-flow{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:14px 0}
 .cf-node{
   background:var(--light-blue); border:1px solid var(--slate);
-  padding:8px 14px; border-radius:8px; font-size:.86rem; font-weight:600; color:var(--navy);
+  padding:8px 14px; border-radius:8px; font-size:.84rem; font-weight:600; color:var(--navy);
 }
 .cf-arrow{color:var(--slate); font-weight:700}
-.cf-loop{font-size:.8rem; color:var(--muted); margin-top:6px; font-style:italic}
+.cf-loop{font-size:.78rem; color:var(--muted); margin-top:6px; font-style:italic}
 
-/* ==========================================================
-   DASHBOARD
-   ========================================================== */
+/* Dashboard */
 .dash-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:12px; margin:16px 0}
 .dash-card{
   background:var(--off-white); border:1px solid var(--border); border-radius:10px;
   padding:14px 16px;
 }
-.dash-card .dash-num{font-size:1.6rem; font-weight:800; color:var(--slate-dark); line-height:1.1}
-.dash-card .dash-label{font-size:.78rem; color:var(--muted); text-transform:uppercase;
+.dash-card .dash-num{font-size:1.5rem; font-weight:800; color:var(--slate-dark); line-height:1.1}
+.dash-card .dash-label{font-size:.76rem; color:var(--muted); text-transform:uppercase;
   letter-spacing:.05em; margin-top:4px}
 .dash-actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
 
-/* ==========================================================
-   CASE STUDIES
-   ========================================================== */
+/* Case studies */
 .case-card{
   border:1px solid var(--border); border-radius:12px; padding:20px 22px;
   background:var(--off-white); margin:16px 0;
 }
 .case-card h3{margin-top:0; color:var(--navy)}
 .case-scenario{background:var(--warn-bg); padding:12px 14px; border-radius:8px; margin:10px 0;
-  border-left:3px solid var(--warn); font-size:.92rem}
+  border-left:3px solid var(--warn); font-size:.9rem}
 .case-options{display:flex; flex-direction:column; gap:8px; margin:12px 0}
 .case-opt{
   border:1px solid var(--border); border-radius:8px; padding:10px 14px;
   background:var(--card); cursor:pointer;
 }
 .case-opt:hover{background:var(--light-blue)}
-.case-opt.revealed-ok{background:var(--success-bg); border-color:var(--success)}
+.case-opt.revealed-good{background:var(--success-bg); border-color:var(--success)}
 .case-opt.revealed-partial{background:var(--warn-bg); border-color:var(--warn)}
-.case-opt.revealed-no{background:var(--danger-bg); border-color:var(--danger)}
-.case-opt .co-expl{display:none; margin-top:8px; font-size:.86rem; color:var(--text)}
-.case-opt.revealed-ok .co-expl,
+.case-opt.revealed-weak{background:var(--danger-bg); border-color:var(--danger)}
+.case-opt .co-expl{display:none; margin-top:8px; font-size:.84rem; color:var(--text)}
+.case-opt.revealed-good .co-expl,
 .case-opt.revealed-partial .co-expl,
-.case-opt.revealed-no .co-expl{display:block}
-.case-roles{font-size:.82rem; color:var(--muted); margin:10px 0}
-.case-model{background:var(--light-blue); border-radius:8px; padding:12px 14px; font-size:.9rem; margin:10px 0; display:none}
+.case-opt.revealed-weak .co-expl{display:block}
+.case-roles{font-size:.8rem; color:var(--muted); margin:10px 0}
+.case-model{background:var(--light-blue); border-radius:8px; padding:12px 14px; font-size:.88rem; margin:10px 0; display:none}
 .case-model.show{display:block}
 .case-user-input{width:100%; min-height:80px; padding:10px; border:1px solid var(--border);
-  border-radius:8px; font-family:inherit; font-size:.9rem; background:var(--card); color:var(--text);
+  border-radius:8px; font-family:inherit; font-size:.88rem; background:var(--card); color:var(--text);
   margin-top:8px; resize:vertical}
 
-/* ==========================================================
-   TOAST + MISC
-   ========================================================== */
+/* Toast */
 .toast{
   position:fixed; bottom:24px; right:24px; z-index:2000;
   background:var(--navy); color:#fff; padding:10px 18px; border-radius:10px;
-  box-shadow:var(--shadow-md); font-size:.88rem;
+  box-shadow:var(--shadow-md); font-size:.86rem;
   opacity:0; transform:translateY(8px); transition:opacity .25s, transform .25s;
   pointer-events:none;
 }
 .toast.show{opacity:1; transform:translateY(0)}
 [data-theme="dark"] .toast{background:var(--slate); color:#0f1a25}
 
-.empty-state{padding:24px; text-align:center; color:var(--muted); font-size:.92rem;
+.empty-state{padding:24px; text-align:center; color:var(--muted); font-size:.9rem;
   border:1px dashed var(--border); border-radius:10px; background:var(--off-white)}
 
-/* ==========================================================
-   RESPONSIVE
-   ========================================================== */
+/* Responsive */
 @media (max-width:920px){
-  :root{--sidebar-w:0}
-  #menuBtn{display:inline-flex}
   .app-layout{grid-template-columns:1fr}
+  .app-layout.sidebar-hidden{grid-template-columns:1fr}
+  #menuBtn{display:inline-flex}
+  body.sidebar-is-hidden #menuBtn{display:inline-flex}
   aside#sidebar{
     position:fixed; left:0; top:0; bottom:0; height:100vh; width:280px; z-index:200;
     transform:translateX(-100%); transition:transform .25s; box-shadow:4px 0 16px rgba(0,0,0,.15);
+    opacity:1;
   }
   aside#sidebar.open{transform:translateX(0)}
+  .app-layout.sidebar-hidden aside#sidebar{transform:translateX(-100%); opacity:1; pointer-events:auto}
+  #floatingToc{display:none!important}
   .lesson-section{padding:20px}
   #searchBox{min-width:120px; flex:1}
 }
 @media (max-width:600px){
-  .section-head h2{font-size:1.25rem}
+  .section-head h2{font-size:1.22rem}
   .match-grid{grid-template-columns:1fr}
   .dash-grid{grid-template-columns:1fr 1fr}
 }
 
-/* ==========================================================
-   PRINT
-   ========================================================== */
+/* Print */
 @media print{
   .app-header, aside#sidebar, .progress-bar, .progress-line,
   .done-toggle, .note-wrap, .hl-popup, .quiz-controls, .case-options,
   .gloss-actions, .dash-actions, #menuBtn, .header-actions,
-  .nav-toggle, .toast, .no-print{display:none!important}
+  .nav-toggle, .toast, #floatingToc, .no-print{display:none!important}
   body{background:#fff; color:#000; font-size:11pt}
   .app-layout{display:block}
   main#content{max-width:100%; padding:0}
@@ -484,167 +494,161 @@ body.highlight-mode .lesson-body{cursor:text}
 
 <!-- ==================== HEADER ==================== -->
 <header class="app-header">
-  <button id="menuBtn" class="icon-btn" aria-label="Mở menu">☰</button>
+  <button id="menuBtn" class="icon-btn" aria-label="Open menu">☰</button>
+  <button id="collapseBtn" class="icon-btn" title="Hide/show table of contents" aria-label="Toggle TOC">◀</button>
   <div class="brand">
     <span class="course">ELT / TESOL · University Course</span>
     <h1>The Core Roles of an English Language Teacher</h1>
   </div>
   <div class="header-actions">
-    <input id="searchBox" type="search" placeholder="Tìm kiếm nội dung..." aria-label="Tìm kiếm">
-    <button id="hlBtn" class="icon-btn" title="Bật/tắt chế độ highlight" aria-label="Highlight mode">🖍️</button>
-    <button id="fsBtn" class="icon-btn" title="Cỡ chữ" aria-label="Cỡ chữ">A⁺</button>
-    <button id="themeBtn" class="icon-btn" title="Chế độ tối" aria-label="Chế độ tối">🌙</button>
-    <button id="printBtn" class="icon-btn" title="In / Lưu PDF" aria-label="In">🖨️</button>
+    <input id="searchBox" type="search" placeholder="Search content..." aria-label="Search">
+    <button id="hlBtn" class="icon-btn" title="Highlight mode" aria-label="Highlight mode">🖍️</button>
+    <button id="fsBtn" class="icon-btn" title="Font size" aria-label="Font size">A⁺</button>
+    <button id="themeBtn" class="icon-btn" title="Dark mode" aria-label="Dark mode">🌙</button>
+    <button id="printBtn" class="icon-btn" title="Print / PDF" aria-label="Print">🖨️</button>
   </div>
 </header>
 
 <div class="progress-bar"><div id="progressBar"></div></div>
 <div class="progress-line">
-  <span id="progressText">0 / 18 mục đã hoàn thành</span>
+  <span id="progressText">0 / 18 sections completed</span>
   <span id="searchInfo"></span>
 </div>
 
 <!-- ==================== LAYOUT ==================== -->
-<div class="app-layout">
+<div class="app-layout" id="appLayout">
   <aside id="sidebar">
     <nav id="nav">
       <a href="#dashboard" class="nav-link" data-nav="dashboard">📊 Dashboard <span class="done-dot"></span></a>
-
       <div class="nav-group-title">Module 1</div>
-      <a href="#intro" class="nav-link" data-nav="intro">Giới thiệu khóa học <span class="done-dot"></span></a>
-
+      <a href="#intro" class="nav-link" data-nav="intro">Course Introduction <span class="done-dot"></span></a>
       <div class="nav-group-title">Module 2</div>
-      <button class="nav-toggle open" id="rolesToggle">Mười hai vai trò <span class="caret">▸</span></button>
+      <button class="nav-toggle open" id="rolesToggle">The Twelve Roles <span class="caret">▸</span></button>
       <div class="nav-subgroup-inner open" id="rolesGroup"></div>
-
-      <div class="nav-group-title">Module 3–7</div>
-      <a href="#compare" class="nav-link" data-nav="compare">So sánh &amp; Kết nối <span class="done-dot"></span></a>
-      <a href="#glossary" class="nav-link" data-nav="glossary">Thuật ngữ chuyên ngành <span class="done-dot"></span></a>
-      <a href="#cases" class="nav-link" data-nav="cases">Tình huống lớp học <span class="done-dot"></span></a>
-      <a href="#assessment" class="nav-link" data-nav="assessment">Kiểm tra kiến thức <span class="done-dot"></span></a>
-      <a href="#reflection" class="nav-link" data-nav="reflection">Phản tư &amp; Tự đánh giá <span class="done-dot"></span></a>
-
-      <div class="nav-group-title">Cá nhân</div>
-      <a href="#my-notes" class="nav-link" data-nav="my-notes">Ghi chú của tôi <span class="done-dot"></span></a>
+      <div class="nav-group-title">Modules 3–7</div>
+      <a href="#compare" class="nav-link" data-nav="compare">Compare &amp; Connect <span class="done-dot"></span></a>
+      <a href="#glossary" class="nav-link" data-nav="glossary">Academic Glossary <span class="done-dot"></span></a>
+      <a href="#cases" class="nav-link" data-nav="cases">Classroom Cases <span class="done-dot"></span></a>
+      <a href="#assessment" class="nav-link" data-nav="assessment">Knowledge Assessment <span class="done-dot"></span></a>
+      <a href="#reflection" class="nav-link" data-nav="reflection">Reflection <span class="done-dot"></span></a>
+      <div class="nav-group-title">Personal</div>
+      <a href="#my-notes" class="nav-link" data-nav="my-notes">My Notes <span class="done-dot"></span></a>
     </nav>
   </aside>
 
   <main id="content">
-
     <!-- ==================== DASHBOARD ==================== -->
     <section id="dashboard" class="lesson-section">
       <div class="section-head">
         <div>
           <span class="module-badge">Dashboard</span>
-          <h2>Bảng điều khiển học tập<span class="vi-sub">Tiến độ, thuật ngữ, điểm số và ghi chú của bạn</span></h2>
+          <h2>Learning Dashboard<span class="sub">Your progress, glossary, scores, and notes</span></h2>
         </div>
       </div>
       <div class="dash-grid" id="dashGrid"></div>
       <div class="dash-actions">
-        <button class="btn primary" id="continueBtn">▶ Tiếp tục học</button>
-        <button class="btn" id="exportBtn">⬇ Xuất dữ liệu (JSON)</button>
+        <button class="btn primary" id="continueBtn">▶ Continue Learning</button>
+        <button class="btn" id="exportBtn">⬇ Export data (JSON)</button>
         <label style="display:inline-block">
           <input type="file" id="importFile" accept="application/json" style="display:none">
-          <button class="btn" id="importBtn">⬆ Nhập dữ liệu</button>
+          <button class="btn" id="importBtn">⬆ Import data</button>
         </label>
-        <button class="btn danger" id="resetBtn">Xóa toàn bộ dữ liệu</button>
+        <button class="btn danger" id="resetBtn">Delete all personal data</button>
       </div>
-      <p style="font-size:.8rem;color:var(--muted);margin-top:14px">
-        Dữ liệu được lưu cục bộ trên trình duyệt này (localStorage). Không có máy chủ, không đồng bộ giữa các thiết bị.
+      <p style="font-size:.78rem;color:var(--muted);margin-top:14px">
+        Data is saved locally in this browser (localStorage). No server, no cross-device sync.
       </p>
     </section>
 
-    <!-- ==================== MODULE 1: INTRO ==================== -->
+    <!-- ==================== MODULE 1 ==================== -->
     <section id="intro" class="lesson-section" data-section="intro">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 1</span>
-          <h2>Giới thiệu khóa học<span class="vi-sub">The Core Roles and Responsibilities of an English Language Teacher</span></h2>
+          <h2>Course Introduction<span class="sub">The Core Roles and Responsibilities of an English Language Teacher</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="intro"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="intro"> Mark as studied</label>
       </div>
       <div class="lesson-body">
         <div class="concept-card">
-          <div class="card-label">Tổng quan</div>
-          <p>Giáo viên tiếng Anh giữ vai trò quan trọng trong việc hỗ trợ người học phát triển <strong>năng lực ngôn ngữ</strong>, <strong>năng lực giao tiếp</strong> và khả năng sử dụng tiếng Anh phù hợp với mục đích học tập cũng như giao tiếp thực tiễn. Trong giáo dục ngôn ngữ hiện đại, nhiệm vụ của giáo viên không chỉ giới hạn ở việc truyền đạt ngữ pháp và từ vựng mà còn bao gồm thiết kế hoạt động học tập, hướng dẫn chiến lược học tập, đánh giá kết quả và xây dựng môi trường lớp học tích cực.</p>
+          <div class="card-label">Overview</div>
+          <p>English language teachers play a central role in helping learners develop <strong>language competence</strong>, <strong>communicative competence</strong>, and the ability to use English appropriately for academic and real-world purposes. In modern language education, a teacher's task is not limited to transmitting grammar and vocabulary; it also includes designing learning activities, guiding learning strategies, assessing outcomes, and building a positive classroom environment.</p>
         </div>
 
-        <h3>Mục tiêu học tập</h3>
-        <p>Sau khi hoàn thành bài học, sinh viên có thể:</p>
+        <h3>Learning Objectives</h3>
+        <p>By the end of this lesson, students should be able to:</p>
         <ul>
-          <li>Giải thích được mười hai vai trò và trách nhiệm cốt lõi của giáo viên tiếng Anh.</li>
-          <li>Hiểu và sử dụng chính xác các thuật ngữ chuyên ngành ELT cốt lõi.</li>
-          <li>Phân tích tình huống lớp học và đề xuất chiến lược giảng dạy phù hợp.</li>
-          <li>Vận dụng kiến thức sư phạm vào các tình huống dạy học thực tế.</li>
-          <li>Tự đánh giá mức độ hiểu bài thông qua hoạt động tương tác.</li>
+          <li>Explain the twelve core roles and responsibilities of an English language teacher.</li>
+          <li>Understand and use essential ELT terminology accurately.</li>
+          <li>Analyse classroom situations and propose appropriate teaching strategies.</li>
+          <li>Apply pedagogical knowledge to realistic teaching scenarios.</li>
+          <li>Evaluate their own understanding through interactive exercises.</li>
         </ul>
 
-        <h3>Thời lượng &amp; hình thức</h3>
-        <p>Thời gian học ước tính: <strong>25–35 phút</strong>. Bao gồm đọc hiểu, hoạt động kiểm tra nhanh, bài kiểm tra và phần phản tư. Có thể học lại nhiều lần.</p>
+        <h3>Study Time &amp; Format</h3>
+        <p>Estimated study time: <strong>25–35 minutes</strong>. Includes reading, quick-check activities, an assessment, and reflection. You may revisit the material as often as needed.</p>
 
-        <h3>Vì sao hiểu rõ vai trò giáo viên lại quan trọng?</h3>
-        <p>Hiểu rõ vai trò giúp giáo viên tương lai ra quyết định sư phạm có căn cứ, phân bổ thời gian hợp lý và tránh thu hẹp dạy học vào một kỹ năng duy nhất. Vai trò của giáo viên tiếng Anh liên quan mật thiết đến các quyết định về nội dung, phương pháp, đánh giá và hỗ trợ người học — từ đó ảnh hưởng trực tiếp đến tiến bộ của học sinh.</p>
+        <h3>Why understanding teacher roles matters</h3>
+        <p>Understanding teacher roles helps future teachers make principled pedagogical decisions, allocate time sensibly, and avoid reducing instruction to a single skill. A teacher's role is closely tied to decisions about content, method, assessment, and learner support — all of which directly influence student progress.</p>
 
-        <h3>Lộ trình khóa học</h3>
+        <h3>Course Roadmap</h3>
         <div class="concept-flow">
-          <span class="cf-node">Module 1 · Giới thiệu</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 2 · Mười hai vai trò</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 3 · So sánh &amp; Kết nối</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 4 · Thuật ngữ</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 5 · Tình huống</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 6 · Kiểm tra</span><span class="cf-arrow">→</span>
-          <span class="cf-node">Module 7 · Phản tư</span>
+          <span class="cf-node">Module 1 · Introduction</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 2 · Twelve Roles</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 3 · Compare</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 4 · Glossary</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 5 · Cases</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 6 · Assessment</span><span class="cf-arrow">→</span>
+          <span class="cf-node">Module 7 · Reflection</span>
         </div>
 
         <h3>Pre-learning diagnostic quiz</h3>
-        <p style="font-size:.9rem;color:var(--muted)">Năm câu hỏi nhanh để kiểm tra hiểu biết ban đầu. Đáp án được hiển thị sau khi bấm <em>Kiểm tra</em>. Đây là hoạt động <strong>practice</strong>, không tính điểm chính thức.</p>
+        <p style="font-size:.88rem;color:var(--muted)">Five quick questions to check prior understanding. Answers are shown after you click <em>Check</em>. This is a <strong>practice</strong> activity, not part of the graded assessment.</p>
         <div id="preQuiz"></div>
         <div class="quiz-controls">
-          <button class="btn primary" id="preQuizCheck">Kiểm tra đáp án</button>
-          <button class="btn" id="preQuizReset">Làm lại</button>
+          <button class="btn primary" id="preQuizCheck">Check answers</button>
+          <button class="btn" id="preQuizReset">Reset</button>
         </div>
         <div id="preQuizScore"></div>
 
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="intro" placeholder="Ghi chú cho phần Giới thiệu..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="intro" placeholder="Notes for Introduction..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="intro">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="intro">Save note</button>
             <span class="note-status" id="ns-intro"></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MODULE 2: ROLES (generated) ==================== -->
+    <!-- MODULE 2 (roles rendered) -->
     <div id="rolesContainer"></div>
 
-    <!-- ==================== MODULE 3: COMPARE ==================== -->
+    <!-- ==================== MODULE 3 ==================== -->
     <section id="compare" class="lesson-section" data-section="compare">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 3</span>
-          <h2>So sánh &amp; Kết nối mười hai vai trò<span class="vi-sub">Compare and Connect the Twelve Roles</span></h2>
+          <h2>Compare &amp; Connect the Twelve Roles<span class="sub">Interactive comparison table and concept map</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="compare"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="compare"> Mark as studied</label>
       </div>
       <div class="lesson-body">
-        <p>Bảng dưới đây tóm tắt mười hai vai trò. Bạn có thể tìm kiếm, lọc theo nhóm và mở rộng từng dòng để xem chi tiết.</p>
-
+        <p>The table below summarises the twelve roles. You can search, filter by category, and expand rows for detail.</p>
         <div class="glossary-controls">
-          <input id="compareSearch" type="search" placeholder="Tìm theo vai trò hoặc thuật ngữ...">
+          <input id="compareSearch" type="search" placeholder="Search by role or terminology...">
           <select id="compareFilter" class="btn" style="padding:8px 12px">
-            <option value="">Tất cả nhóm</option>
+            <option value="">All categories</option>
             <option value="teaching">Teaching</option>
             <option value="support">Learner support</option>
             <option value="assessment">Assessment</option>
             <option value="cpd">Professional development</option>
           </select>
         </div>
-
         <div id="compareTableWrap"></div>
 
-        <h3 style="margin-top:28px">Concept map — Các vai trò hỗ trợ lẫn nhau</h3>
+        <h3 style="margin-top:28px">Concept map — How the roles support each other</h3>
         <div class="concept-flow">
           <span class="cf-node">Lesson Planning</span><span class="cf-arrow">→</span>
           <span class="cf-node">Classroom Activities</span><span class="cf-arrow">→</span>
@@ -652,142 +656,140 @@ body.highlight-mode .lesson-body{cursor:text}
           <span class="cf-node">Feedback</span><span class="cf-arrow">→</span>
           <span class="cf-node">Instructional Adjustment</span>
         </div>
-        <p class="cf-loop">↺ Vòng lặp quay trở lại Lesson Planning. Các vai trò khác (Grammar, Vocabulary, Reading, Writing, Communicative Competence, Technology, Differentiation, Inclusive Environment, CPD, Literature) đóng vai trò hỗ trợ cho chu trình này.</p>
+        <p class="cf-loop">↺ The cycle returns to Lesson Planning. Other roles (Grammar, Vocabulary, Reading, Writing, Communicative Competence, Technology, Differentiation, Inclusive Environment, CPD, Literature) support this cycle in various ways.</p>
 
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="compare" placeholder="Ghi chú cho phần So sánh..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="compare" placeholder="Notes for Compare..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="compare">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="compare">Save note</button>
             <span class="note-status" id="ns-compare"></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MODULE 4: GLOSSARY ==================== -->
+    <!-- ==================== MODULE 4 ==================== -->
     <section id="glossary" class="lesson-section" data-section="glossary">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 4</span>
-          <h2>Thuật ngữ chuyên ngành ELT<span class="vi-sub">Academic ELT Glossary</span></h2>
+          <h2>Academic ELT Glossary<span class="sub">Searchable, alphabet-filtered, and markable as learned</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="glossary"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="glossary"> Mark as studied</label>
       </div>
       <div class="lesson-body">
-        <p>Tìm kiếm, lọc theo bảng chữ cái và đánh dấu thuật ngữ đã học. Trạng thái được lưu tự động.</p>
+        <p>Search terms, filter by initial letter, and mark terms you have learned. Progress is saved automatically.</p>
         <div class="glossary-controls">
-          <input id="glossSearch" type="search" placeholder="Tìm thuật ngữ (Anh hoặc Việt)...">
+          <input id="glossSearch" type="search" placeholder="Search glossary terms...">
         </div>
         <div class="alpha-bar" id="alphaBar"></div>
         <div id="glossaryList"></div>
 
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="glossary" placeholder="Ghi chú cho phần Thuật ngữ..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="glossary" placeholder="Notes for Glossary..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="glossary">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="glossary">Save note</button>
             <span class="note-status" id="ns-glossary"></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MODULE 5: CASES ==================== -->
+    <!-- ==================== MODULE 5 ==================== -->
     <section id="cases" class="lesson-section" data-section="cases">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 5</span>
-          <h2>Tình huống lớp học tương tác<span class="vi-sub">Interactive Classroom Case Studies</span></h2>
+          <h2>Interactive Classroom Case Studies<span class="sub">Four realistic teaching situations</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="cases"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="cases"> Mark as studied</label>
       </div>
       <div class="lesson-body">
-        <p>Bốn tình huống thực tế. Chọn phương án bạn cho là phù hợp nhất để xem giải thích, hoặc nhập phương án của riêng bạn.</p>
+        <p>For each case, choose the response you think is most appropriate to reveal explanations, or write your own response. Your written responses are saved locally.</p>
         <div id="casesContainer"></div>
-
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="cases" placeholder="Ghi chú cho phần Tình huống..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="cases" placeholder="Notes for Cases..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="cases">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="cases">Save note</button>
             <span class="note-status" id="ns-cases"></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MODULE 6: ASSESSMENT ==================== -->
+    <!-- ==================== MODULE 6 ==================== -->
     <section id="assessment" class="lesson-section" data-section="assessment">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 6</span>
-          <h2>Kiểm tra kiến thức<span class="vi-sub">Knowledge Assessment — 15 MCQ · Matching · True/False · Short Answer · Scenario</span></h2>
+          <h2>Knowledge Assessment<span class="sub">15 MCQ · Matching · True/False · Short Answer · Scenario</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="assessment"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="assessment"> Mark as studied</label>
       </div>
       <div class="lesson-body">
         <div class="concept-card">
-          <div class="card-label">Hướng dẫn</div>
-          <p>Bài kiểm tra gồm 5 phần. Đáp án được ẩn cho đến khi bạn bấm <strong>Nộp bài</strong> hoặc <strong>Xem đáp án</strong>. Điểm chỉ được tính cho phần MCQ, Matching và True/False. Phần Short Answer và Scenario mang tính luyện tập phản tư.</p>
+          <div class="card-label">Instructions</div>
+          <p>This assessment has five parts. Answers are hidden until you click <strong>Submit / Grade</strong> or <strong>Show answer keys</strong>. Only MCQ, Matching, and True/False contribute to the score. Short Answer and Scenario parts are for reflective practice.</p>
         </div>
 
-        <h3>Phần A — Trắc nghiệm (15 câu)</h3>
+        <h3>Part A — Multiple Choice (15 questions)</h3>
         <div id="mcqContainer"></div>
 
-        <h3>Phần B — Matching (8 cặp)</h3>
-        <p style="font-size:.9rem;color:var(--muted)">Nhấn vào một thuật ngữ ở cột trái, sau đó nhấn vào định nghĩa tương ứng ở cột phải.</p>
+        <h3>Part B — Matching (8 pairs)</h3>
+        <p style="font-size:.88rem;color:var(--muted)">Click a term on the left, then click the matching definition on the right.</p>
         <div class="match-grid" id="matchGrid"></div>
         <div class="quiz-controls">
-          <button class="btn" id="matchReset">Làm lại matching</button>
-          <span id="matchStatus" style="font-size:.85rem;color:var(--muted);align-self:center"></span>
+          <button class="btn" id="matchReset">Reset matching</button>
+          <span id="matchStatus" style="font-size:.84rem;color:var(--muted);align-self:center"></span>
         </div>
 
-        <h3>Phần C — True / False (8 câu)</h3>
+        <h3>Part C — True / False (8 statements)</h3>
         <div id="tfContainer"></div>
 
-        <h3>Phần D — Short Answer (5 câu)</h3>
+        <h3>Part D — Short Answer (5 questions)</h3>
         <div id="saContainer"></div>
 
-        <h3>Phần E — Scenario-based (4 câu)</h3>
+        <h3>Part E — Scenario-based (4 questions)</h3>
         <div id="scenarioContainer"></div>
 
         <div class="quiz-controls">
-          <button class="btn primary" id="submitAllBtn">Nộp bài / Chấm điểm</button>
-          <button class="btn" id="showKeysBtn">Xem đáp án</button>
-          <button class="btn" id="resetAllBtn">Làm lại toàn bộ</button>
+          <button class="btn primary" id="submitAllBtn">Submit / Grade</button>
+          <button class="btn" id="showKeysBtn">Show answer keys</button>
+          <button class="btn" id="resetAllBtn">Reset whole assessment</button>
         </div>
         <div id="assessmentScore"></div>
 
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="assessment" placeholder="Ghi chú cho phần Kiểm tra..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="assessment" placeholder="Notes for Assessment..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="assessment">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="assessment">Save note</button>
             <span class="note-status" id="ns-assessment"></span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ==================== MODULE 7: REFLECTION ==================== -->
+    <!-- ==================== MODULE 7 ==================== -->
     <section id="reflection" class="lesson-section" data-section="reflection">
       <div class="section-head">
         <div>
           <span class="module-badge">Module 7</span>
-          <h2>Phản tư &amp; Tự đánh giá<span class="vi-sub">Reflection and Self-Assessment</span></h2>
+          <h2>Reflection &amp; Self-Assessment<span class="sub">Personal responses to guide your development</span></h2>
         </div>
-        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="reflection"> Đã học xong</label>
+        <label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="reflection"> Mark as studied</label>
       </div>
       <div class="lesson-body">
-        <p>Trả lời các câu hỏi phản tư dưới đây. Câu trả lời được lưu cục bộ trên trình duyệt và có thể xuất ra file.</p>
+        <p>Answer the reflection questions below. Responses are saved locally and can be exported as a file.</p>
         <div id="reflectionContainer"></div>
-
         <div class="note-wrap">
-          <label>Ghi chú của bạn</label>
-          <textarea class="note-input" data-section="reflection" placeholder="Ghi chú cho phần Phản tư..."></textarea>
+          <label>Your notes</label>
+          <textarea class="note-input" data-section="reflection" placeholder="Notes for Reflection..."></textarea>
           <div class="note-actions">
-            <button class="btn save-note" data-section="reflection">Lưu ghi chú</button>
+            <button class="btn save-note" data-section="reflection">Save note</button>
             <span class="note-status" id="ns-reflection"></span>
           </div>
         </div>
@@ -799,30 +801,31 @@ body.highlight-mode .lesson-body{cursor:text}
       <div class="section-head">
         <div>
           <span class="module-badge">Personal</span>
-          <h2>Ghi chú của tôi<span class="vi-sub">Tổng hợp ghi chú và phản tư đã lưu</span></h2>
+          <h2>My Notes<span class="sub">Collection of saved notes and reflections</span></h2>
         </div>
       </div>
       <div class="lesson-body">
         <div id="notesCollection"></div>
         <div class="note-wrap">
-          <label>Xuất ghi chú</label>
-          <p style="font-size:.88rem;color:var(--muted)">Tải tất cả ghi chú dưới dạng file văn bản thuần (Markdown).</p>
+          <label>Export notes</label>
+          <p style="font-size:.86rem;color:var(--muted)">Download all your notes and reflections as a Markdown file.</p>
           <div class="note-actions">
-            <button class="btn primary" id="exportNotesMd">⬇ Xuất ghi chú (Markdown)</button>
+            <button class="btn primary" id="exportNotesMd">⬇ Export notes (Markdown)</button>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 </div>
 
+<button id="floatingToc" title="Show table of contents" aria-label="Show table of contents">☰</button>
+
 <div class="hl-popup" id="hlPopup">
-  <button data-color="yellow" title="Vàng" aria-label="Vàng"></button>
-  <button data-color="green" title="Xanh lá" aria-label="Xanh lá"></button>
-  <button data-color="blue" title="Xanh dương" aria-label="Xanh dương"></button>
-  <button data-color="pink" title="Hồng" aria-label="Hồng"></button>
-  <button class="clear-hl" id="clearHlBtn" title="Xóa highlight">Xóa</button>
+  <button data-color="yellow" title="Yellow" aria-label="Yellow"></button>
+  <button data-color="green" title="Green" aria-label="Green"></button>
+  <button data-color="blue" title="Blue" aria-label="Blue"></button>
+  <button data-color="pink" title="Pink" aria-label="Pink"></button>
+  <button class="clear-hl" id="clearHlBtn" title="Remove highlight">Clear</button>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -870,12 +873,38 @@ document.getElementById('fsBtn').addEventListener('click', ()=>{
   fs = fs >= 21 ? 14 : fs + 1;
   store.set('elt_font', fs);
   document.documentElement.style.setProperty('--fs', fs+'px');
-  toast('Cỡ chữ: '+fs+'px');
+  toast('Font size: '+fs+'px');
 });
 
 /* ==========================================================
-   MOBILE MENU
+   SIDEBAR COLLAPSE / MOBILE MENU
    ========================================================== */
+const appLayout = document.getElementById('appLayout');
+const collapseBtn = document.getElementById('collapseBtn');
+const floatingToc = document.getElementById('floatingToc');
+
+function applySidebarState(){
+  const hidden = store.get('elt_sidebar_hidden', false);
+  appLayout.classList.toggle('sidebar-hidden', hidden);
+  document.body.classList.toggle('sidebar-is-hidden', hidden);
+  collapseBtn.textContent = hidden ? '▶' : '◀';
+  collapseBtn.title = hidden ? 'Show table of contents' : 'Hide table of contents';
+}
+
+collapseBtn.addEventListener('click', ()=>{
+  const hidden = !store.get('elt_sidebar_hidden', false);
+  store.set('elt_sidebar_hidden', hidden);
+  applySidebarState();
+  toast(hidden ? 'Table of contents hidden' : 'Table of contents shown');
+});
+
+floatingToc.addEventListener('click', ()=>{
+  store.set('elt_sidebar_hidden', false);
+  applySidebarState();
+  toast('Table of contents shown');
+});
+
+// Mobile drawer (only when sidebar visible, on mobile)
 document.getElementById('menuBtn').addEventListener('click', ()=>{
   document.getElementById('sidebar').classList.toggle('open');
 });
@@ -888,6 +917,8 @@ document.getElementById('rolesToggle').addEventListener('click', function(){
   this.classList.toggle('open');
   document.getElementById('rolesGroup').classList.toggle('open');
 });
+
+applySidebarState();
 
 /* ==========================================================
    SECTION PROGRESS
@@ -903,13 +934,13 @@ function renderProgress(){
   SECTIONS.forEach(s=>{
     const cb = document.querySelector('.sec-done[data-sec="'+s+'"]');
     if(cb) cb.checked = !!p[s];
-    const link = document.querySelector('.nav-link[data-nav="'+s+'"], .nav-link[data-nav="'+s+'"]');
+    const link = document.querySelector('.nav-link[data-nav="'+s+'"]');
     if(link) link.classList.toggle('done', !!p[s]);
     if(p[s]) done++;
   });
   const pct = Math.round(done / SECTIONS.length * 100);
   document.getElementById('progressBar').style.width = pct+'%';
-  document.getElementById('progressText').textContent = done+' / '+SECTIONS.length+' mục đã hoàn thành ('+pct+'%)';
+  document.getElementById('progressText').textContent = done+' / '+SECTIONS.length+' sections completed ('+pct+'%)';
   renderDashboard();
 }
 
@@ -930,7 +961,7 @@ function markSectionDone(sec){
 }
 
 /* ==========================================================
-   LAST SECTION (Continue Learning)
+   LAST SECTION TRACKING
    ========================================================== */
 const observer = new IntersectionObserver(entries=>{
   entries.forEach(en=>{
@@ -948,372 +979,348 @@ function observeSections(){
 }
 
 /* ==========================================================
-   ROLES DATA
+   ROLES DATA (ENGLISH)
    ========================================================== */
 const ROLES = [
   {
     id:'role1', num:1,
     title:'Lesson Planning and Classroom Management',
-    titleVi:'Thiết kế bài giảng và Quản lý lớp học',
     def:'Lesson planning is the process of designing learning objectives, sequencing activities, selecting materials, and aligning assessment with curriculum goals. Classroom management refers to the strategies teachers use to create and sustain an orderly, positive, and productive learning environment.',
-    viExpl:'Thiết kế bài giảng là quá trình xác định mục tiêu học tập, sắp xếp hoạt động, lựa chọn tài liệu và căn chỉnh đánh giá với mục tiêu chương trình. Quản lý lớp học là tập hợp các chiến lược giáo viên sử dụng để tạo và duy trì môi trường học tập có trật tự, tích cực và hiệu quả.',
     resp:[
-      'Xác định mục tiêu học tập cụ thể, có thể quan sát và đánh giá (measurable learning objectives).',
-      'Lựa chọn nội dung, tài liệu và phương pháp giảng dạy phù hợp với trình độ và điều kiện lớp học.',
-      'Sắp xếp tiến trình bài học hợp lý từ giới thiệu, luyện tập đến vận dụng.',
-      'Quản lý thời gian và tổ chức hoạt động cá nhân, cặp đôi, nhóm.',
-      'Thiết lập quy tắc lớp học rõ ràng và xử lý tình huống nhất quán.'
+      'Define specific, observable, and assessable learning objectives.',
+      'Select content, materials, and teaching methods appropriate to learners and classroom conditions.',
+      'Sequence the lesson logically from presentation through practice to application.',
+      'Manage time and organise individual, pair, and group work.',
+      'Establish clear classroom rules and handle incidents consistently.'
     ],
     app:[
-      'Viết mục tiêu theo cấu trúc "By the end of the lesson, students will be able to..." với động từ quan sát được.',
-      'Dùng routine đầu giờ (warm-up 3–5 phút) để ổn định lớp và kích hoạt kiến thức nền.',
-      'Chia hoạt động theo chuỗi PPP hoặc theo nhiệm vụ (TBLT).',
-      'Dùng tín hiệu (giơ tay, đếm ngược) để chuyển hoạt động nhanh, giảm thời gian chết.',
-      'Chuẩn bị kế hoạch B khi lớp quá đông hoặc thiếu không gian.'
+      'Write objectives in the form "By the end of the lesson, students will be able to..." using observable verbs.',
+      'Use a 3–5 minute warm-up routine to settle the class and activate prior knowledge.',
+      'Sequence activities via PPP or a task-based structure.',
+      'Use signals (hand raise, countdown) to transition quickly and minimise dead time.',
+      'Prepare a plan B for overcrowded classrooms or limited space.'
     ],
-    scenario:'Giáo viên nhận thấy mỗi lần chuyển hoạt động mất gần 5 phút vì học sinh chưa rõ yêu cầu. Lớp có 32 học sinh, bàn ghế cố định.',
-    reflect:'Bạn sẽ thu thập bằng chứng nào để biết kế hoạch bài giảng của mình thực sự hiệu quả, ngoài việc "học sinh có vẻ hiểu bài"?',
+    scenario:'A teacher notices that transitions between activities take nearly 5 minutes because students do not understand the instructions. The class has 32 students and fixed furniture.',
+    reflect:'What evidence will you collect to determine whether your lesson plan is truly effective — beyond "students seemed to understand"?',
     terms:['lesson planning','learning objective','classroom management','classroom routine','scaffolding','behaviour management'],
-    qc:{ q:'Đâu là mục tiêu học tập được viết đúng chuẩn quan sát được?', opts:[
-      'Hiểu thì hiện tại đơn',
-      'Học sinh sẽ nắm được cách dùng thì hiện tại đơn',
+    qc:{ q:'Which learning objective is written at an observable standard?', opts:[
+      'Understand the present simple',
+      'Students will grasp the use of the present simple',
       'By the end of the lesson, students will be able to form affirmative and negative sentences in the present simple.',
-      'Học sinh yêu thích bài học hơn'
-    ], correct:2, exp:'Mục tiêu quan sát được cần nêu rõ hành vi ngôn ngữ mà học sinh có thể thực hiện và đánh giá được. Các phương án còn lại dùng động từ mơ hồ ("hiểu", "nắm", "yêu thích") khó đo lường.' },
-    takeaway:'Thiết kế bài giảng và quản lý lớp học là nền tảng: mục tiêu rõ ràng, tiến trình hợp lý và quy tắc nhất quán tạo điều kiện cho mọi hoạt động học tập khác diễn ra hiệu quả.'
+      'Students will enjoy the lesson more'
+    ], correct:2, exp:'An observable objective names a specific linguistic behaviour that can be assessed. The other options use vague verbs ("understand", "grasp", "enjoy") that cannot be measured.' },
+    takeaway:'Lesson planning and classroom management are foundational: clear objectives, sensible sequencing, and consistent rules create the conditions for all other roles to work.'
   },
   {
     id:'role2', num:2,
     title:'Teaching Grammar and Language Systems',
-    titleVi:'Giảng dạy ngữ pháp và Hệ thống ngôn ngữ',
     def:'Teaching grammar and language systems involves guiding learners to notice, understand, and use grammatical structures and the phonological, lexical, and discourse systems of English in meaningful contexts.',
-    viExpl:'Giảng dạy ngữ pháp và hệ thống ngôn ngữ là việc hướng dẫn người học nhận biết, hiểu và sử dụng các cấu trúc ngữ pháp cùng các hệ thống âm vị, từ vựng và diễn ngôn của tiếng Anh trong ngữ cảnh có ý nghĩa.',
     resp:[
-      'Giảng dạy từ loại, cấu tạo câu và các cấu trúc ngữ pháp cốt lõi.',
-      'Giải thích mối quan hệ giữa hình thức (form), ý nghĩa (meaning) và cách sử dụng (use).',
-      'Cung cấp ví dụ trong ngữ cảnh giao tiếp thực tế.',
-      'Tổ chức luyện tập có kiểm soát (controlled practice) và luyện tập tự do (free practice).',
-      'Hướng dẫn người học nhận diện, phân tích và tự sửa lỗi ngôn ngữ.'
+      'Teach parts of speech, sentence construction, and core grammatical structures.',
+      'Explain the relationship between form, meaning, and use.',
+      'Provide examples in real communicative contexts.',
+      'Organise controlled practice and free practice.',
+      'Guide learners in noticing, analysing, and self-correcting language errors.'
     ],
     app:[
-      'Dùng concept checking questions (CCQs) để kiểm tra học sinh thực sự hiểu nghĩa, không chỉ lặp lại mẫu câu.',
-      'Dạy thì qua timeline trực quan để thể hiện quan hệ thời gian.',
-      'Áp dụng guided discovery: cho ví dụ trước, học sinh tự rút ra quy tắc.',
-      'Kết hợp gap-fill, transformation drill với hoạt động giao tiếp ngắn.',
-      'Dùng delayed correction cho lỗi nói; immediate correction khi luyện mẫu câu chính xác.'
+      'Use concept checking questions (CCQs) to confirm that students understand meaning, not just repeat a pattern.',
+      'Teach tenses with timelines to show temporal relationships visually.',
+      'Apply guided discovery: provide examples first, have students derive the rule.',
+      'Combine gap-fill and transformation drills with short communicative activities.',
+      'Use delayed correction during fluency work; immediate correction during accuracy practice.'
     ],
-    scenario:'Học sinh làm đúng bài tập điền khuyết thì quá khứ đơn nhưng khi kể lại cuối tuần vẫn dùng thì hiện tại. Giáo viên đã giải thích quy tắc rõ ràng.',
-    reflect:'Nếu học sinh làm đúng bài tập ngữ pháp nhưng không sử dụng trong giao tiếp, vấn đề nằm ở kiến thức hay ở cơ hội vận dụng?',
+    scenario:'Students complete past-simple gap-fills correctly, but when recounting their weekend they still use the present simple. The teacher has explained the rule clearly.',
+    reflect:'If students can complete grammar exercises correctly but do not use the grammar in communication, is the problem in knowledge or in opportunities to apply it?',
     terms:['form-meaning-use','concept checking questions (CCQs)','guided discovery','controlled practice','free practice','error correction','accuracy'],
-    qc:{ q:'Đâu là ví dụ của "luyện tập có kiểm soát" (controlled practice)?', opts:[
-      'Học sinh thảo luận tự do về sở thích',
-      'Học sinh điền khuyết câu với dạng đúng của động từ trong ngoặc',
-      'Học sinh thuyết trình dự án nhóm',
-      'Học sinh viết nhật ký bằng tiếng Anh'
-    ], correct:1, exp:'Controlled practice là hoạt động có đáp án tương đối xác định, tập trung vào độ chính xác của hình thức ngôn ngữ. Các phương án còn lại thiên về free practice.' },
-    takeaway:'Ngữ pháp chỉ có giá trị khi gắn với nghĩa và mục đích giao tiếp; cần chuyển dần từ luyện tập có kiểm soát sang vận dụng tự do.'
+    qc:{ q:'Which of the following is an example of "controlled practice"?', opts:[
+      'Students discuss their hobbies freely',
+      'Students complete a gap-fill using the correct form of the verb in brackets',
+      'Students present a group project',
+      'Students write a journal entry in English'
+    ], correct:1, exp:'Controlled practice has a relatively fixed answer key and focuses on accuracy of form. The other options are free practice.' },
+    takeaway:'Grammar matters only when linked to meaning and purpose; move progressively from controlled to free practice.'
   },
   {
     id:'role3', num:3,
     title:'Vocabulary Development and Language Use',
-    titleVi:'Phát triển vốn từ vựng và Sử dụng ngôn ngữ',
     def:'Vocabulary development refers to helping learners build receptive and productive knowledge of words, including meaning, form (pronunciation, spelling), and use (collocation, register, connotation).',
-    viExpl:'Phát triển vốn từ vựng là việc giúp người học xây dựng kiến thức tiếp nhận (receptive) và sản sinh (productive) về từ, bao gồm nghĩa, hình thức (cách phát âm, chính tả) và cách dùng (kết hợp từ, sắc thái, phong cách).',
     resp:[
-      'Giới thiệu từ vựng theo chủ đề và nhu cầu giao tiếp.',
-      'Hướng dẫn cụm từ cố định (fixed expressions), kết hợp từ (collocations) và thành ngữ (idioms) khi phù hợp.',
-      'Cung cấp ví dụ minh họa trong ngữ cảnh sử dụng.',
-      'Tổ chức ôn tập có giãn cách (spaced review) và vận dụng từ mới.',
-      'Khuyến khích người học sử dụng từ vựng trong cả nói và viết.'
+      'Introduce vocabulary by topic and communicative need.',
+      'Teach fixed expressions, collocations, and idioms where appropriate.',
+      'Provide illustrative examples in context.',
+      'Organise spaced review and application of new words.',
+      'Encourage vocabulary use in both speaking and writing.'
     ],
     app:[
-      'Dạy từ theo lexical set (nhóm từ cùng chủ đề) thay vì danh sách rời rạc.',
-      'Dùng word map để thể hiện quan hệ giữa từ và collocation.',
-      'Lên lịch ôn tập từ mới sau 1 ngày, 3 ngày, 7 ngày (spaced repetition).',
-      'Yêu cầu học sinh dùng từ mới trong một câu nói/viết ngắn để kiểm tra productive knowledge.',
-      'Phân biệt receptive và productive khi đánh giá.'
+      'Teach words in lexical sets rather than as isolated lists.',
+      'Use word maps to show relationships between words and collocations.',
+      'Schedule review after 1 day, 3 days, 7 days (spaced repetition).',
+      'Ask students to use new words in a spoken or written sentence to check productive knowledge.',
+      'Distinguish receptive from productive knowledge when assessing.'
     ],
-    scenario:'Học sinh nhớ nghĩa của các từ "make", "do", "take" nhưng thường dùng sai kết hợp (ví dụ "do a mistake" thay vì "make a mistake").',
-    reflect:'Khi nào bạn nên dạy một từ ở mức receptive, và khi nào cần đạt mức productive?',
+    scenario:'Students know the meanings of "make", "do", and "take" but frequently use them with the wrong collocates (e.g. "do a mistake" instead of "make a mistake").',
+    reflect:'When should you teach a word for receptive recognition only, and when must you aim for productive use?',
     terms:['receptive vocabulary','productive vocabulary','collocation','fixed expression','connotation','lexical set','spaced review'],
-    qc:{ q:'"Make a mistake" và "do a mistake" khác nhau chủ yếu ở khía cạnh nào?', opts:[
-      'Ngữ pháp','Phát âm','Kết hợp từ (collocation)','Chính tả'
-    ], correct:2, exp:'Đây là ví dụ về collocation: "make a mistake" là kết hợp từ đúng trong tiếng Anh; "do a mistake" sai về kết hợp dù ngữ pháp không sai.' },
-    takeaway:'Biết nghĩa từ chưa đủ; người học cần biết cách kết hợp và sử dụng từ phù hợp ngữ cảnh.'
+    qc:{ q:'What mainly distinguishes "make a mistake" from "do a mistake"?', opts:[
+      'Grammar','Pronunciation','Collocation','Spelling'
+    ], correct:2, exp:'This is an example of collocation: "make a mistake" is the correct English combination; "do a mistake" is a collocation error even though the grammar is fine.' },
+    takeaway:'Knowing a word\'s meaning is not enough; learners need to know how it combines with other words and is used in context.'
   },
   {
     id:'role4', num:4,
     title:'Developing Reading Comprehension',
-    titleVi:'Phát triển năng lực đọc hiểu',
     def:'Reading comprehension is the ability to construct meaning from written text through decoding, vocabulary knowledge, and higher-order processes such as identifying main ideas, inferencing, summarising, and evaluating information.',
-    viExpl:'Đọc hiểu là khả năng kiến tạo nghĩa từ văn bản viết thông qua giải mã, vốn từ và các quá trình bậc cao như xác định ý chính, suy luận, tóm tắt và đánh giá thông tin.',
     resp:[
-      'Lựa chọn văn bản phù hợp trình độ và mục tiêu học tập.',
-      'Hướng dẫn đọc lướt (skimming) và đọc quét (scanning).',
-      'Phát triển kỹ năng tóm tắt (summarising), dự đoán (predicting) và suy luận (inferencing).',
-      'Hướng dẫn xác định quan điểm, mục đích và cách tổ chức văn bản.',
-      'Khuyến khích đánh giá độ tin cậy và phân biệt dữ kiện với ý kiến.'
+      'Select texts appropriate to learners\' level and learning objectives.',
+      'Teach skimming (for gist) and scanning (for specific information).',
+      'Develop summarising, predicting, and inferencing strategies.',
+      'Guide learners to identify author viewpoint, purpose, and text organisation.',
+      'Encourage evaluation of source reliability and distinguishing fact from opinion.'
     ],
     app:[
-      'Thiết kế hoạt động pre-reading (dự đoán), while-reading (tìm ý chính, chi tiết), post-reading (tóm tắt, phản hồi).',
-      'Dùng jigsaw reading: chia lớp thành nhóm, mỗi nhóm đọc một đoạn rồi chia sẻ.',
-      'Dạy inferencing bằng câu hỏi "Tại sao tác giả lại nói vậy? Bằng chứng trong bài là gì?".',
-      'Cho học sinh so sánh hai văn bản cùng chủ đề để luyện đánh giá nguồn.',
-      'Dùng think-aloud để mô hình hóa quá trình đọc của người đọc thành thạo.'
+      'Design pre-, while-, and post-reading activities (predict, find main ideas, summarise and respond).',
+      'Use jigsaw reading: divide the class into groups; each group reads one section and shares.',
+      'Teach inferencing with questions like "Why does the author say this? What is the evidence in the text?".',
+      'Have students compare two texts on the same topic to practise source evaluation.',
+      'Use think-aloud to model skilled reading processes.'
     ],
-    scenario:'Học sinh dịch được từng câu nhưng không trả lời được câu hỏi suy luận (inference) và không phân biệt được ý chính với chi tiết.',
-    reflect:'Làm thế nào để dạy kỹ năng suy luận một cách tường minh thay vì chỉ "hy vọng học sinh tự suy ra"?',
+    scenario:'Students can translate each sentence but cannot answer inference questions and cannot distinguish main ideas from supporting details.',
+    reflect:'How can you teach inferencing explicitly, rather than hoping students will infer on their own?',
     terms:['skimming','scanning','summarising','predicting','inferencing','main idea','supporting detail','authorial purpose'],
-    qc:{ q:'Đọc lướt để nắm ý chính gọi là gì?', opts:['Scanning','Skimming','Inferencing','Summarising'], correct:1, exp:'Skimming là đọc nhanh để nắm ý chính; scanning là đọc quét tìm thông tin cụ thể.' },
-    takeaway:'Đọc hiểu không chỉ là dịch nghĩa; cần dạy chiến lược đọc và tư duy phản biện dựa trên bằng chứng văn bản.'
+    qc:{ q:'Reading quickly to get the gist is called:', opts:['Scanning','Skimming','Inferencing','Summarising'], correct:1, exp:'Skimming = reading for the main idea; scanning = reading for specific information.' },
+    takeaway:'Reading comprehension is more than translation; it requires teaching strategies and critical reading grounded in textual evidence.'
   },
   {
     id:'role5', num:5,
     title:'Developing Writing Skills',
-    titleVi:'Phát triển kỹ năng viết',
     def:'Writing instruction develops learners\' ability to produce coherent, cohesive, and purpose-appropriate written texts through a recursive process of planning, drafting, revising, and editing.',
-    viExpl:'Dạy viết phát triển khả năng tạo ra văn bản mạch lạc, liên kết và phù hợp mục đích thông qua quy trình lặp đi lặp lại gồm lên ý tưởng, viết nháp, chỉnh sửa nội dung và hiệu đính ngôn ngữ.',
     resp:[
-      'Hướng dẫn viết đoạn văn, thư, bài luận, báo cáo và các thể loại phù hợp chương trình.',
-      'Tổ chức quy trình viết: brainstorming, outlining, drafting, revising, editing.',
-      'Hướng dẫn tổ chức đoạn văn, sử dụng từ nối và duy trì tính liên kết (cohesion) và mạch lạc (coherence).',
-      'Cung cấp tiêu chí đánh giá rõ ràng về nội dung, tổ chức, từ vựng và ngữ pháp.',
-      'Khuyến khích tự đánh giá và đánh giá đồng đẳng (peer assessment).'
+      'Teach paragraph, letter, essay, and report writing as appropriate to the curriculum.',
+      'Organise the writing process: brainstorming, outlining, drafting, revising, editing.',
+      'Teach paragraph organisation, cohesive devices, and the maintenance of cohesion and coherence.',
+      'Provide clear assessment criteria for content, organisation, vocabulary, and grammar.',
+      'Encourage self-assessment and peer assessment where appropriate.'
     ],
     app:[
-      'Dùng writing process: học sinh viết nháp, đổi bài cho bạn góp ý, chỉnh sửa rồi mới nộp bản cuối.',
-      'Cung cấp rubric 4 tiêu chí (content, organisation, vocabulary, grammar).',
-      'Mô hình hóa một đoạn văn mẫu và phân tích cách dùng từ nối.',
-      'Dùng writing portfolio để theo dõi tiến bộ qua các bài viết.',
-      'Phân biệt revision (chỉnh nội dung, tổ chức) với editing (sửa ngữ pháp, chính tả).'
+      'Use process writing: students draft, exchange peer feedback, revise, and only then submit a final version.',
+      'Provide a rubric with four criteria (content, organisation, vocabulary, grammar).',
+      'Model a sample paragraph and analyse its use of cohesive devices.',
+      'Use writing portfolios to track progress across drafts.',
+      'Distinguish revision (content, organisation) from editing (grammar, spelling).'
     ],
-    scenario:'Học sinh viết bài đủ ý nhưng đoạn văn rời rạc, thiếu từ nối và ý tưởng nhảy cóc.',
-    reflect:'Bạn sẽ phản hồi bài viết của học sinh theo hướng nào để cải thiện tính mạch lạc, thay vì chỉ sửa lỗi ngữ pháp?',
+    scenario:'Students produce complete essays but the paragraphs feel disconnected, lacking cohesive devices and logical flow.',
+    reflect:'How will you give feedback on a student\'s writing to improve coherence, rather than only correcting grammar?',
     terms:['coherence','cohesion','brainstorming','outlining','drafting','revising','editing','rubric'],
-    qc:{ q:'"Cohesion" trong viết chủ yếu liên quan đến điều gì?', opts:[
-      'Ý tưởng logic xuyên suốt bài',
-      'Cách các câu, đoạn được liên kết bề mặt (từ nối, đại từ)',
-      'Độ chính xác ngữ pháp',
-      'Số lượng từ'
-    ], correct:1, exp:'Cohesion là sự liên kết bề mặt giữa các câu/đoạn (từ nối, đại từ, lặp từ); coherence liên quan đến mạch logic của ý tưởng.' },
-    takeaway:'Viết là quá trình, không chỉ là sản phẩm; phản hồi theo tiêu chí giúp học sinh cải thiện cả nội dung lẫn hình thức.'
+    qc:{ q:'"Cohesion" in writing mainly concerns:', opts:[
+      'The logical flow of ideas throughout',
+      'Surface-level links between sentences and paragraphs (conjunctions, pronouns)',
+      'Grammatical accuracy',
+      'Word count'
+    ], correct:1, exp:'Cohesion = surface links (conjunctions, pronouns, repetition); coherence = logical development of ideas.' },
+    takeaway:'Writing is a process, not only a product; criterion-based feedback helps learners improve both content and form.'
   },
   {
     id:'role6', num:6,
     title:'Developing Communicative Competence',
-    titleVi:'Phát triển năng lực giao tiếp',
     def:'Communicative competence is the ability to use language appropriately and effectively in social contexts. It encompasses grammatical, sociolinguistic, discourse, and strategic competence (commonly attributed to Canale & Swain, 1980).',
-    viExpl:'Năng lực giao tiếp là khả năng sử dụng ngôn ngữ phù hợp và hiệu quả trong bối cảnh xã hội. Năng lực này bao gồm năng lực ngữ pháp, ngữ dụng xã hội, diễn ngôn và chiến lược giao tiếp.',
     resp:[
-      'Tổ chức hoạt động đóng vai (role-play) và mô phỏng tình huống giao tiếp.',
-      'Thiết kế thảo luận nhóm (group discussions) và tranh luận (debates).',
-      'Hướng dẫn thuyết trình cá nhân hoặc nhóm (presentations).',
-      'Tổ chức hoạt động giải quyết vấn đề và trao đổi thông tin (information gap).',
-      'Cung cấp phản hồi về độ chính xác, độ trôi chảy, khả năng tương tác và cách dùng ngôn ngữ phù hợp.'
+      'Organise role-play and simulated communicative situations.',
+      'Design group discussions and debates.',
+      'Guide individual or group presentations.',
+      'Organise problem-solving and information-gap activities.',
+      'Provide feedback on accuracy, fluency, interactional skill, and appropriateness.'
     ],
     app:[
-      'Dùng information gap: hai học sinh có thông tin khác nhau, phải hỏi để hoàn thành nhiệm vụ chung.',
-      'Role-play tình huống thực tế: gọi món, hỏi đường, phỏng vấn.',
-      'Debate theo chủ đề gần gũi để luyện lập luận và phản biện.',
-      'Phản hồi theo hai chiều: fluency và accuracy tùy mục tiêu hoạt động.',
-      'Theo dõi interactional skills: lượt nói, dùng ngôn ngữ phù hợp ngữ cảnh, chiến lược giao tiếp.'
+      'Use information-gap tasks: two students hold different information and must ask each other to complete a shared task.',
+      'Use role-plays of real situations: ordering food, asking for directions, conducting an interview.',
+      'Run debates on familiar topics to practise argumentation and counter-argumentation.',
+      'Provide feedback along two dimensions — fluency and accuracy — depending on the activity.',
+      'Track interactional skills: turn-taking, appropriateness, communication strategies.'
     ],
-    scenario:'Học sinh nói rất chậm và thường xuyên dừng lại để kiểm tra ngữ pháp, khiến cuộc hội thoại bị ngắt mạch.',
-    reflect:'Trong một hoạt động giao tiếp, khi nào bạn nên ưu tiên fluency và khi nào nên ưu tiên accuracy?',
+    scenario:'A student speaks very slowly and frequently pauses to monitor grammar, causing the conversation to break down.',
+    reflect:'In a given communicative activity, when should you prioritise fluency and when accuracy?',
     terms:['communicative competence','fluency','accuracy','information gap','role-play','debate','interactional skills'],
-    qc:{ q:'Hoạt động "information gap" nhằm mục đích chính nào?', opts:[
-      'Kiểm tra ngữ pháp',
-      'Tạo nhu cầu trao đổi thông tin thực sự giữa học sinh',
-      'Luyện phát âm',
-      'Ghi nhớ từ vựng'
-    ], correct:1, exp:'Information gap tạo ra khoảng trống thông tin buộc học sinh phải giao tiếp để hoàn thành nhiệm vụ, từ đó phát triển năng lực giao tiếp.' },
-    takeaway:'Năng lực giao tiếp bao gồm nhiều thành tố, không chỉ ngữ pháp; giáo viên cần thiết kế hoạt động có mục đích và cân bằng fluency – accuracy.'
+    qc:{ q:'What is the primary purpose of an "information gap" activity?', opts:[
+      'To test grammar',
+      'To create a genuine need to exchange information between students',
+      'To practise pronunciation',
+      'To memorise vocabulary'
+    ], correct:1, exp:'An information gap creates a real need to communicate to complete a task, thereby developing communicative competence.' },
+    takeaway:'Communicative competence has multiple components beyond grammar; teachers need activities with clear purpose and a balance of fluency and accuracy.'
   },
   {
     id:'role7', num:7,
     title:'Integrating Technology into Language Teaching',
-    titleVi:'Tích hợp công nghệ trong dạy học ngôn ngữ',
     def:'Technology integration in ELT refers to the purposeful selection and use of digital tools and resources to support language learning objectives, enhance practice opportunities, and improve access to materials, grounded in clear pedagogical rationale.',
-    viExpl:'Tích hợp công nghệ trong ELT là việc lựa chọn và sử dụng có mục đích các công cụ và tài nguyên số nhằm hỗ trợ mục tiêu học ngôn ngữ, tăng cơ hội thực hành và cải thiện khả năng tiếp cận tài liệu, dựa trên lý do sư phạm rõ ràng.',
     resp:[
-      'Lựa chọn công cụ theo mục tiêu học tập, không chỉ vì công cụ mới.',
-      'Khai thác nền tảng luyện nghe, phát âm, từ vựng và ngữ pháp.',
-      'Thiết kế bài tập trực tuyến, câu đố và hoạt động tương tác.',
-      'Hướng dẫn người học đánh giá độ tin cậy của tài nguyên số (digital literacy).',
-      'Bảo vệ dữ liệu cá nhân và tuân thủ quy định bản quyền.'
+      'Select tools based on learning objectives, not just novelty.',
+      'Use platforms for listening, pronunciation, vocabulary, and grammar practice.',
+      'Design online exercises, quizzes, and interactive activities.',
+      'Guide learners to evaluate the reliability of digital resources (digital literacy).',
+      'Protect personal data and comply with copyright when using materials.'
     ],
     app:[
-      'Dùng quiz app để kiểm tra nhanh mức độ hiểu bài, nhưng chỉ sau khi đã dạy nội dung.',
-      'Ghi âm giọng học sinh để tự đánh giá phát âm.',
-      'Dùng LMS để giao bài tập, theo dõi tiến độ.',
-      'Chọn công cụ theo mô hình SAMR: Substitution – Augmentation – Modification – Redefinition.',
-      'Có phương án offline (phiếu bài tập, thẻ giấy) cho học sinh không có thiết bị.'
+      'Use quiz apps for quick comprehension checks, but only after content has been taught.',
+      'Record student voices for self-assessment of pronunciation.',
+      'Use an LMS to assign tasks and track progress.',
+      'Choose tools according to the SAMR model: Substitution, Augmentation, Modification, Redefinition.',
+      'Provide an offline option (worksheets, paper cards) for students without devices.'
     ],
-    scenario:'Giáo viên dùng quiz app sau mỗi tiết nhưng học sinh chỉ hào hứng với điểm số, không cải thiện kiến thức.',
-    reflect:'Trong tình huống nào công nghệ là lựa chọn tốt, và trong tình huống nào nó có thể làm loãng mục tiêu học tập?',
+    scenario:'A teacher uses a quiz app at the end of every lesson, but students are excited by points and do not improve their knowledge.',
+    reflect:'In what situations is technology a strong choice, and in what situations can it dilute the learning objective?',
     terms:['digital literacy','learning management system (LMS)','blended learning','SAMR model','accessibility','digital citizenship'],
-    qc:{ q:'Tiêu chí quan trọng nhất khi quyết định dùng một công cụ số trong lớp học là gì?', opts:[
-      'Công cụ có giao diện đẹp',
-      'Công cụ có nhiều tính năng',
-      'Công cụ phục vụ mục tiêu học tập và phù hợp người học',
-      'Công cụ miễn phí'
-    ], correct:2, exp:'Việc tích hợp công nghệ phải xuất phát từ mục tiêu sư phạm và đặc điểm người học, không phải từ tính năng hay vẻ ngoài của công cụ.' },
-    takeaway:'Công nghệ chỉ nâng cao học tập khi được tích hợp có mục đích; công cụ không tự tạo ra hiệu quả sư phạm.'
+    qc:{ q:'What is the most important criterion when deciding to use a digital tool in class?', opts:[
+      'The tool has a beautiful interface',
+      'The tool has many features',
+      'The tool serves the learning objectives and fits the learners',
+      'The tool is free'
+    ], correct:2, exp:'Technology integration must start from pedagogical objectives and learner characteristics — not features or appearance.' },
+    takeaway:'Technology improves learning only when integrated purposefully; tools do not create pedagogical effectiveness on their own.'
   },
   {
     id:'role8', num:8,
     title:'Differentiated Instruction',
-    titleVi:'Dạy học phân hóa',
     def:'Differentiated instruction is the purposeful adaptation of content, process, product, and learning environment in response to learner readiness, interests, and profiles, with the aim of maximising learning for all students.',
-    viExpl:'Dạy học phân hóa là việc điều chỉnh có chủ đích nội dung, quá trình, sản phẩm và môi trường học tập dựa trên mức độ sẵn sàng, hứng thú và đặc điểm của người học, nhằm tối đa hóa việc học cho tất cả học sinh.',
     resp:[
-      'Xác định trình độ và khó khăn học tập qua quan sát, bài tập và đánh giá.',
-      'Cung cấp ví dụ, hướng dẫn từng bước (scaffolding) cho học sinh cần hỗ trợ.',
-      'Thiết kế nhiệm vụ mở rộng (extension tasks) cho học sinh đã đạt mục tiêu cơ bản.',
-      'Sử dụng linh hoạt hoạt động cá nhân, cặp đôi và nhóm (flexible grouping).',
-      'Điều chỉnh mức độ hỗ trợ dựa trên tiến bộ thực tế, tránh gắn nhãn cố định.'
+      'Identify proficiency and learning difficulties through observation, tasks, and assessment.',
+      'Provide examples and step-by-step guidance (scaffolding) for students who need support.',
+      'Design extension tasks for students who have met the core objective.',
+      'Use flexible grouping across individual, pair, and group work.',
+      'Adjust support based on actual progress; avoid fixed labels.'
     ],
     app:[
-      'Thiết kế tiered tasks: cùng mục tiêu, ba mức độ khó khác nhau.',
-      'Dùng learning stations: các trạm học tập với nhiệm vụ khác nhau.',
-      'Cung cấp sentence frames cho học sinh yếu, câu hỏi mở cho học sinh khá.',
-      'Cho học sinh chọn cách thể hiện sản phẩm (poster, thuyết trình, video).',
-      'Đánh giá theo rubric với các mức độ đạt được, không chỉ đúng/sai.'
+      'Design tiered tasks: same objective, three levels of difficulty.',
+      'Use learning stations with different tasks at each.',
+      'Provide sentence frames for weaker students and open-ended prompts for stronger students.',
+      'Let students choose how to present the product (poster, presentation, video).',
+      'Assess with rubrics using levels of achievement, not just right/wrong.'
     ],
-    scenario:'Lớp 30 học sinh: 10 em khá thành thạo, 20 em còn yếu ngữ pháp và ngại nói. Giáo viên muốn cả lớp cùng học một chủ đề.',
-    reflect:'Làm thế nào để phân hóa mà không tạo cảm giác "bị dán nhãn" cho học sinh yếu?',
+    scenario:'A class of 30: about 10 students are already fairly proficient, 20 still struggle with basic grammar and are reluctant to speak. The teacher wants all students to learn the same topic.',
+    reflect:'How can you differentiate without making weaker students feel "labelled"?',
     terms:['differentiated instruction','scaffolding','tiered task','flexible grouping','readiness','extension task','zone of proximal development (ZPD)'],
-    qc:{ q:'Đâu là ví dụ của phân hóa theo "process" (quá trình học)?', opts:[
-      'Cùng một bài tập cho cả lớp',
-      'Học sinh yếu nhận bài tập có khung câu, học sinh khá nhận bài tập mở',
-      'Tất cả học sinh làm cùng một bài kiểm tra',
-      'Chỉ dạy một trình độ duy nhất'
-    ], correct:1, exp:'Phân hóa theo quá trình là điều chỉnh cách học sinh tiếp cận nội dung (mức độ hỗ trợ, dạng nhiệm vụ), không chỉ điều chỉnh nội dung hay sản phẩm.' },
-    takeaway:'Phân hóa không phải là dạy nhiều bài khác nhau, mà là điều chỉnh để mọi học sinh đều có cơ hội đạt mục tiêu chung.'
+    qc:{ q:'Which is an example of differentiating by "process"?', opts:[
+      'The same task for the whole class',
+      'Weaker students receive sentence frames; stronger students receive open-ended prompts',
+      'All students take the same test',
+      'Only teach to one level'
+    ], correct:1, exp:'Differentiating process means adapting how students approach content (level of support, type of task), not only content or product.' },
+    takeaway:'Differentiation is not teaching many different lessons; it is adapting so that all learners have a fair opportunity to reach shared objectives.'
   },
   {
     id:'role9', num:9,
     title:'Assessment and Monitoring Student Progress',
-    titleVi:'Đánh giá và theo dõi tiến bộ học tập',
     def:'Assessment is the systematic process of gathering, interpreting, and using evidence of student learning to make informed educational decisions. Formative assessment supports learning during instruction; summative assessment evaluates achievement at the end of a period.',
-    viExpl:'Đánh giá là quá trình có hệ thống thu thập, diễn giải và sử dụng bằng chứng về việc học của học sinh để đưa ra quyết định giáo dục có căn cứ. Đánh giá thường xuyên (formative) hỗ trợ học tập trong quá trình dạy; đánh giá tổng kết (summative) đánh giá mức đạt được vào cuối giai đoạn.',
     resp:[
-      'Xây dựng tiêu chí đánh giá và rubric phù hợp mục tiêu học tập.',
-      'Sử dụng đa dạng hình thức: quan sát, câu hỏi, bài tập, dự án, bài kiểm tra.',
-      'Phân biệt rõ formative và summative: cùng một bài kiểm tra có thể dùng cho cả hai mục đích tùy cách sử dụng kết quả.',
-      'Cung cấp phản hồi cụ thể, kịp thời và có thể hành động (constructive feedback).',
-      'Sử dụng kết quả đánh giá để điều chỉnh giảng dạy, không chỉ để xếp loại.'
+      'Develop criteria and rubrics aligned with learning objectives.',
+      'Use varied methods: observation, questioning, tasks, projects, tests.',
+      'Distinguish formative from summative: the same test may serve both purposes depending on how results are used.',
+      'Provide specific, timely, and actionable feedback (constructive feedback).',
+      'Use assessment evidence to adjust instruction, not only to grade.'
     ],
     app:[
-      'Dùng exit ticket (giấy 1 phút) cuối tiết để kiểm tra mức hiểu.',
-      'Dùng rubric chấm bài viết/thuyết trình để học sinh biết tiêu chí và tự đánh giá.',
-      'Phân tích kết quả bài kiểm tra để tìm lỗi hệ thống, không chỉ ghi điểm.',
-      'Kết hợp self-assessment và peer assessment để phát triển learner autonomy.',
-      'Tránh đồng nhất "đánh giá bằng lời nói" với "formative" — hình thức không quyết định mục đích.'
+      'Use exit tickets (one-minute papers) at the end of each lesson to check understanding.',
+      'Use rubrics for writing or presentations so students know the criteria and can self-assess.',
+      'Analyse test results to detect systematic errors, not just record scores.',
+      'Combine self-assessment and peer assessment to develop learner autonomy.',
+      'Avoid equating "verbal evaluation" with "formative" — the form does not determine the purpose.'
     ],
-    scenario:'Học sinh tham gia tích cực trên lớp nhưng điểm bài kiểm tra ngữ pháp rất thấp. Giáo viên bối rối không biết vấn đề nằm ở đâu.',
-    reflect:'Bạn sẽ thu thập thêm bằng chứng gì để phân biệt "học sinh chưa học được" với "bài kiểm tra chưa đo đúng điều cần đo"?',
+    scenario:'Students participate actively in class, but grammar test scores are very low. The teacher is unsure where the problem lies.',
+    reflect:'What additional evidence would you gather to distinguish "students did not learn" from "the test did not measure what matters"?',
     terms:['formative assessment','summative assessment','rubric','constructive feedback','validity','reliability','self-assessment','peer assessment'],
-    qc:{ q:'Đâu là đặc điểm của formative assessment?', opts:[
-      'Chỉ diễn ra cuối kỳ',
-      'Diễn ra trong quá trình học và dùng để điều chỉnh việc dạy/học',
-      'Chỉ dùng để xếp hạng học sinh',
-      'Không cần phản hồi'
-    ], correct:1, exp:'Formative assessment được thực hiện trong quá trình học, mục đích là cung cấp phản hồi và điều chỉnh hoạt động dạy học, khác với summative (tổng kết cuối giai đoạn).' },
-    takeaway:'Đánh giá không phải là "bước cuối" mà là một phần của quá trình dạy học; hình thức đánh giá phải phục vụ mục đích sử dụng kết quả.'
+    qc:{ q:'Which is a characteristic of formative assessment?', opts:[
+      'It only happens at the end of term',
+      'It occurs during learning and is used to adjust teaching and learning',
+      'It is used only to rank students',
+      'It requires no feedback'
+    ], correct:1, exp:'Formative assessment occurs during learning, aiming to provide feedback and adjust instruction — unlike summative (end of period).' },
+    takeaway:'Assessment is not a final step but part of the teaching-learning process; assessment forms must serve their intended purpose.'
   },
   {
     id:'role10', num:10,
     title:'Creating a Positive and Inclusive Learning Environment',
-    titleVi:'Xây dựng môi trường học tập tích cực và hòa nhập',
     def:'A positive and inclusive learning environment is a classroom climate in which all learners feel safe, respected, and able to participate, characterised by clear expectations, mutual respect, and constructive handling of errors and differences.',
-    viExpl:'Môi trường học tập tích cực và hòa nhập là bầu không khí lớp học trong đó mọi người học cảm thấy an toàn, được tôn trọng và có thể tham gia, với kỳ vọng rõ ràng, tôn trọng lẫn nhau và xử lý lỗi cũng như khác biệt một cách xây dựng.',
     resp:[
-      'Thiết lập quy tắc giao tiếp và ứng xử rõ ràng ngay từ đầu.',
-      'Khuyến khích tôn trọng ý kiến và khác biệt cá nhân.',
-      'Phản hồi lỗi sai theo cách xây dựng, phù hợp với mục tiêu hoạt động.',
-      'Bảo đảm cơ hội tham gia tương đối công bằng.',
-      'Xử lý hành vi chế giễu, phân biệt đối xử hoặc cản trở việc học.'
+      'Establish clear communication and behaviour expectations from the start.',
+      'Encourage respect for opinions and individual differences.',
+      'Provide feedback on errors constructively, aligned with the activity\'s objective.',
+      'Ensure relatively fair participation opportunities.',
+      'Address teasing, discrimination, or behaviour that hinders learning.'
     ],
     app:[
-      'Cùng học sinh xây dựng "class contract" đầu khóa.',
-      'Dùng think-pair-share để học sinh nhút nhát có thời gian chuẩn bị trước khi nói.',
-      'Áp dụng delayed correction cho lỗi nói để không làm học sinh xấu hổ.',
-      'Khen ngợi nỗ lực và chiến lược, không chỉ khen kết quả đúng.',
-      'Chủ động can thiệp khi có học sinh cười nhạo phát âm của bạn.'
+      'Co-construct a "class contract" with students at the start of the course.',
+      'Use think-pair-share so quieter students have preparation time before speaking.',
+      'Apply delayed correction for spoken errors to avoid embarrassment.',
+      'Praise effort and strategies, not only correct answers.',
+      'Intervene proactively when a student mocks another\'s pronunciation.'
     ],
-    scenario:'Một học sinh phát âm sai, cả lớp cười ồ. Học sinh đó im lặng suốt phần còn lại của tiết.',
-    reflect:'Sự khác biệt giữa "khuyến khích tự tin" và "khen ngợi không có căn cứ" là gì? Bạn sẽ phản hồi thế nào để học sinh vừa tự tin vừa tiến bộ?',
+    scenario:'A student mispronounces a word; the class laughs. The student goes silent for the rest of the lesson.',
+    reflect:'What is the difference between "encouraging confidence" and "praising without evidence"? How will you respond so students gain both confidence and progress?',
     terms:['psychological safety','inclusive learning environment','constructive feedback','affective filter','class contract','learner confidence'],
-    qc:{ q:'Đâu là cách phản hồi lỗi sai mang tính xây dựng?', opts:[
-      'Sửa ngay lập tức mọi lỗi',
-      'Nói "Sai rồi" trước mặt cả lớp',
-      'Ghi nhận nỗ lực, chỉ ra lỗi cụ thể và cách sửa, phù hợp mục tiêu hoạt động',
-      'Bỏ qua mọi lỗi để học sinh tự tin'
-    ], correct:2, exp:'Phản hồi xây dựng tập trung vào hành vi ngôn ngữ cụ thể, đưa ra cách sửa và phù hợp mục tiêu hoạt động, không làm học sinh mất mặt.' },
-    takeaway:'Môi trường an toàn về tâm lý không phải là "không có lỗi", mà là nơi lỗi được xem là một phần của quá trình học.'
+    qc:{ q:'Which is constructive error feedback?', opts:[
+      'Correct every error immediately',
+      'Say "Wrong" in front of the class',
+      'Acknowledge effort, point to the specific error and how to correct it, aligned with the activity\'s objective',
+      'Ignore all errors so students feel confident'
+    ], correct:2, exp:'Constructive feedback targets a specific language behaviour, offers a way to correct it, and fits the activity — without making the student lose face.' },
+    takeaway:'A psychologically safe environment is not one without errors; it is one where errors are treated as part of learning.'
   },
   {
     id:'role11', num:11,
     title:'Continuing Professional Development',
-    titleVi:'Phát triển chuyên môn liên tục',
     def:'Continuing professional development (CPD) refers to the ongoing process by which teachers maintain, extend, and deepen their professional knowledge and skills throughout their careers.',
-    viExpl:'Phát triển chuyên môn liên tục là quá trình giáo viên duy trì, mở rộng và đào sâu kiến thức, kỹ năng nghề nghiệp trong suốt sự nghiệp.',
     resp:[
-      'Cập nhật kiến thức ngôn ngữ, phương pháp và thay đổi chương trình.',
-      'Đọc tài liệu nghiên cứu và tài liệu hướng dẫn giảng dạy.',
-      'Trao đổi kinh nghiệm, dự giờ và hợp tác với đồng nghiệp.',
-      'Phân tích kết quả học tập để xác định điểm cần cải thiện.',
-      'Thử nghiệm phương pháp mới và đánh giá hiệu quả trong thực tế.'
+      'Update language knowledge, teaching methods, and awareness of curriculum changes.',
+      'Read research and teaching guidance documents.',
+      'Exchange ideas, observe peers, and collaborate with colleagues.',
+      'Analyse student learning evidence to identify areas for improvement.',
+      'Try new methods and evaluate their effectiveness in practice.'
     ],
     app:[
-      'Duy trì nhật ký phản tư (reflective journal) sau mỗi tiết dạy.',
-      'Dự giờ đồng nghiệp theo checklist và trao đổi phản hồi.',
-      'Tham gia nhóm đọc chuyên môn (reading group) hàng tháng.',
-      'Thực hiện action research nhỏ: đặt câu hỏi – thử nghiệm – thu thập dữ liệu – kết luận.',
-      'Đặt mục tiêu CPD cụ thể mỗi học kỳ.'
+      'Maintain a reflective journal after each lesson.',
+      'Observe a colleague with a checklist and exchange constructive feedback.',
+      'Join a monthly professional reading group.',
+      'Conduct a small action research project: pose a question — try a change — collect data — conclude.',
+      'Set a specific CPD goal each term.'
     ],
-    scenario:'Giáo viên đã dạy theo cùng một giáo án trong 10 năm, luôn thấy "ổn" nhưng học sinh ngày càng ít hứng thú.',
-    reflect:'Bạn sẽ chọn một điểm cụ thể nào trong thực hành của mình để cải thiện trong học kỳ này? Bằng chứng nào sẽ cho bạn biết mình đã cải thiện?',
+    scenario:'A teacher has used the same lesson plans for 10 years and feels "fine", but students are increasingly unmotivated.',
+    reflect:'Which specific aspect of your practice will you try to improve this term? What evidence will show you have improved?',
     terms:['continuing professional development (CPD)','reflective teaching','action research','peer observation','professional learning community','learner autonomy'],
-    qc:{ q:'Đâu là ví dụ của reflective teaching?', opts:[
-      'Dạy y nguyên giáo án cũ',
-      'Ghi lại điều hiệu quả và chưa hiệu quả sau tiết dạy, từ đó điều chỉnh',
-      'Chỉ tham gia hội thảo',
-      'Chỉ đọc sách giáo trình'
-    ], correct:1, exp:'Reflective teaching là quá trình tự quan sát, phân tích và điều chỉnh thực hành dựa trên bằng chứng từ lớp học.' },
-    takeaway:'CPD không chỉ là "đi học thêm"; đó là quá trình liên tục phản tư và cải thiện thực hành dựa trên bằng chứng.'
+    qc:{ q:'Which is an example of reflective teaching?', opts:[
+      'Reusing the same lesson plan unchanged',
+      'Recording what worked and what did not after a lesson and adjusting accordingly',
+      'Only attending workshops',
+      'Only reading textbooks'
+    ], correct:1, exp:'Reflective teaching is self-observation and analysis leading to adjustments based on classroom evidence.' },
+    takeaway:'CPD is not only "taking more courses"; it is ongoing reflection and improvement grounded in evidence.'
   },
   {
     id:'role12', num:12,
     title:'Fostering Interest in Language and Literature',
-    titleVi:'Nuôi dưỡng hứng thú với ngôn ngữ và văn học',
     def:'Fostering interest in language and literature involves nurturing learners\' curiosity about language, culture, and literary texts, and supporting the development of lifelong reading habits and intercultural awareness.',
-    viExpl:'Nuôi dưỡng hứng thú với ngôn ngữ và văn học là việc khơi gợi sự tò mò của người học về ngôn ngữ, văn hóa và văn bản văn học, đồng thời hỗ trợ hình thành thói quen đọc suốt đời và nhận thức liên văn hóa.',
     resp:[
-      'Sử dụng truyện ngắn, thơ, trích đoạn văn học phù hợp trình độ.',
-      'Khai thác storytelling để phát triển kỹ năng nghe, đọc và kể lại.',
-      'Hướng dẫn phân tích nhân vật, chủ đề, bối cảnh và quan điểm tác giả.',
-      'Liên hệ nội dung văn bản với bối cảnh văn hóa và trải nghiệm người học.',
-      'Khuyến khích đọc mở rộng (extensive reading) và tự học ngoài lớp.'
+      'Use short stories, poetry, and literary excerpts appropriate to the level.',
+      'Use storytelling to develop listening, reading, and retelling.',
+      'Guide analysis of character, theme, setting, and authorial viewpoint.',
+      'Connect textual content with cultural context and learners\' experience.',
+      'Encourage extensive reading and self-study beyond the classroom.'
     ],
     app:[
-      'Dùng reader\'s theatre: học sinh đọc và diễn lại một trích đoạn ngắn.',
-      'Tổ chức literature circles: nhóm đọc cùng một truyện, thảo luận theo vai trò.',
-      'Duy trì reading log để học sinh ghi lại cảm nhận sau mỗi cuốn.',
-      'So sánh yếu tố văn hóa trong văn bản với văn hóa Việt Nam.',
-      'Chọn văn bản phù hợp trình độ để tránh quá tải ngôn ngữ.'
+      'Use reader\'s theatre: students read and perform a short excerpt.',
+      'Organise literature circles: small groups read the same story and discuss in roles.',
+      'Maintain a reading log in which students record their responses after each book.',
+      'Compare cultural elements in the text with Vietnamese culture.',
+      'Choose texts at an appropriate level to avoid language overload.'
     ],
-    scenario:'Học sinh chỉ xem tiếng Anh là môn thi, không có hứng thú đọc truyện tiếng Anh.',
-    reflect:'Bạn sẽ kết nối một tác phẩm văn học với trải nghiệm thực tế của học sinh như thế nào để tạo hứng thú?',
+    scenario:'Students see English only as an exam subject and show no interest in reading English stories.',
+    reflect:'How will you connect a literary work to students\' lived experiences to spark interest?',
     terms:['intercultural awareness','extensive reading','literature circle','storytelling','learner autonomy','reading for pleasure'],
-    qc:{ q:'"Extensive reading" khác "intensive reading" chủ yếu ở điểm nào?', opts:[
-      'Đọc nhiều văn bản dài với mục đích hiểu ý chính và tạo hứng thú, thay vì phân tích kỹ từng chi tiết ngôn ngữ',
-      'Chỉ đọc trong lớp',
-      'Chỉ đọc văn bản học thuật',
-      'Chỉ đọc để thi'
-    ], correct:0, exp:'Extensive reading chú trọng đọc nhiều, hiểu ý chính, tạo hứng thú; intensive reading phân tích kỹ ngôn ngữ và chi tiết trong một văn bản ngắn.' },
-    takeaway:'Hứng thú với ngôn ngữ và văn học được nuôi dưỡng qua trải nghiệm đọc tích cực và kết nối văn hóa, không chỉ qua bài kiểm tra.'
+    qc:{ q:'How does "extensive reading" differ from "intensive reading"?', opts:[
+      'Extensive reading involves reading many texts for gist and pleasure, rather than analysing language in detail',
+      'Only done in class',
+      'Only academic texts',
+      'Only reading for exams'
+    ], correct:0, exp:'Extensive reading emphasises quantity, gist comprehension, and pleasure; intensive reading analyses language and detail within a short text.' },
+    takeaway:'Interest in language and literature is nurtured through positive reading experiences and cultural connections — not only through tests.'
   }
 ];
 
@@ -1334,44 +1341,42 @@ function renderRoles(){
 
     html += '<section id="'+r.id+'" class="lesson-section" data-section="'+r.id+'">'
       + '<div class="section-head">'
-      + '<div><span class="role-badge">Vai trò '+r.num+'</span>'
-      + '<h2>'+r.title+'<span class="vi-sub">'+r.titleVi+'</span></h2></div>'
-      + '<label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="'+r.id+'"> Đã học xong</label>'
+      + '<div><span class="role-badge">Role '+r.num+'</span>'
+      + '<h2>'+r.title+'</h2></div>'
+      + '<label class="done-toggle"><input type="checkbox" class="sec-done" data-sec="'+r.id+'"> Mark as studied</label>'
       + '</div>'
       + '<div class="lesson-body">'
-      + '<div class="def-card"><div class="card-label">Academic definition</div>'
-      + '<p class="en-text">'+r.def+'</p></div>'
-      + '<p class="vi-text"><strong>Giải thích:</strong> '+r.viExpl+'</p>'
-      + '<h3 class="subhead">Trách nhiệm chính (Key responsibilities)</h3><ul>'
+      + '<div class="def-card"><div class="card-label">Academic Definition</div>'
+      + '<p>'+r.def+'</p></div>'
+      + '<h3 class="subhead">Key Responsibilities</h3><ul>'
       + r.resp.map(x=>'<li>'+x+'</li>').join('')
       + '</ul>'
-      + '<h3 class="subhead">Ứng dụng trong lớp học (Practical applications)</h3><ul>'
+      + '<h3 class="subhead">Practical Classroom Applications</h3><ul>'
       + r.app.map(x=>'<li>'+x+'</li>').join('')
       + '</ul>'
-      + '<div class="scenario-card"><div class="card-label">Classroom scenario</div><p>'+r.scenario+'</p></div>'
-      + '<div class="reflect-card"><div class="card-label">Think like a teacher</div><p>'+r.reflect+'</p></div>'
-      + '<div class="term-card"><div class="card-label">Key terminology</div>'
+      + '<div class="scenario-card"><div class="card-label">Classroom Scenario</div><p>'+r.scenario+'</p></div>'
+      + '<div class="reflect-card"><div class="card-label">Think Like a Teacher</div><p>'+r.reflect+'</p></div>'
+      + '<div class="term-card"><div class="card-label">Key Terminology</div>'
       + '<div class="term-tags">'+r.terms.map(t=>'<span class="term-tag">'+t+'</span>').join('')+'</div></div>'
       + '<div class="quick-check" data-qc="'+r.id+'">'
-      + '<div class="card-label">Quick check</div>'
+      + '<div class="card-label">Quick Check</div>'
       + '<p class="qc-q">'+r.qc.q+'</p>'
       + '<div class="qc-opts">'
       + r.qc.opts.map((o,i)=>'<label class="qc-opt" data-idx="'+i+'"><input type="radio" name="qc-'+r.id+'" value="'+i+'"><span>'+o+'</span></label>').join('')
       + '</div>'
       + '<div class="qc-fb"></div>'
-      + '<button class="btn" style="margin-top:8px" data-qc-btn="'+r.id+'">Kiểm tra</button>'
+      + '<button class="btn" style="margin-top:8px" data-qc-btn="'+r.id+'">Check</button>'
       + '</div>'
       + '<div class="takeaway-card"><div class="card-label">Takeaway</div><p>'+r.takeaway+'</p></div>'
-      + '<div class="note-wrap"><label>Ghi chú của bạn</label>'
-      + '<textarea class="note-input" data-section="'+r.id+'" placeholder="Ghi chú cho vai trò này..."></textarea>'
-      + '<div class="note-actions"><button class="btn save-note" data-section="'+r.id+'">Lưu ghi chú</button>'
+      + '<div class="note-wrap"><label>Your notes</label>'
+      + '<textarea class="note-input" data-section="'+r.id+'" placeholder="Notes for this role..."></textarea>'
+      + '<div class="note-actions"><button class="btn save-note" data-section="'+r.id+'">Save note</button>'
       + '<span class="note-status" id="ns-'+r.id+'"></span></div></div>'
       + '</div></section>';
   });
   container.innerHTML = html;
   navGroup.innerHTML = navHtml;
 
-  // Wire quick check buttons
   document.querySelectorAll('[data-qc-btn]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id = btn.dataset.qcBtn;
@@ -1387,13 +1392,8 @@ function renderRoles(){
         else if(selected && +selected.value === i) o.classList.add('incorrect');
       });
       fb.className = 'qc-fb show ' + (selected && +selected.value === role.qc.correct ? 'ok' : 'no');
-      fb.textContent = (selected && +selected.value === role.qc.correct ? '✓ Chính xác. ' : '✗ Chưa đúng. ') + role.qc.exp;
+      fb.textContent = (selected && +selected.value === role.qc.correct ? '✓ Correct. ' : '✗ Not quite. ') + role.qc.exp;
     });
-  });
-
-  // Load notes
-  document.querySelectorAll('.note-input').forEach(ta=>{
-    ta.value = store.get('elt_note_'+ta.dataset.section, '');
   });
 }
 
@@ -1403,69 +1403,69 @@ renderRoles();
    COMPARE TABLE
    ========================================================== */
 const COMPARE = [
-  {id:'role1', role:'Lesson Planning & Classroom Management', cat:'teaching',
+  {role:'Lesson Planning & Classroom Management', cat:'teaching',
    resp:'Design measurable objectives, sequence activities, manage routines',
-   action:'Write objectives with observable verbs; set a 3-step daily routine',
+   action:'Write observable objectives; set a 3-step daily routine',
    benefit:'Clear structure, increased time on task',
    terms:'learning objective, classroom routine, scaffolding'},
-  {id:'role2', role:'Teaching Grammar & Language Systems', cat:'teaching',
+  {role:'Teaching Grammar & Language Systems', cat:'teaching',
    resp:'Explain form–meaning–use; provide controlled and free practice',
    action:'Use CCQs and guided discovery',
    benefit:'Improved grammatical accuracy',
    terms:'form-meaning-use, CCQs, guided discovery'},
-  {id:'role3', role:'Vocabulary Development & Language Use', cat:'teaching',
+  {role:'Vocabulary Development & Language Use', cat:'teaching',
    resp:'Teach word meaning, form, and use in context',
    action:'Use lexical sets, collocation maps, spaced review',
    benefit:'Stronger receptive and productive vocabulary',
    terms:'collocation, lexical set, spaced review'},
-  {id:'role4', role:'Developing Reading Comprehension', cat:'teaching',
+  {role:'Developing Reading Comprehension', cat:'teaching',
    resp:'Teach reading strategies and text analysis',
    action:'Pre-/while-/post-reading tasks; jigsaw reading',
    benefit:'Better comprehension and critical reading',
    terms:'skimming, scanning, inferencing, main idea'},
-  {id:'role5', role:'Developing Writing Skills', cat:'teaching',
+  {role:'Developing Writing Skills', cat:'teaching',
    resp:'Guide learners through the writing process',
    action:'Process writing with peer feedback and rubrics',
    benefit:'Improved organisation and expression',
    terms:'cohesion, coherence, drafting, revising'},
-  {id:'role6', role:'Developing Communicative Competence', cat:'teaching',
+  {role:'Developing Communicative Competence', cat:'teaching',
    resp:'Create purposeful speaking opportunities',
    action:'Role-play, information gap, debates, presentations',
    benefit:'Greater fluency and interactional skill',
    terms:'fluency, accuracy, information gap, role-play'},
-  {id:'role7', role:'Integrating Technology', cat:'teaching',
+  {role:'Integrating Technology', cat:'teaching',
    resp:'Select tools based on pedagogical objectives',
    action:'Use quiz apps, LMS, pronunciation recording',
    benefit:'More practice opportunities and access',
    terms:'digital literacy, LMS, SAMR, blended learning'},
-  {id:'role8', role:'Differentiated Instruction', cat:'support',
+  {role:'Differentiated Instruction', cat:'support',
    resp:'Adapt content, process, product to learner needs',
    action:'Tiered tasks, scaffolding, flexible grouping',
    benefit:'Better support for learner differences',
    terms:'scaffolding, tiered task, ZPD'},
-  {id:'role9', role:'Assessment & Monitoring', cat:'assessment',
+  {role:'Assessment & Monitoring', cat:'assessment',
    resp:'Collect evidence and provide constructive feedback',
    action:'Exit tickets, rubrics, self/peer assessment',
    benefit:'Informed instructional decisions',
    terms:'formative, summative, rubric, feedback'},
-  {id:'role10', role:'Positive & Inclusive Environment', cat:'support',
+  {role:'Positive & Inclusive Environment', cat:'support',
    resp:'Create safe, respectful, participatory climate',
    action:'Class contract, think-pair-share, constructive error correction',
    benefit:'Reduced anxiety, increased participation',
    terms:'psychological safety, inclusion, affective filter'},
-  {id:'role11', role:'Continuing Professional Development', cat:'cpd',
+  {role:'Continuing Professional Development', cat:'cpd',
    resp:'Reflect, learn, and improve practice over time',
    action:'Reflective journal, peer observation, action research',
    benefit:'Higher quality and adaptive teaching',
    terms:'reflective teaching, action research, CPD'},
-  {id:'role12', role:'Fostering Interest in Literature', cat:'support',
+  {role:'Fostering Interest in Literature', cat:'support',
    resp:'Nurture curiosity about language and culture',
    action:'Storytelling, literature circles, extensive reading',
    benefit:'Broader language awareness and intercultural understanding',
    terms:'intercultural awareness, extensive reading, literature circle'}
 ];
 
-function renderCompare(filter){
+function renderCompare(){
   const q = (document.getElementById('compareSearch').value || '').toLowerCase();
   const cat = document.getElementById('compareFilter').value;
   const items = COMPARE.filter(c=>
@@ -1474,17 +1474,17 @@ function renderCompare(filter){
   );
   const wrap = document.getElementById('compareTableWrap');
   if(items.length === 0){
-    wrap.innerHTML = '<div class="empty-state">Không tìm thấy vai trò phù hợp.</div>';
+    wrap.innerHTML = '<div class="empty-state">No matching roles.</div>';
     return;
   }
   let html = '<div class="table-wrap"><table><thead><tr>'
-    + '<th>Vai trò</th><th>Trách nhiệm chính</th><th>Ví dụ hoạt động</th><th>Lợi ích học tập</th><th>Thuật ngữ</th>'
+    + '<th>Role</th><th>Main Responsibility</th><th>Example Activity</th><th>Learning Benefit</th><th>Key Terms</th>'
     + '</tr></thead><tbody>';
   items.forEach(c=>{
     html += '<tr>'
-      + '<td><strong>'+c.role+'</strong><br><span style="font-size:.78rem;color:var(--muted);text-transform:uppercase">'+c.cat+'</span></td>'
+      + '<td><strong>'+c.role+'</strong><br><span style="font-size:.72rem;color:var(--muted);text-transform:uppercase">'+c.cat+'</span></td>'
       + '<td>'+c.resp+'</td><td>'+c.action+'</td><td>'+c.benefit+'</td>'
-      + '<td style="font-family:monospace;font-size:.8rem">'+c.terms+'</td>'
+      + '<td style="font-family:monospace;font-size:.78rem">'+c.terms+'</td>'
       + '</tr>';
   });
   html += '</tbody></table></div>';
@@ -1498,105 +1498,105 @@ renderCompare();
    GLOSSARY
    ========================================================== */
 const GLOSSARY = [
-  {term:'Communicative competence', cat:'noun phrase', vi:'Năng lực giao tiếp',
+  {term:'Communicative competence', cat:'noun phrase',
    def:'The ability to use language appropriately and effectively in social contexts, encompassing grammatical, sociolinguistic, discourse, and strategic competence.',
-   viExpl:'Khả năng sử dụng ngôn ngữ phù hợp và hiệu quả trong bối cảnh xã hội, bao gồm năng lực ngữ pháp, ngữ dụng xã hội, diễn ngôn và chiến lược.',
+   expl:'A multi-component ability: knowing the language, knowing when and how to use it, organising messages, and using strategies to overcome gaps.',
    example:'Students negotiate meaning in a group discussion rather than only completing grammar exercises.'},
-  {term:'Lesson planning', cat:'noun phrase', vi:'Thiết kế bài giảng',
+  {term:'Lesson planning', cat:'noun phrase',
    def:'The process of designing learning objectives, sequencing activities, selecting materials, and aligning assessment with curriculum goals.',
-   viExpl:'Quá trình xác định mục tiêu, sắp xếp hoạt động, chọn tài liệu và căn chỉnh đánh giá với mục tiêu chương trình.',
+   expl:'The systematic preparation that makes teaching purposeful and coherent.',
    example:'A 45-minute plan with a 5-minute warm-up, 15-minute presentation, 20-minute practice, 5-minute review.'},
-  {term:'Classroom management', cat:'noun phrase', vi:'Quản lý lớp học',
+  {term:'Classroom management', cat:'noun phrase',
    def:'The range of strategies teachers use to create and maintain an orderly, positive, and productive learning environment.',
-   viExpl:'Tập hợp các chiến lược để tạo và duy trì môi trường học tập có trật tự, tích cực, hiệu quả.',
+   expl:'All that a teacher does to keep the classroom focused on learning, respectful, and efficient.',
    example:'Establishing a 3-step routine for starting class and using consistent hand signals.'},
-  {term:'Language systems', cat:'noun phrase', vi:'Các hệ thống ngôn ngữ',
+  {term:'Language systems', cat:'noun phrase',
    def:'The interconnected systems of language: phonology, lexis, grammar, and discourse.',
-   viExpl:'Các hệ thống liên kết của ngôn ngữ: âm vị, từ vựng, ngữ pháp và diễn ngôn.',
+   expl:'The different layers of language that teachers help learners master.',
    example:'Teaching pronunciation alongside grammar and vocabulary rather than in isolation.'},
-  {term:'Vocabulary development', cat:'noun phrase', vi:'Phát triển vốn từ vựng',
+  {term:'Vocabulary development', cat:'noun phrase',
    def:'The process of building receptive and productive knowledge of words including meaning, form, and use.',
-   viExpl:'Quá trình xây dựng kiến thức từ vựng tiếp nhận và sản sinh, bao gồm nghĩa, hình thức và cách dùng.',
+   expl:'Growing vocabulary not only by memorising meaning but by knowing how words combine and are used.',
    example:'Using spaced review and word maps to strengthen collocation knowledge.'},
-  {term:'Reading comprehension', cat:'noun phrase', vi:'Năng lực đọc hiểu',
+  {term:'Reading comprehension', cat:'noun phrase',
    def:'The ability to construct meaning from written text through decoding, vocabulary knowledge, and higher-order processes.',
-   viExpl:'Khả năng kiến tạo nghĩa từ văn bản viết thông qua giải mã, vốn từ và các quá trình bậc cao.',
+   expl:'Understanding a text at multiple levels, from literal meaning to inference and evaluation.',
    example:'Teaching students to infer author intent from textual evidence.'},
-  {term:'Writing process', cat:'noun phrase', vi:'Quy trình viết',
+  {term:'Writing process', cat:'noun phrase',
    def:'A recursive process of planning, drafting, revising, and editing written texts.',
-   viExpl:'Quá trình lặp đi lặp lại gồm lên kế hoạch, viết nháp, chỉnh sửa và hiệu đính.',
+   expl:'Writing seen as a cycle of development, not a one-off act.',
    example:'Students draft, exchange peer feedback, then revise before final submission.'},
-  {term:'Differentiated instruction', cat:'noun phrase', vi:'Dạy học phân hóa',
+  {term:'Differentiated instruction', cat:'noun phrase',
    def:'Purposeful adaptation of content, process, product, and environment to learner readiness, interests, and profiles.',
-   viExpl:'Điều chỉnh có chủ đích nội dung, quá trình, sản phẩm và môi trường theo mức sẵn sàng, hứng thú và đặc điểm người học.',
+   expl:'Teaching that responds to learner differences while maintaining shared goals.',
    example:'Tiered tasks: three versions of the same activity at different difficulty levels.'},
-  {term:'Formative assessment', cat:'noun phrase', vi:'Đánh giá thường xuyên',
+  {term:'Formative assessment', cat:'noun phrase',
    def:'Assessment that occurs during instruction to monitor learning and inform teaching adjustments.',
-   viExpl:'Đánh giá diễn ra trong quá trình dạy nhằm theo dõi việc học và điều chỉnh giảng dạy.',
+   expl:'Assessment for learning — it supports the learning process rather than merely evaluating it.',
    example:'Exit tickets at the end of a lesson to check comprehension.'},
-  {term:'Summative assessment', cat:'noun phrase', vi:'Đánh giá tổng kết',
+  {term:'Summative assessment', cat:'noun phrase',
    def:'Assessment that evaluates achievement at the end of an instructional period.',
-   viExpl:'Đánh giá mức độ đạt được vào cuối một giai đoạn giảng dạy.',
+   expl:'Assessment of learning — it provides a judgement at a certain point.',
    example:'An end-of-term exam or a final project.'},
-  {term:'Constructive feedback', cat:'noun phrase', vi:'Phản hồi mang tính xây dựng',
+  {term:'Constructive feedback', cat:'noun phrase',
    def:'Specific, actionable feedback focused on behaviour or performance, aimed at improvement.',
-   viExpl:'Phản hồi cụ thể, có thể hành động, tập trung vào hành vi hoặc kết quả, nhằm cải thiện.',
+   expl:'Feedback that tells the learner what to keep doing and what to change, and how.',
    example:'"Your topic sentence is clear; add one supporting example to strengthen the paragraph."'},
-  {term:'Inclusive learning environment', cat:'noun phrase', vi:'Môi trường học tập hòa nhập',
+  {term:'Inclusive learning environment', cat:'noun phrase',
    def:'A classroom climate where all learners feel safe, respected, and able to participate.',
-   viExpl:'Bầu không khí lớp học nơi mọi người học cảm thấy an toàn, được tôn trọng và có thể tham gia.',
+   expl:'A context in which diversity is welcomed and participation is equitable.',
    example:'A class contract co-constructed with students at the start of term.'},
-  {term:'Scaffolding', cat:'noun', vi:'Giàn giáo sư phạm (hỗ trợ tạm thời)',
+  {term:'Scaffolding', cat:'noun',
    def:'Temporary support provided to help learners complete tasks they cannot yet do independently, gradually removed as competence grows.',
-   viExpl:'Hỗ trợ tạm thời giúp người học hoàn thành nhiệm vụ chưa thể tự làm, được giảm dần khi năng lực tăng.',
+   expl:'Support that is intentionally temporary and adapted to the learner\'s current level.',
    example:'Sentence frames for a writing task, gradually removed in later lessons.'},
-  {term:'Learner autonomy', cat:'noun phrase', vi:'Tính tự chủ của người học',
+  {term:'Learner autonomy', cat:'noun phrase',
    def:'The capacity to take responsibility for one\'s own learning, including goal-setting, strategy use, and self-assessment.',
-   viExpl:'Khả năng tự chịu trách nhiệm cho việc học của mình, bao gồm đặt mục tiêu, sử dụng chiến lược và tự đánh giá.',
+   expl:'Learners\' ability to direct and monitor their own learning.',
    example:'Students keeping a vocabulary notebook and scheduling their own review.'},
-  {term:'Intercultural awareness', cat:'noun phrase', vi:'Nhận thức liên văn hóa',
+  {term:'Intercultural awareness', cat:'noun phrase',
    def:'Understanding and respecting cultural similarities and differences, and using this understanding appropriately in communication.',
-   viExpl:'Hiểu và tôn trọng sự tương đồng và khác biệt văn hóa, và sử dụng hiểu biết đó phù hợp trong giao tiếp.',
+   expl:'More than knowing facts about other cultures: it involves reflection and communicative sensitivity.',
    example:'Comparing greetings in English-speaking cultures and Vietnamese culture.'},
-  {term:'Reflective teaching', cat:'noun phrase', vi:'Dạy học phản tư',
+  {term:'Reflective teaching', cat:'noun phrase',
    def:'A process of self-observation and analysis through which teachers examine and improve their practice.',
-   viExpl:'Quá trình tự quan sát và phân tích để giáo viên xem xét và cải thiện thực hành của mình.',
+   expl:'Learning from one\'s own teaching by looking at it critically.',
    example:'A weekly journal entry noting what worked and what to adjust.'},
-  {term:'Fluency', cat:'noun', vi:'Độ trôi chảy',
+  {term:'Fluency', cat:'noun',
    def:'The ability to produce language smoothly and without excessive hesitation.',
-   viExpl:'Khả năng sản sinh ngôn ngữ trôi chảy, không ngập ngừng quá mức.',
+   expl:'Speaking or writing with reasonable speed and flow.',
    example:'A 2-minute speaking task with no correction for fluency.'},
-  {term:'Accuracy', cat:'noun', vi:'Độ chính xác',
+  {term:'Accuracy', cat:'noun',
    def:'The degree to which language use conforms to grammatical, lexical, and phonological norms.',
-   viExpl:'Mức độ sử dụng ngôn ngữ phù hợp với chuẩn ngữ pháp, từ vựng và ngữ âm.',
+   expl:'Correctness of language form.',
    example:'A grammar-focused drill with immediate correction for accuracy.'},
-  {term:'Cohesion', cat:'noun', vi:'Tính liên kết (bề mặt)',
+  {term:'Cohesion', cat:'noun',
    def:'The surface-level connections between sentences and paragraphs, marked by cohesive devices such as pronouns, conjunctions, and lexical repetition.',
-   viExpl:'Liên kết bề mặt giữa các câu và đoạn, được đánh dấu bằng đại từ, từ nối, lặp từ.',
+   expl:'The "glue" of a text at the sentence level.',
    example:'Using "however" and "therefore" to link ideas across paragraphs.'},
-  {term:'Coherence', cat:'noun', vi:'Tính mạch lạc',
+  {term:'Coherence', cat:'noun',
    def:'The logical and meaningful development of ideas in a text, beyond surface-level links.',
-   viExpl:'Sự phát triển logic và có ý nghĩa của các ý tưởng trong văn bản, vượt trên liên kết bề mặt.',
+   expl:'The overall sense that a text makes sense as a whole.',
    example:'Organising a persuasive essay with clear claim, evidence, and conclusion.'},
-  {term:'Predicting', cat:'noun (reading strategy)', vi:'Dự đoán',
+  {term:'Predicting', cat:'noun (reading strategy)',
    def:'A reading strategy in which learners anticipate content based on title, images, context, or prior reading.',
-   viExpl:'Chiến lược đọc trong đó người học dự đoán nội dung dựa trên tiêu đề, hình ảnh, ngữ cảnh hoặc thông tin đã đọc.',
+   expl:'Using clues to guess what comes next, which activates schemata and improves comprehension.',
    example:'Predicting the ending of a story from its title and illustrations.'},
-  {term:'Inferencing', cat:'noun (reading strategy)', vi:'Suy luận',
+  {term:'Inferencing', cat:'noun (reading strategy)',
    def:'Drawing logical conclusions from textual evidence combined with background knowledge.',
-   viExpl:'Rút ra kết luận logic từ bằng chứng trong văn bản kết hợp với kiến thức nền.',
+   expl:'Reading "between the lines" based on textual clues and prior knowledge.',
    example:'Inferring a character\'s feelings from their actions rather than explicit statements.'},
-  {term:'Skimming', cat:'noun (reading strategy)', vi:'Đọc lướt',
+  {term:'Skimming', cat:'noun (reading strategy)',
    def:'Reading quickly to identify the main idea or gist of a text.',
-   viExpl:'Đọc nhanh để xác định ý chính hoặc nội dung tổng quát của văn bản.',
+   expl:'A fast pass through the text to get an overall sense.',
    example:'Skimming a news article for its headline message before detailed reading.'},
-  {term:'Scanning', cat:'noun (reading strategy)', vi:'Đọc quét',
+  {term:'Scanning', cat:'noun (reading strategy)',
    def:'Reading quickly to locate specific information such as dates, names, or figures.',
-   viExpl:'Đọc nhanh để tìm thông tin cụ thể như ngày tháng, tên, số liệu.',
+   expl:'A search through the text for a particular detail.',
    example:'Scanning a timetable for the departure time.'},
-  {term:'Continuing professional development', cat:'noun phrase', vi:'Phát triển chuyên môn liên tục',
+  {term:'Continuing professional development', cat:'noun phrase',
    def:'The ongoing process by which teachers maintain, extend, and deepen professional knowledge and skills throughout their careers.',
-   viExpl:'Quá trình liên tục duy trì, mở rộng và đào sâu kiến thức, kỹ năng nghề nghiệp trong suốt sự nghiệp.',
+   expl:'Lifelong professional learning — formal and informal.',
    example:'Attending workshops, reading ELT journals, and conducting small action research projects.'}
 ];
 
@@ -1607,13 +1607,13 @@ function renderGlossary(){
   const list = document.getElementById('glossaryList');
   const learned = store.get('elt_gloss_learned', {});
   let items = GLOSSARY.filter(g=>{
-    const matchQ = !glossFilter || (g.term+' '+g.vi+' '+g.def+' '+g.viExpl).toLowerCase().includes(glossFilter);
+    const matchQ = !glossFilter || (g.term+' '+g.def+' '+g.expl).toLowerCase().includes(glossFilter);
     const matchL = !glossLetter || g.term.charAt(0).toUpperCase() === glossLetter;
     return matchQ && matchL;
   });
   items.sort((a,b)=>a.term.localeCompare(b.term));
   if(items.length === 0){
-    list.innerHTML = '<div class="empty-state">Không tìm thấy thuật ngữ phù hợp.</div>';
+    list.innerHTML = '<div class="empty-state">No matching terms.</div>';
     return;
   }
   list.innerHTML = items.map(g=>{
@@ -1621,12 +1621,11 @@ function renderGlossary(){
     return '<div class="gloss-item'+(isLearned?' learned':'')+'">'
       + '<h4>'+g.term+'</h4>'
       + '<div class="gloss-cat">'+g.cat+'</div>'
-      + '<div class="gloss-vi">🇻🇳 '+g.vi+'</div>'
       + '<div class="gloss-def">'+g.def+'</div>'
-      + '<div class="gloss-vi-expl"><em>Giải thích:</em> '+g.viExpl+'</div>'
-      + '<div class="gloss-ex"><strong>Ví dụ:</strong> '+g.example+'</div>'
+      + '<div class="gloss-expl"><em>Explanation:</em> '+g.expl+'</div>'
+      + '<div class="gloss-ex"><strong>Example:</strong> '+g.example+'</div>'
       + '<div class="gloss-actions"><button class="gloss-learn-btn" data-term="'+g.term+'">'
-      + (isLearned?'✓ Đã học (bỏ đánh dấu)':'Đánh dấu đã học')+'</button></div>'
+      + (isLearned?'✓ Learned (remove mark)':'Mark as learned')+'</button></div>'
       + '</div>';
   }).join('');
 
@@ -1668,54 +1667,54 @@ const CASES = [
   {
     id:'caseA',
     title:'Case A — Mixed-proficiency classroom',
-    scenario:'Lớp 30 học sinh: khoảng 10 em nắm ngữ pháp nhanh và tự tin nói; 20 em còn gặp khó khăn với cấu trúc câu cơ bản và ngại phát biểu. Giáo viên muốn cả lớp cùng học một chủ đề.',
+    scenario:'A class of 30: about 10 students grasp grammar quickly and speak confidently; 20 struggle with basic sentence structures and are reluctant to speak. The teacher wants all students to learn the same topic.',
     options:[
-      {text:'Dạy theo trình độ trung bình và giao thêm bài cho học sinh khá về nhà.', quality:'partial', expl:'Đây là cách một số giáo viên chọn nhưng chưa thực sự phân hóa trong lớp; học sinh yếu vẫn có thể bị bỏ lại, học sinh khá có thể chán.'},
-      {text:'Thiết kế tiered tasks: cùng mục tiêu nhưng ba mức độ hỗ trợ khác nhau; dùng flexible grouping.', quality:'good', expl:'Đây là ví dụ điển hình của differentiated instruction: cùng mục tiêu, điều chỉnh mức hỗ trợ và hình thức làm việc. Học sinh yếu nhận sentence frames, học sinh khá nhận nhiệm vụ mở rộng.'},
-      {text:'Chỉ dùng bài tập cơ bản cho cả lớp để tránh học sinh yếu bị "tụt lại".', quality:'weak', expl:'Cách này không đáp ứng nhu cầu học sinh khá và không thực sự phân hóa.'},
-      {text:'Chia lớp thành hai nhóm cố định: nhóm "giỏi" và nhóm "yếu" suốt học kỳ.', quality:'weak', expl:'Gắn nhãn cố định có thể ảnh hưởng tiêu cực đến động lực và cơ hội học tập. Phân hóa cần linh hoạt và dựa trên bằng chứng.'}
+      {text:'Teach to the average level and give the stronger students extra homework.', quality:'partial', expl:'A common compromise, but it does not truly differentiate within the lesson; weaker students may still be left behind and stronger students may become bored.'},
+      {text:'Design tiered tasks: the same objective with three levels of support; use flexible grouping.', quality:'good', expl:'This is a classic example of differentiated instruction: same objective, adjusted support and grouping. Weaker students get sentence frames, stronger students get extension tasks.'},
+      {text:'Use only basic exercises for the whole class to prevent weaker students from "falling behind".', quality:'weak', expl:'This does not meet the needs of stronger students and does not differentiate.'},
+      {text:'Split the class into two fixed groups ("strong" and "weak") for the whole term.', quality:'weak', expl:'Fixed labelling can negatively affect motivation and learning opportunities. Differentiation should be flexible and evidence-based.'}
     ],
     roles:'Differentiated Instruction (Role 8), Lesson Planning (Role 1), Positive Environment (Role 10)',
-    model:'Kết hợp tiered tasks (cùng mục tiêu – ba mức hỗ trợ), scaffolding có chủ đích cho nhóm cần hỗ trợ (sentence frames, ví dụ mẫu), nhiệm vụ mở rộng cho nhóm khá, và flexible grouping (đổi nhóm theo hoạt động, không cố định). Đánh giá theo rubric để ghi nhận tiến bộ của từng nhóm, không so sánh trực tiếp giữa các nhóm.'
+    model:'Combine tiered tasks (same objective — three support levels), intentional scaffolding for those needing support (sentence frames, model examples), extension tasks for stronger students, and flexible grouping (change groups by activity, not permanently). Assess with a rubric that recognises progress within each group, not by direct comparison.'
   },
   {
     id:'caseB',
     title:'Case B — Fear of speaking English',
-    scenario:'Nhiều học sinh trong lớp tránh nói tiếng Anh vì sợ mắc lỗi trước mặt bạn bè. Các em thường im lặng hoặc trả lời rất ngắn, dù hiểu bài.',
+    scenario:'Many students avoid speaking English because they are afraid of making mistakes in front of peers. They are often silent or answer very briefly, even when they understand.',
     options:[
-      {text:'Gọi học sinh phát biểu nhiều hơn để các em quen dần.', quality:'weak', expl:'Tăng áp lực gọi tên có thể làm tăng lo lắng, đặc biệt nếu học sinh chưa có công cụ để diễn đạt.'},
-      {text:'Xây dựng class contract, dùng think-pair-share trước khi yêu cầu nói trước lớp, và phản hồi lỗi theo hướng xây dựng.', quality:'good', expl:'Đây là tổ hợp biện pháp tạo psychological safety: quy tắc rõ ràng, thời gian chuẩn bị, phản hồi không làm mất mặt.'},
-      {text:'Bỏ qua hoàn toàn việc sửa lỗi để học sinh tự tin.', quality:'partial', expl:'Bỏ qua mọi lỗi có thể khiến học sinh không tiến bộ; phản hồi xây dựng, phù hợp mục tiêu hoạt động là cần thiết.'},
-      {text:'Chỉ cho học sinh nói khi các em thực sự sẵn sàng, không can thiệp gì thêm.', quality:'weak', expl:'Không can thiệp có thể khiến học sinh nhút nhát không bao giờ có cơ hội phát triển; giáo viên cần thiết kế hoạt động hỗ trợ.'}
+      {text:'Call on students to speak more often so they get used to it.', quality:'weak', expl:'Increased pressure from being called on can heighten anxiety, especially when students lack tools to express themselves.'},
+      {text:'Build a class contract, use think-pair-share before speaking to the class, and give constructive error feedback.', quality:'good', expl:'A combination that creates psychological safety: clear rules, preparation time, and non-embarrassing feedback.'},
+      {text:'Ignore error correction entirely so students feel confident.', quality:'partial', expl:'Ignoring all errors can prevent progress; constructive, activity-appropriate feedback is still necessary.'},
+      {text:'Only let students speak when they feel truly ready, with no further intervention.', quality:'weak', expl:'Non-intervention may prevent anxious students from ever developing; teachers need to design supportive activities.'}
     ],
     roles:'Positive & Inclusive Environment (Role 10), Differentiated Instruction (Role 8), Communicative Competence (Role 6)',
-    model:'Tạo môi trường an toàn tâm lý: class contract, think-pair-share (có thời gian chuẩn bị), hoạt động theo cặp trước khi theo nhóm, delayed correction cho lỗi nói. Khen ngợi nỗ lực và chiến lược, không chỉ kết quả đúng. Dần dần tăng độ khó của hoạt động nói.'
+    model:'Create psychological safety: class contract, think-pair-share (with preparation time), pair work before group work, delayed correction for spoken errors. Praise effort and strategies, not only correct answers. Gradually increase the demands of speaking activities.'
   },
   {
     id:'caseC',
     title:'Case C — Assessment and feedback',
-    scenario:'Học sinh tham gia rất tích cực trên lớp, nhưng điểm bài kiểm tra ngữ pháp cuối kỳ lại thấp. Giáo viên bối rối không biết vấn đề nằm ở đâu.',
+    scenario:'Students participate very actively in class, but end-of-term grammar test scores are low. The teacher is unsure where the problem lies.',
     options:[
-      {text:'Kết luận rằng học sinh lười học và cần làm thêm bài tập về nhà.', quality:'weak', expl:'Kết luận vội vàng có thể bỏ qua các nguyên nhân khác như thiết kế bài kiểm tra chưa phù hợp hoặc học sinh chưa có cơ hội vận dụng.'},
-      {text:'Phân tích lỗi sai theo nhóm, kiểm tra xem bài kiểm tra có đo đúng mục tiêu không, và xem lại hoạt động trên lớp.', quality:'good', expl:'Đây là cách sử dụng assessment evidence có căn cứ: phân biệt vấn đề ở người học, ở bài kiểm tra, hay ở cơ hội học tập.'},
-      {text:'Bỏ qua bài kiểm tra vì học sinh tham gia tích cực là đủ.', quality:'weak', expl:'Đánh giá cần dựa trên bằng chứng học tập; bỏ qua có thể che giấu lỗ hổng kiến thức.'},
-      {text:'Cho học sinh làm lại bài kiểm tra ngay lập tức mà không phân tích nguyên nhân.', quality:'partial', expl:'Làm lại có thể giúp nhưng chưa giải quyết gốc rễ; cần hiểu nguyên nhân trước.'}
+      {text:'Conclude that students are lazy and need more homework.', quality:'weak', expl:'A hasty conclusion that may overlook other causes such as test design or lack of application opportunities.'},
+      {text:'Analyse errors by category, check whether the test measures the intended objectives, and review in-class activities.', quality:'good', expl:'Using assessment evidence systematically — distinguishing problems in learners, in the test, or in learning opportunities.'},
+      {text:'Ignore the test because active participation is enough.', quality:'weak', expl:'Assessment should be evidence-based; ignoring it may hide knowledge gaps.'},
+      {text:'Have students retake the test immediately without analysing the causes.', quality:'partial', expl:'A retake may help, but it does not address the root cause; causes must be understood first.'}
     ],
     roles:'Assessment & Monitoring (Role 9), Lesson Planning (Role 1), Teaching Grammar (Role 2)',
-    model:'Thu thập thêm bằng chứng: kiểm tra validity của bài kiểm tra (có đo đúng mục tiêu không?), xem lại hoạt động trên lớp có tạo cơ hội vận dụng không, phân tích lỗi sai theo nhóm. Từ đó điều chỉnh: bổ sung hoạt động luyện tập có kiểm soát, tăng cơ hội vận dụng tự do, và có thể điều chỉnh bài kiểm tra cho phù hợp mục tiêu.'
+    model:'Gather more evidence: check test validity (does it measure intended objectives?), review whether in-class activities provided application opportunities, analyse errors by category. Adjust accordingly: add controlled practice, increase free application, and possibly revise the test to align with objectives.'
   },
   {
     id:'caseD',
     title:'Case D — Technology integration',
-    scenario:'Giáo viên muốn dùng một quiz app trực tuyến và một bài thuyết trình tương tác trong tiết học 45 phút. Lớp có khoảng 30 học sinh, một số em không có điện thoại thông minh.',
+    scenario:'A teacher wants to use an online quiz app and an interactive presentation in a 45-minute lesson. The class has 30 students; some do not have smartphones.',
     options:[
-      {text:'Dùng cả hai công cụ vì chúng hiện đại và học sinh sẽ thích.', quality:'weak', expl:'Công cụ "hiện đại" không tự động phù hợp mục tiêu học tập hoặc khả năng tiếp cận của mọi học sinh.'},
-      {text:'Đánh giá công cụ dựa trên mục tiêu học tập, khả năng tiếp cận (kể cả học sinh không có thiết bị), và chất lượng hoạt động được thiết kế.', quality:'good', expl:'Đây là cách tích hợp công nghệ có căn cứ sư phạm: mục tiêu → công cụ → phương án dự phòng cho học sinh không có thiết bị.'},
-      {text:'Không dùng công nghệ vì có học sinh không có điện thoại.', quality:'weak', expl:'Loại bỏ hoàn toàn công nghệ có thể bỏ lỡ cơ hội học tập; cần phương án thay thế cho học sinh thiếu thiết bị.'},
-      {text:'Dùng quiz app nhưng cho học sinh làm theo nhóm để mọi em đều tham gia.', quality:'good', expl:'Đây là một giải pháp tốt: vẫn khai thác công nghệ nhưng đảm bảo khả năng tiếp cận thông qua làm việc nhóm.'}
+      {text:'Use both tools because they are modern and students will enjoy them.', quality:'weak', expl:'A "modern" tool is not automatically aligned with learning objectives or accessible to all students.'},
+      {text:'Evaluate the tools based on learning objectives, accessibility (including students without devices), and quality of designed activity.', quality:'good', expl:'Purposeful technology integration: objective → tool → fallback for students without devices.'},
+      {text:'Do not use technology because some students lack devices.', quality:'weak', expl:'Avoiding technology entirely may miss learning opportunities; a fallback plan for students without devices is better.'},
+      {text:'Use the quiz app but have students work in teams so everyone participates.', quality:'good', expl:'A sound solution: still uses technology but ensures accessibility through teamwork.'}
     ],
     roles:'Integrating Technology (Role 7), Differentiated Instruction (Role 8), Lesson Planning (Role 1)',
-    model:'Chọn công cụ dựa trên: (1) mục tiêu học tập cụ thể mà công cụ phục vụ; (2) khả năng tiếp cận của học sinh (có phương án in giấy hoặc làm theo nhóm); (3) chất lượng hoạt động được thiết kế (không chỉ "vui" mà phải tạo ra học tập). Dự phòng phương án offline để mọi học sinh đều tham gia.'
+    model:'Choose tools based on: (1) the specific learning objectives the tool serves; (2) accessibility for students (a paper-based or team-based fallback); (3) quality of the designed activity (not just "fun" — it must produce learning). Prepare an offline fallback so all students can participate.'
   }
 ];
 
@@ -1725,24 +1724,23 @@ function renderCases(){
   container.innerHTML = CASES.map(c=>{
     return '<div class="case-card" data-case="'+c.id+'">'
       + '<h3>'+c.title+'</h3>'
-      + '<div class="case-scenario"><strong>Tình huống:</strong> '+c.scenario+'</div>'
-      + '<p style="font-size:.86rem;color:var(--muted)"><strong>Vai trò liên quan:</strong> '+c.roles+'</p>'
+      + '<div class="case-scenario"><strong>Situation:</strong> '+c.scenario+'</div>'
+      + '<p style="font-size:.84rem;color:var(--muted)"><strong>Related roles:</strong> '+c.roles+'</p>'
       + '<div class="case-options">'
       + c.options.map((o,i)=>'<div class="case-opt" data-idx="'+i+'">'
           + '<div>'+o.text+'</div>'
-          + '<div class="co-expl"><strong>Giải thích:</strong> '+o.expl+'</div>'
+          + '<div class="co-expl"><strong>Explanation:</strong> '+o.expl+'</div>'
           + '</div>').join('')
       + '</div>'
-      + '<button class="btn" data-case-btn="'+c.id+'">Xem giải thích &amp; model answer</button>'
+      + '<button class="btn" data-case-btn="'+c.id+'">Reveal explanations &amp; model answer</button>'
       + '<div class="case-model">'
       + '<strong>Model answer:</strong> '+c.model
       + '</div>'
-      + '<textarea class="case-user-input" data-case-input="'+c.id+'" placeholder="Phương án của bạn..."></textarea>'
-      + '<div style="font-size:.78rem;color:var(--muted);margin-top:6px">Câu trả lời của bạn được lưu tự động.</div>'
+      + '<textarea class="case-user-input" data-case-input="'+c.id+'" placeholder="Your own proposed response..."></textarea>'
+      + '<div style="font-size:.76rem;color:var(--muted);margin-top:6px">Your response is saved automatically.</div>'
       + '</div>';
   }).join('');
 
-  // Toggle reveal
   document.querySelectorAll('[data-case-btn]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id = btn.dataset.caseBtn;
@@ -1758,7 +1756,6 @@ function renderCases(){
     });
   });
 
-  // Load user input
   document.querySelectorAll('.case-user-input').forEach(ta=>{
     ta.value = store.get('elt_case_'+ta.dataset.caseInput, '');
     ta.addEventListener('input', ()=>{
@@ -1772,21 +1769,21 @@ renderCases();
    PRE QUIZ
    ========================================================== */
 const PRE_QUIZ = [
-  { q:'Trong mười hai vai trò, vai trò nào liên quan trực tiếp đến việc tổ chức lớp học và quản lý thời gian?',
+  { q:'Which role deals directly with organising the classroom and managing time?',
     opts:['Teaching Grammar','Lesson Planning and Classroom Management','Fostering Interest in Literature','Assessment'],
-    correct:1, exp:'Lesson Planning and Classroom Management bao gồm thiết kế hoạt động và tổ chức, điều phối lớp học.' },
-  { q:'Formative assessment khác summative assessment chủ yếu ở điều gì?',
-    opts:['Hình thức (bài kiểm tra hay không)','Mục đích sử dụng kết quả đánh giá','Số lượng câu hỏi','Đối tượng học sinh'],
-    correct:1, exp:'Formative và summative là hai mục đích đánh giá: formative hỗ trợ học tập trong quá trình; summative đánh giá mức đạt được vào cuối giai đoạn.' },
-  { q:'"Skimming" trong đọc hiểu là gì?',
-    opts:['Đọc quét tìm thông tin cụ thể','Đọc lướt để nắm ý chính','Suy luận từ văn bản','Tóm tắt văn bản'],
-    correct:1, exp:'Skimming là đọc nhanh để nắm ý chính; scanning là tìm thông tin cụ thể.' },
-  { q:'Khi nào công nghệ là lựa chọn phù hợp trong dạy học?',
-    opts:['Khi công cụ có giao diện đẹp','Khi công cụ phục vụ mục tiêu học tập và phù hợp người học','Khi công cụ miễn phí','Khi học sinh yêu cầu'],
-    correct:1, exp:'Công nghệ cần được chọn dựa trên mục tiêu sư phạm và đặc điểm người học, không phải vẻ ngoài hay tính miễn phí.' },
-  { q:'Phân hồi lỗi sai mang tính xây dựng nên như thế nào?',
-    opts:['Sửa mọi lỗi ngay lập tức','Nói "Sai rồi" trước lớp','Ghi nhận nỗ lực, chỉ ra lỗi cụ thể và cách sửa','Bỏ qua mọi lỗi'],
-    correct:2, exp:'Phản hồi xây dựng tập trung vào hành vi ngôn ngữ cụ thể, đưa ra cách sửa, phù hợp mục tiêu hoạt động, và không làm học sinh mất mặt.' }
+    correct:1, exp:'Lesson Planning and Classroom Management covers designing activities and organising classroom processes.' },
+  { q:'How does formative assessment differ from summative assessment?',
+    opts:['By format (test or no test)','By the purpose for which results are used','By the number of questions','By the age of students'],
+    correct:1, exp:'Formative and summative are purposes: formative supports learning during instruction; summative evaluates achievement at the end.' },
+  { q:'What is "skimming" in reading?',
+    opts:['Reading quickly for specific information','Reading quickly for the gist','Inferring from the text','Summarising the text'],
+    correct:1, exp:'Skimming = reading quickly for the main idea; scanning = searching for specific details.' },
+  { q:'When is technology an appropriate choice in teaching?',
+    opts:['When the tool has a beautiful interface','When the tool serves the learning objectives and fits the learners','When the tool is free','When students ask for it'],
+    correct:1, exp:'Technology should be chosen based on pedagogical objectives and learner characteristics, not appearance or cost alone.' },
+  { q:'What should constructive error feedback look like?',
+    opts:['Correct every error immediately','Say "Wrong" in front of the class','Acknowledge effort, name the specific error and how to correct it','Ignore all errors'],
+    correct:2, exp:'Constructive feedback targets a specific language behaviour, offers a way to correct it, and fits the activity — without embarrassing the learner.' }
 ];
 
 function renderPreQuiz(){
@@ -1815,10 +1812,10 @@ function checkPreQuiz(){
       else if(selected && +selected.value === oi) o.classList.add('incorrect');
     });
     fb.className = 'quiz-fb show ' + (selected && +selected.value === q.correct ? 'ok' : 'no');
-    fb.textContent = (selected && +selected.value === q.correct ? '✓ Đúng. ' : '✗ Chưa đúng. ') + q.exp;
+    fb.textContent = (selected && +selected.value === q.correct ? '✓ Correct. ' : '✗ Not quite. ') + q.exp;
     if(selected && +selected.value === q.correct) correct++;
   });
-  document.getElementById('preQuizScore').innerHTML = '<div class="quiz-score">Kết quả: '+correct+' / '+PRE_QUIZ.length+' câu đúng (practice — không tính điểm chính thức)</div>';
+  document.getElementById('preQuizScore').innerHTML = '<div class="quiz-score">Score: '+correct+' / '+PRE_QUIZ.length+' (practice — not part of the graded assessment)</div>';
 }
 function resetPreQuiz(){ renderPreQuiz(); document.getElementById('preQuizScore').innerHTML=''; }
 document.getElementById('preQuizCheck').addEventListener('click', checkPreQuiz);
@@ -1826,129 +1823,123 @@ document.getElementById('preQuizReset').addEventListener('click', resetPreQuiz);
 renderPreQuiz();
 
 /* ==========================================================
-   ASSESSMENT — MCQ
+   ASSESSMENT
    ========================================================== */
 const MCQ = [
-  {q:'Đâu KHÔNG phải là vai trò cốt lõi của giáo viên tiếng Anh trong tài liệu?',
+  {q:'Which of the following is NOT one of the twelve core roles in this course?',
    opts:['Lesson planning','Classroom management','Marketing the school to parents','Assessment'], correct:2,
-   exp:'Marketing không nằm trong mười hai vai trò cốt lõi; các vai trò còn lại đều có trong tài liệu.'},
-  {q:'Formative assessment được hiểu đúng nhất là:',
-   opts:['Bài kiểm tra cuối kỳ','Đánh giá diễn ra trong quá trình học nhằm điều chỉnh dạy và học','Đánh giá bằng lời nói','Đánh giá đồng đẳng'], correct:1,
-   exp:'Formative assessment là đánh giá trong quá trình, mục đích cung cấp phản hồi và điều chỉnh. Hình thức (lời nói, bài tập) không quyết định mục đích.'},
-  {q:'"Skimming" là:',
-   opts:['Đọc quét tìm thông tin cụ thể','Đọc lướt để nắm ý chính','Suy luận từ văn bản','Tóm tắt văn bản'], correct:1,
-   exp:'Skimming = đọc lướt nắm ý chính; scanning = đọc quét tìm thông tin cụ thể.'},
-  {q:'"Inferencing" là chiến lược đọc trong đó người học:',
-   opts:['Đọc to thành tiếng','Rút ra kết luận từ bằng chứng văn bản và kiến thức nền','Dịch từng câu','Ghi nhớ từ vựng'], correct:1,
-   exp:'Inferencing là suy luận dựa trên bằng chứng văn bản kết hợp kiến thức nền.'},
-  {q:'Năng lực giao tiếp (communicative competence) bao gồm:',
-   opts:['Chỉ ngữ pháp','Chỉ phát âm','Ngữ pháp, ngữ dụng xã hội, diễn ngôn và chiến lược','Chỉ từ vựng'], correct:2,
-   exp:'Communicative competence bao gồm nhiều thành tố: grammatical, sociolinguistic, discourse và strategic competence.'},
-  {q:'"Flexible grouping" trong dạy học phân hóa có nghĩa là:',
-   opts:['Chia nhóm cố định theo trình độ suốt học kỳ','Thay đổi hình thức nhóm theo hoạt động và mục tiêu','Chỉ dùng nhóm đôi','Không dùng nhóm'], correct:1,
-   exp:'Flexible grouping là thay đổi cách chia nhóm theo hoạt động, tránh gắn nhãn cố định.'},
-  {q:'Nhiệm vụ nào sau đây kiểm tra "receptive vocabulary knowledge"?',
-   opts:['Viết câu với từ mới','Nhận ra nghĩa của từ khi đọc','Đặt câu hỏi với từ mới','Thuyết trình dùng từ mới'], correct:1,
-   exp:'Receptive knowledge là nhận biết khi đọc/nghe; productive là dùng được khi nói/viết.'},
-  {q:'"Cohesion" chủ yếu liên quan đến:',
-   opts:['Mạch logic của ý tưởng','Liên kết bề mặt giữa câu và đoạn (từ nối, đại từ)','Độ chính xác ngữ pháp','Số lượng từ'], correct:1,
-   exp:'Cohesion = liên kết bề mặt (từ nối, đại từ, lặp từ); coherence = mạch logic của ý tưởng.'},
-  {q:'Phát biểu nào về công nghệ trong dạy học là chính xác nhất?',
-   opts:['Công nghệ luôn cải thiện kết quả học tập','Công nghệ chỉ hiệu quả khi được tích hợp có mục đích sư phạm','Công nghệ thay thế giáo viên','Công nghệ chỉ dành cho lớp học hiện đại'], correct:1,
-   exp:'Hiệu quả của công nghệ phụ thuộc vào mục tiêu, thiết kế hoạt động và khả năng tiếp cận.'},
-  {q:'"Constructive feedback" nên:',
-   opts:['Chung chung và khích lệ','Cụ thể, có thể hành động, tập trung vào hành vi','Chỉ khen ngợi','Chỉ phê bình'], correct:1,
-   exp:'Phản hồi xây dựng cần cụ thể, có thể hành động, tập trung vào hành vi/hiệu suất để cải thiện.'},
-  {q:'Đâu là ví dụ của summative assessment?',
-   opts:['Exit ticket cuối tiết','Bài kiểm tra cuối kỳ','Câu hỏi trên lớp','Quan sát trong giờ học'], correct:1,
-   exp:'Summative assessment đánh giá mức đạt được vào cuối giai đoạn, ví dụ bài kiểm tra cuối kỳ.'},
-  {q:'"Scaffolding" là:',
-   opts:['Hỗ trợ vĩnh viễn','Hỗ trợ tạm thời, được giảm dần khi năng lực tăng','Bài tập về nhà','Đánh giá tổng kết'], correct:1,
-   exp:'Scaffolding là hỗ trợ tạm thời, giảm dần khi người học đã có thể tự làm.'},
-  {q:'Kỹ năng đọc nào sau đây thuộc nhóm bậc thấp hơn?',
-   opts:['Đánh giá độ tin cậy của nguồn','Xác định chi tiết hỗ trợ (supporting details)','Suy luận quan điểm tác giả','Phân biệt dữ kiện và ý kiến'], correct:1,
-   exp:'Xác định chi tiết hỗ trợ là kỹ năng đọc bậc thấp hơn so với đánh giá, suy luận, phân biệt.'},
-  {q:'"Action research" thường liên quan đến:',
-   opts:['Nghiên cứu của chuyên gia bên ngoài','Giáo viên nghiên cứu chính lớp học của mình để cải thiện thực hành','Chỉ đọc sách','Chỉ tham gia hội thảo'], correct:1,
-   exp:'Action research là giáo viên tự nghiên cứu thực hành của mình để cải thiện.'},
-  {q:'"Intercultural awareness" là:',
-   opts:['Chỉ học văn hóa nước ngoài','Hiểu và tôn trọng sự tương đồng và khác biệt văn hóa','Chỉ học ngữ pháp','Chỉ học từ vựng'], correct:1,
-   exp:'Intercultural awareness bao gồm hiểu và tôn trọng sự tương đồng và khác biệt văn hóa, sử dụng phù hợp trong giao tiếp.'}
+   exp:'Marketing is not in the twelve roles; the other options are covered.'},
+  {q:'Formative assessment is best defined as:',
+   opts:['End-of-term test','Assessment during learning used to adjust teaching and learning','Verbal evaluation','Peer assessment'], correct:1,
+   exp:'Formative assessment occurs during learning for feedback and adjustment. Form does not determine purpose.'},
+  {q:'"Skimming" is:',
+   opts:['Reading quickly for specific details','Reading quickly for the gist','Inferring from text','Summarising the text'], correct:1,
+   exp:'Skimming = reading for gist; scanning = reading for specific information.'},
+  {q:'"Inferencing" is a reading strategy in which learners:',
+   opts:['Read aloud','Draw conclusions from textual evidence plus background knowledge','Translate sentence by sentence','Memorise vocabulary'], correct:1,
+   exp:'Inferencing = drawing conclusions from evidence in the text combined with background knowledge.'},
+  {q:'Communicative competence includes:',
+   opts:['Grammar only','Pronunciation only','Grammatical, sociolinguistic, discourse and strategic competence','Vocabulary only'], correct:2,
+   exp:'Communicative competence has multiple components: grammatical, sociolinguistic, discourse and strategic.'},
+  {q:'"Flexible grouping" in differentiated instruction means:',
+   opts:['Fixed groups by ability all term','Changing groupings by activity and purpose','Pair work only','No group work'], correct:1,
+   exp:'Flexible grouping varies with the activity and purpose, avoiding fixed labels.'},
+  {q:'Which task assesses "receptive vocabulary knowledge"?',
+   opts:['Writing a sentence using a new word','Recognising the meaning of a word while reading','Asking a question with a new word','Giving a presentation using new words'], correct:1,
+   exp:'Receptive knowledge = recognising when reading or listening; productive = using when speaking or writing.'},
+  {q:'"Cohesion" mainly concerns:',
+   opts:['Logical flow of ideas','Surface links between sentences and paragraphs','Grammatical accuracy','Word count'], correct:1,
+   exp:'Cohesion = surface links (conjunctions, pronouns); coherence = logical flow of ideas.'},
+  {q:'Which statement about technology in teaching is most accurate?',
+   opts:['Technology always improves outcomes','Technology improves learning only when integrated purposefully','Technology replaces the teacher','Technology is only for modern classrooms'], correct:1,
+   exp:'The effect of technology depends on objectives, activity design, and accessibility.'},
+  {q:'"Constructive feedback" should be:',
+   opts:['General and encouraging','Specific, actionable, and focused on behaviour','Praise only','Criticism only'], correct:1,
+   exp:'Constructive feedback is specific, actionable, and focused on behaviour or performance to support improvement.'},
+  {q:'Which is an example of summative assessment?',
+   opts:['Exit ticket at the end of a lesson','End-of-term exam','In-class questions','Classroom observation'], correct:1,
+   exp:'Summative assessment evaluates achievement at the end of an instructional period, e.g. an end-of-term exam.'},
+  {q:'"Scaffolding" is:',
+   opts:['Permanent support','Temporary support gradually removed as competence grows','Homework','Summative assessment'], correct:1,
+   exp:'Scaffolding is temporary support, gradually withdrawn as learners become more independent.'},
+  {q:'Which reading skill is typically lower-order?',
+   opts:['Evaluating source reliability','Identifying supporting details','Inferring author viewpoint','Distinguishing fact from opinion'], correct:1,
+   exp:'Identifying supporting details is a lower-order skill compared to evaluation, inference, and distinction.'},
+  {q:'"Action research" typically involves:',
+   opts:['Research conducted only by external experts','Teachers investigating their own classroom to improve practice','Reading books only','Attending workshops only'], correct:1,
+   exp:'Action research is teacher-led inquiry into one\'s own practice to improve it.'},
+  {q:'"Intercultural awareness" is:',
+   opts:['Learning only about foreign cultures','Understanding and respecting cultural similarities and differences','Learning only grammar','Learning only vocabulary'], correct:1,
+   exp:'Intercultural awareness involves understanding and respecting cultural similarities and differences and using this in communication.'}
 ];
 
 const TF = [
-  {q:'Độ chính xác ngữ pháp đảm bảo năng lực giao tiếp.', correct:false,
-   exp:'Sai. Communicative competence bao gồm nhiều thành tố; ngữ pháp chỉ là một phần.'},
-  {q:'Formative và summative là hai mục đích đánh giá, không chỉ là hai hình thức.', correct:true,
-   exp:'Đúng. Cùng một bài kiểm tra có thể dùng cho cả hai mục đích tùy cách sử dụng kết quả.'},
-  {q:'Nên phân loại học sinh thành các nhóm "học bằng hình ảnh", "học bằng thính giác" cố định và dạy riêng.', correct:false,
-   exp:'Sai. Chưa có đủ bằng chứng cho việc dạy riêng theo nhóm phong cách học tập cố định.'},
-  {q:'Công nghệ luôn cải thiện kết quả học tập.', correct:false,
-   exp:'Sai. Hiệu quả phụ thuộc vào mục tiêu, thiết kế hoạt động và khả năng tiếp cận.'},
-  {q:'Dạy học phân hóa có nghĩa là giao cho mỗi học sinh một nội dung hoàn toàn khác nhau.', correct:false,
-   exp:'Sai. Phân hóa là điều chỉnh mức độ hỗ trợ, quá trình, sản phẩm để mọi học sinh đạt mục tiêu chung, không phải nội dung hoàn toàn khác nhau.'},
-  {q:'Receptive vocabulary knowledge thường có trước productive vocabulary knowledge.', correct:true,
-   exp:'Đúng. Người học thường nhận biết từ trước khi có thể sử dụng chủ động.'},
-  {q:'Phản hồi hiệu quả cần cụ thể và có thể hành động.', correct:true,
-   exp:'Đúng. Phản hồi chung chung khó giúp học sinh cải thiện.'},
-  {q:'CPD chỉ có nghĩa là tham gia các khóa học và hội thảo.', correct:false,
-   exp:'Sai. CPD bao gồm cả phản tư, dự giờ, đọc tài liệu, action research, v.v.'}
+  {q:'Grammatical accuracy guarantees communicative competence.', correct:false,
+   exp:'False. Communicative competence has multiple components; grammar is only one.'},
+  {q:'Formative and summative are purposes of assessment, not just formats.', correct:true,
+   exp:'True. The same test can serve both purposes depending on how the results are used.'},
+  {q:'Students should be classified into fixed "visual", "auditory", or "kinesthetic" learning-style groups and taught separately.', correct:false,
+   exp:'False. There is insufficient evidence that teaching to fixed learning-style groups improves outcomes.'},
+  {q:'Technology always improves learning outcomes.', correct:false,
+   exp:'False. Effects depend on objectives, activity design, and accessibility.'},
+  {q:'Differentiated instruction means giving each student a completely different lesson.', correct:false,
+   exp:'False. Differentiation adapts support, process, and product so all learners can meet shared objectives.'},
+  {q:'Receptive vocabulary knowledge typically precedes productive vocabulary knowledge.', correct:true,
+   exp:'True. Learners usually recognise words before using them productively.'},
+  {q:'Effective feedback needs to be specific and actionable.', correct:true,
+   exp:'True. Vague feedback rarely supports improvement.'},
+  {q:'CPD only means attending courses and workshops.', correct:false,
+   exp:'False. CPD also includes reflection, peer observation, reading, and action research.'}
 ];
 
 const SA = [
-  {q:'Phân biệt formative assessment và summative assessment. Cho một ví dụ cho mỗi loại.',
-   keywords:['formative','summative','trong quá trình','cuối giai đoạn','điều chỉnh','exit ticket','bài kiểm tra cuối kỳ'],
-   model:'Formative assessment diễn ra trong quá trình học, mục đích là theo dõi tiến bộ và điều chỉnh hoạt động dạy học (ví dụ: exit ticket cuối tiết, câu hỏi trên lớp). Summative assessment đánh giá mức đạt được vào cuối một giai đoạn (ví dụ: bài kiểm tra cuối kỳ, dự án tổng kết). Điểm khác biệt cốt lõi nằm ở mục đích sử dụng kết quả, không phải hình thức.'},
-  {q:'So sánh cohesion và coherence trong viết học thuật.',
-   keywords:['cohesion','coherence','liên kết bề mặt','mạch logic','từ nối','ý tưởng'],
-   model:'Cohesion là liên kết bề mặt giữa các câu và đoạn, được đánh dấu bằng từ nối, đại từ, lặp từ. Coherence là sự phát triển logic và có ý nghĩa của các ý tưởng, vượt trên các phương tiện liên kết bề mặt. Một bài viết có thể có nhiều từ nối nhưng vẫn thiếu coherence nếu ý tưởng không phát triển logic.'},
-  {q:'Vì sao inferencing quan trọng trong đọc hiểu?',
-   keywords:['inferencing','suy luận','bằng chứng','kiến thức nền','ý nghĩa không được nói trực tiếp'],
-   model:'Inferencing giúp người đọc rút ra ý nghĩa không được diễn đạt trực tiếp, dựa trên sự kết hợp giữa bằng chứng trong văn bản và kiến thức nền. Đây là kỹ năng quan trọng để hiểu văn bản ở mức sâu, đánh giá quan điểm tác giả và đọc có tư duy phản biện.'},
-  {q:'Phân biệt receptive vocabulary knowledge và productive vocabulary knowledge.',
-   keywords:['receptive','productive','nhận biết','sử dụng chủ động','đọc nghe','nói viết'],
-   model:'Receptive vocabulary knowledge là khả năng nhận ra và hiểu nghĩa từ khi đọc hoặc nghe. Productive vocabulary knowledge là khả năng sử dụng từ một cách chủ động khi nói hoặc viết. Người học thường đạt receptive trước, productive sau.'},
-  {q:'Nêu một biện pháp cụ thể để xây dựng môi trường học tập an toàn về tâm lý trong lớp tiếng Anh.',
-   keywords:['psychological safety','class contract','think-pair-share','phản hồi xây dựng','tôn trọng','lỗi'],
-   model:'Ví dụ: cùng học sinh xây dựng class contract đầu khóa, quy định rõ rằng lỗi sai là một phần của việc học và không được chế giễu. Kết hợp với think-pair-share để học sinh có thời gian chuẩn bị trước khi nói, và phản hồi lỗi theo hướng xây dựng (specific, actionable, focused on behaviour).'}
+  {q:'Distinguish formative assessment from summative assessment. Give one example of each.',
+   model:'Formative assessment occurs during learning, aimed at monitoring progress and adjusting instruction (e.g. an exit ticket, in-class questions). Summative assessment evaluates achievement at the end of a period (e.g. an end-of-term exam, a final project). The key distinction lies in the purpose for which results are used, not in the format.'},
+  {q:'Compare cohesion and coherence in academic writing.',
+   model:'Cohesion is surface-level links between sentences and paragraphs, marked by conjunctions, pronouns, and lexical repetition. Coherence is the logical and meaningful development of ideas across the text. A text can have many cohesive devices yet lack coherence if the ideas do not develop logically.'},
+  {q:'Why is inferencing important in reading comprehension?',
+   model:'Inferencing helps readers construct meaning not stated explicitly, based on textual evidence combined with background knowledge. It supports deeper comprehension, evaluation of author viewpoint, and critical reading.'},
+  {q:'Distinguish receptive vocabulary knowledge from productive vocabulary knowledge.',
+   model:'Receptive vocabulary knowledge is the ability to recognise and understand words when reading or listening. Productive vocabulary knowledge is the ability to use words actively in speaking or writing. Learners typically achieve receptive before productive mastery.'},
+  {q:'Describe one concrete measure to build psychological safety in an English classroom.',
+   model:'For example, co-construct a class contract at the start of the course that explicitly states that errors are part of learning and are not mocked. Combine with think-pair-share so students have preparation time, and provide constructive error feedback (specific, actionable, focused on behaviour).'}
 ];
 
 const SCEN = [
-  {q:'Lớp có 10 học sinh khá thành thạo và 20 học sinh yếu ngữ pháp, ngại nói. Bạn sẽ làm gì đầu tiên?',
+  {q:'A class has 10 confident, proficient students and 20 struggling, reluctant speakers. What should you do first?',
    opts:[
-     'Dạy theo trình độ trung bình và giao thêm bài tập về nhà cho học sinh khá',
-     'Thiết kế tiered tasks, cung cấp scaffolding cho nhóm cần hỗ trợ và nhiệm vụ mở rộng cho nhóm khá',
-     'Chỉ dạy ngữ pháp cơ bản cho cả lớp',
-     'Chia lớp thành hai nhóm cố định suốt học kỳ'
+     'Teach to the average and give extra homework to stronger students',
+     'Design tiered tasks, provide scaffolding for those needing support, and extension tasks for stronger students',
+     'Only teach basic grammar to the whole class',
+     'Split the class into fixed "strong" and "weak" groups for the whole term'
    ], correct:1,
-   exp:'Tiered tasks với scaffolding và extension là ví dụ điển hình của differentiated instruction, đáp ứng nhu cầu cả hai nhóm trong cùng một mục tiêu chung.'},
-  {q:'Học sinh sợ nói vì sợ sai. Cách xử lý nào phù hợp nhất?',
+   exp:'Tiered tasks with scaffolding and extension are a clear example of differentiated instruction, meeting both groups within a shared objective.'},
+  {q:'Students avoid speaking because they fear mistakes. What is the most appropriate response?',
    opts:[
-     'Gọi các em phát biểu nhiều hơn để quen dần',
-     'Bỏ qua hoàn toàn lỗi sai',
-     'Xây dựng class contract, dùng think-pair-share và phản hồi lỗi xây dựng',
-     'Chỉ cho học sinh viết, không nói'
+     'Call on them more often so they get used to it',
+     'Ignore all errors entirely',
+     'Build a class contract, use think-pair-share, and give constructive error feedback',
+     'Let them only write, never speak'
    ], correct:2,
-   exp:'Đây là tổ hợp biện pháp tạo psychological safety: quy tắc rõ ràng, thời gian chuẩn bị, phản hồi không làm mất mặt.'},
-  {q:'Học sinh tham gia tích cực nhưng điểm kiểm tra ngữ pháp thấp. Bạn nên làm gì?',
+   exp:'This combination creates psychological safety: clear rules, preparation time, and non-embarrassing feedback.'},
+  {q:'Students participate well but grammar test scores are low. What should you do?',
    opts:[
-     'Kết luận học sinh lười',
-     'Phân tích lỗi sai, kiểm tra validity của bài kiểm tra, xem lại hoạt động trên lớp',
-     'Bỏ qua bài kiểm tra',
-     'Cho làm lại bài kiểm tra ngay'
+     'Conclude that students are lazy',
+     'Analyse errors, check test validity, and review in-class activities',
+     'Ignore the test',
+     'Give an immediate retake'
    ], correct:1,
-   exp:'Cần thu thập bằng chứng và phân biệt nguyên nhân: người học, bài kiểm tra, hay cơ hội học tập.'},
-  {q:'Giáo viên muốn dùng quiz app và bài thuyết trình tương tác. Tiêu chí quan trọng nhất là gì?',
+   exp:'Gather evidence and distinguish causes: learner, test, or learning opportunities.'},
+  {q:'A teacher wants to use a quiz app and an interactive presentation. What is the most important criterion?',
    opts:[
-     'Công cụ có đẹp không',
-     'Công cụ có miễn phí không',
-     'Công cụ phục vụ mục tiêu học tập và phù hợp khả năng tiếp cận của học sinh',
-     'Công cụ có nhiều tính năng không'
+     'Whether the tools look attractive',
+     'Whether the tools are free',
+     'Whether the tools serve learning objectives and fit learner accessibility',
+     'Whether the tools have many features'
    ], correct:2,
-   exp:'Mục tiêu sư phạm và khả năng tiếp cận là tiêu chí quan trọng nhất; cần có phương án dự phòng cho học sinh không có thiết bị.'}
+   exp:'Pedagogical objectives and accessibility are the primary criteria; a fallback is needed for students without devices.'}
 ];
 
-/* === Render assessment === */
 function renderMCQ(){
   const c = document.getElementById('mcqContainer');
   if(!c) return;
@@ -1968,8 +1959,8 @@ function renderTF(){
   c.innerHTML = TF.map((q,i)=>(
     '<div class="quiz-q" data-tf="'+i+'">'
     + '<span class="qnum">T/F '+(i+1)+'</span><span class="qtext">'+q.q+'</span>'
-    + '<label class="quiz-opt" data-oi="0"><input type="radio" name="tf-'+i+'" value="0"><span>Đúng</span></label>'
-    + '<label class="quiz-opt" data-oi="1"><input type="radio" name="tf-'+i+'" value="1"><span>Sai</span></label>'
+    + '<label class="quiz-opt" data-oi="0"><input type="radio" name="tf-'+i+'" value="0"><span>True</span></label>'
+    + '<label class="quiz-opt" data-oi="1"><input type="radio" name="tf-'+i+'" value="1"><span>False</span></label>'
     + '<div class="quiz-fb"></div>'
     + '</div>'
   )).join('');
@@ -1980,8 +1971,8 @@ function renderSA(){
   c.innerHTML = SA.map((q,i)=>(
     '<div class="sa-q" data-sa="'+i+'">'
     + '<strong>SA '+(i+1)+'.</strong> '+q.q
-    + '<textarea data-sa-input="'+i+'" placeholder="Câu trả lời của bạn..."></textarea>'
-    + '<button class="btn" style="margin-top:8px" data-sa-model="'+i+'">Xem model answer</button>'
+    + '<textarea data-sa-input="'+i+'" placeholder="Your response..."></textarea>'
+    + '<button class="btn" style="margin-top:8px" data-sa-model="'+i+'">Show model answer</button>'
     + '<div class="sa-model"><strong>Model answer:</strong> '+q.model+'</div>'
     + '</div>'
   )).join('');
@@ -2032,8 +2023,7 @@ let matchState = { selected: null, matched: {} };
 function renderMatching(){
   const grid = document.getElementById('matchGrid');
   if(!grid) return;
-  // Shuffle defs
-  const defs = MATCH_PAIRS.map((p,i)=>({def:p.def, key:p.term})).sort(()=>Math.random()-0.5);
+  const defs = MATCH_PAIRS.map((p)=>({def:p.def, key:p.term})).sort(()=>Math.random()-0.5);
   grid.innerHTML =
     '<div class="match-col">'
     + MATCH_PAIRS.map(p=>'<div class="match-item" data-side="term" data-key="'+p.term+'">'+p.term+'</div>').join('')
@@ -2051,7 +2041,6 @@ function renderMatching(){
         el.classList.add('selected');
         return;
       }
-      // Second click
       if(matchState.selected.el === el){ el.classList.remove('selected'); matchState.selected = null; return; }
       const first = matchState.selected;
       if(first.side === side){
@@ -2061,7 +2050,6 @@ function renderMatching(){
         return;
       }
       if(first.key === key){
-        // Match
         first.el.classList.remove('selected');
         first.el.classList.add('matched');
         el.classList.add('matched');
@@ -2069,7 +2057,6 @@ function renderMatching(){
         matchState.selected = null;
         updateMatchStatus();
       } else {
-        // Wrong
         el.classList.add('wrong');
         first.el.classList.add('wrong');
         setTimeout(()=>{
@@ -2086,7 +2073,7 @@ function renderMatching(){
 function updateMatchStatus(){
   const total = MATCH_PAIRS.length;
   const matched = Object.keys(matchState.matched).length;
-  document.getElementById('matchStatus').textContent = matched + ' / ' + total + ' cặp đã ghép';
+  document.getElementById('matchStatus').textContent = matched + ' / ' + total + ' pairs matched';
 }
 function resetMatching(){
   matchState = {selected:null, matched:{}};
@@ -2110,7 +2097,7 @@ function gradeAssessment(){
       else if(sel && +sel.value === oi) o.classList.add('incorrect');
     });
     fb.className = 'quiz-fb show ' + (sel && +sel.value === q.correct ? 'ok' : 'no');
-    fb.textContent = (sel && +sel.value === q.correct ? '✓ Đúng. ' : '✗ Chưa đúng. ') + q.exp;
+    fb.textContent = (sel && +sel.value === q.correct ? '✓ Correct. ' : '✗ Not quite. ') + q.exp;
     if(sel && +sel.value === q.correct) mcqCorrect++;
   });
 
@@ -2118,7 +2105,6 @@ function gradeAssessment(){
     const wrap = document.querySelector('.quiz-q[data-tf="'+i+'"]');
     const sel = wrap.querySelector('input[type=radio]:checked');
     const fb = wrap.querySelector('.quiz-fb');
-    // value 0 = True, 1 = False
     const correctVal = q.correct ? 0 : 1;
     wrap.querySelectorAll('.quiz-opt').forEach(o=>{
       o.classList.remove('correct','incorrect');
@@ -2127,7 +2113,7 @@ function gradeAssessment(){
       else if(sel && +sel.value === oi) o.classList.add('incorrect');
     });
     fb.className = 'quiz-fb show ' + (sel && +sel.value === correctVal ? 'ok' : 'no');
-    fb.textContent = (sel && +sel.value === correctVal ? '✓ Đúng. ' : '✗ Chưa đúng. ') + q.exp;
+    fb.textContent = (sel && +sel.value === correctVal ? '✓ Correct. ' : '✗ Not quite. ') + q.exp;
     if(sel && +sel.value === correctVal) tfCorrect++;
   });
 
@@ -2142,7 +2128,7 @@ function gradeAssessment(){
       else if(sel && +sel.value === oi) o.classList.add('incorrect');
     });
     fb.className = 'quiz-fb show ' + (sel && +sel.value === q.correct ? 'ok' : 'no');
-    fb.textContent = (sel && +sel.value === q.correct ? '✓ Đúng. ' : '✗ Chưa đúng. ') + q.exp;
+    fb.textContent = (sel && +sel.value === q.correct ? '✓ Correct. ' : '✗ Not quite. ') + q.exp;
     if(sel && +sel.value === q.correct) scenCorrect++;
   });
 
@@ -2152,10 +2138,10 @@ function gradeAssessment(){
   const matched = Object.keys(matchState.matched).length;
 
   document.getElementById('assessmentScore').innerHTML =
-    '<div class="quiz-score">Kết quả phần được chấm điểm: '+totalCorrect+' / '+totalScored+' ('+pct+'%) — MCQ: '+mcqCorrect+'/'+MCQ.length
+    '<div class="quiz-score">Graded result: '+totalCorrect+' / '+totalScored+' ('+pct+'%) — MCQ: '+mcqCorrect+'/'+MCQ.length
     + ' · True/False: '+tfCorrect+'/'+TF.length
     + ' · Scenario: '+scenCorrect+'/'+SCEN.length
-    + ' · Matching: '+matched+'/'+MATCH_PAIRS.length+' cặp'
+    + ' · Matching: '+matched+'/'+MATCH_PAIRS.length+' pairs'
     + '</div>';
 
   store.set('elt_quiz_history', {score:totalCorrect, total:totalScored, pct, date:new Date().toISOString()});
@@ -2165,7 +2151,7 @@ function gradeAssessment(){
 document.getElementById('submitAllBtn').addEventListener('click', gradeAssessment);
 document.getElementById('showKeysBtn').addEventListener('click', gradeAssessment);
 document.getElementById('resetAllBtn').addEventListener('click', ()=>{
-  if(!confirm('Làm lại toàn bộ bài kiểm tra? Điểm đã lưu sẽ bị xoá.')) return;
+  if(!confirm('Reset the whole assessment? Saved score will be cleared.')) return;
   renderMCQ(); renderTF(); renderSA(); renderScenario();
   resetMatching();
   document.getElementById('assessmentScore').innerHTML = '';
@@ -2177,11 +2163,11 @@ document.getElementById('resetAllBtn').addEventListener('click', ()=>{
    REFLECTION
    ========================================================== */
 const REFLECTIONS = [
-  'Vai trò nào trong mười hai vai trò em hiểu rõ nhất? Vì sao?',
-  'Vai trò nào em cảm thấy sẽ thách thức nhất với bản thân khi trở thành giáo viên? Vì sao?',
-  'Em sẽ phản hồi thế nào với một học sinh sợ mắc lỗi khi nói tiếng Anh?',
-  'Em sẽ dùng bằng chứng gì để xác định một tiết học có thành công hay không?',
-  'Kỹ năng chuyên môn nào em cần phát triển thêm trong thời gian tới?'
+  'Which of the twelve roles do you understand best? Why?',
+  'Which role would be most challenging for you as a future teacher? Why?',
+  'How would you respond to a student who is afraid of making mistakes when speaking English?',
+  'What evidence would you use to determine whether a lesson was successful?',
+  'Which professional skills do you need to develop further in the near future?'
 ];
 function renderReflection(){
   const c = document.getElementById('reflectionContainer');
@@ -2189,7 +2175,7 @@ function renderReflection(){
   c.innerHTML = REFLECTIONS.map((q,i)=>(
     '<div class="sa-q">'
     + '<strong>'+(i+1)+'.</strong> '+q
-    + '<textarea data-reflect="'+i+'" placeholder="Câu trả lời của bạn..."></textarea>'
+    + '<textarea data-reflect="'+i+'" placeholder="Your response..."></textarea>'
     + '</div>'
   )).join('');
   c.querySelectorAll('textarea').forEach(ta=>{
@@ -2206,7 +2192,7 @@ renderReflection();
 function saveNote(section, value){
   store.set('elt_note_'+section, value);
   const st = document.getElementById('ns-'+section);
-  if(st){ st.textContent = '✓ Đã lưu'; clearTimeout(st._t); st._t = setTimeout(()=>st.textContent='', 1800); }
+  if(st){ st.textContent = '✓ Saved'; clearTimeout(st._t); st._t = setTimeout(()=>st.textContent='', 1800); }
   renderDashboard();
 }
 document.addEventListener('click', e=>{
@@ -2222,12 +2208,11 @@ document.addEventListener('input', e=>{
     e.target._t = setTimeout(()=>saveNote(e.target.dataset.section, e.target.value), 800);
   }
 });
-// Load notes on init (after roles rendered)
 setTimeout(()=>{
   document.querySelectorAll('.note-input').forEach(ta=>{
     ta.value = store.get('elt_note_'+ta.dataset.section, '');
   });
-}, 50);
+}, 60);
 
 /* ==========================================================
    HIGHLIGHT
@@ -2298,7 +2283,7 @@ document.getElementById('hlBtn').addEventListener('click', ()=>{
   document.body.classList.toggle('highlight-mode', hlMode);
   document.getElementById('hlBtn').classList.toggle('active', hlMode);
   if(!hlMode) hideHLPopup();
-  toast(hlMode ? 'Highlight mode ON — chọn đoạn văn để bôi màu' : 'Highlight mode OFF');
+  toast(hlMode ? 'Highlight mode ON — select text to highlight' : 'Highlight mode OFF');
 });
 
 function handleSelection(){
@@ -2345,7 +2330,7 @@ document.getElementById('hlPopup').addEventListener('click', e=>{
     window.getSelection().removeAllRanges();
     hideHLPopup();
     renderHL(sec.id);
-    toast('Đã bôi màu');
+    toast('Highlighted');
     return;
   }
   if(e.target.id === 'clearHlBtn'){
@@ -2362,11 +2347,11 @@ document.getElementById('hlPopup').addEventListener('click', e=>{
     window.getSelection().removeAllRanges();
     hideHLPopup();
     renderHL(sec.id);
-    toast('Đã xoá highlight');
+    toast('Highlight removed');
   }
 });
 
-setTimeout(renderAllHL, 100);
+setTimeout(renderAllHL, 120);
 
 /* ==========================================================
    SEARCH
@@ -2386,7 +2371,7 @@ document.getElementById('searchBox').addEventListener('input', e=>{
       if(!first) first = sec;
     }
   });
-  info.textContent = total === 0 ? 'Không tìm thấy kết quả' : total + ' kết quả';
+  info.textContent = total === 0 ? 'No matches' : total + ' match(es)';
   if(first){ first.scrollIntoView({behavior:'smooth', block:'start'}); }
 });
 
@@ -2400,16 +2385,14 @@ function renderDashboard(){
   const pct = Math.round(done/total*100);
   const glossLearned = Object.keys(store.get('elt_gloss_learned', {})).length;
   const quizHist = store.get('elt_quiz_history', null);
-  const notesCount = Object.keys(store.get('elt_notes', {})).length
-    + SECTIONS.filter(s=>store.get('elt_note_'+s, '')).length;
   const last = store.get('elt_last', '');
 
   document.getElementById('dashGrid').innerHTML =
-    '<div class="dash-card"><div class="dash-num">'+done+'/'+total+'</div><div class="dash-label">Mục đã hoàn thành ('+pct+'%)</div></div>'
-    + '<div class="dash-card"><div class="dash-num">'+glossLearned+'</div><div class="dash-label">Thuật ngữ đã học</div></div>'
-    + '<div class="dash-card"><div class="dash-num">'+(quizHist ? quizHist.score+'/'+quizHist.total : '—')+'</div><div class="dash-label">Điểm kiểm tra gần nhất</div></div>'
-    + '<div class="dash-card"><div class="dash-num">'+SECTIONS.filter(s=>store.get('elt_note_'+s, '')).length+'</div><div class="dash-label">Ghi chú đã lưu</div></div>'
-    + (last ? '<div class="dash-card" style="grid-column:1/-1"><div class="dash-label">Học gần nhất</div><div class="dash-num" style="font-size:1rem">'+last+'</div></div>' : '');
+    '<div class="dash-card"><div class="dash-num">'+done+'/'+total+'</div><div class="dash-label">Sections completed ('+pct+'%)</div></div>'
+    + '<div class="dash-card"><div class="dash-num">'+glossLearned+'</div><div class="dash-label">Glossary terms learned</div></div>'
+    + '<div class="dash-card"><div class="dash-num">'+(quizHist ? quizHist.score+'/'+quizHist.total : '—')+'</div><div class="dash-label">Most recent quiz score</div></div>'
+    + '<div class="dash-card"><div class="dash-num">'+SECTIONS.filter(s=>store.get('elt_note_'+s, '')).length+'</div><div class="dash-label">Saved notes</div></div>'
+    + (last ? '<div class="dash-card" style="grid-column:1/-1"><div class="dash-label">Most recently visited</div><div class="dash-num" style="font-size:.95rem">'+last+'</div></div>' : '');
 }
 
 document.getElementById('continueBtn').addEventListener('click', ()=>{
@@ -2440,7 +2423,8 @@ function collectAll(){
     reflections: reflect,
     caseAnswers: cases,
     theme: store.get('elt_theme', 'light'),
-    fontSize: store.get('elt_font', 16)
+    fontSize: store.get('elt_font', 16),
+    sidebarHidden: store.get('elt_sidebar_hidden', false)
   };
 }
 document.getElementById('exportBtn').addEventListener('click', ()=>{
@@ -2452,7 +2436,7 @@ document.getElementById('exportBtn').addEventListener('click', ()=>{
   a.download = 'elt-roles-data-'+new Date().toISOString().slice(0,10)+'.json';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  toast('Đã xuất dữ liệu');
+  toast('Data exported');
 });
 document.getElementById('importBtn').addEventListener('click', ()=>document.getElementById('importFile').click());
 document.getElementById('importFile').addEventListener('change', e=>{
@@ -2462,8 +2446,8 @@ document.getElementById('importFile').addEventListener('change', e=>{
   reader.onload = ()=>{
     try{
       const d = JSON.parse(reader.result);
-      if(!d || typeof d !== 'object' || typeof d.version !== 'number'){ alert('File không hợp lệ.'); return; }
-      if(!confirm('Nhập dữ liệu sẽ ghi đè dữ liệu hiện tại. Tiếp tục?')) return;
+      if(!d || typeof d !== 'object' || typeof d.version !== 'number'){ alert('Invalid file.'); return; }
+      if(!confirm('Importing will overwrite current data. Continue?')) return;
       if(d.progress) store.set('elt_progress', d.progress);
       if(d.notes) Object.keys(d.notes).forEach(k=>store.set('elt_note_'+k, d.notes[k]));
       if(d.highlights) store.set('elt_highlights', d.highlights);
@@ -2474,30 +2458,33 @@ document.getElementById('importFile').addEventListener('change', e=>{
       if(d.caseAnswers) Object.keys(d.caseAnswers).forEach(k=>store.set('elt_case_'+k, d.caseAnswers[k]));
       if(d.theme) store.set('elt_theme', d.theme);
       if(d.fontSize) store.set('elt_font', d.fontSize);
-      alert('Nhập dữ liệu thành công. Trang sẽ tải lại.');
+      if(typeof d.sidebarHidden === 'boolean') store.set('elt_sidebar_hidden', d.sidebarHidden);
+      alert('Import successful. Reloading.');
       location.reload();
     }catch(err){
-      alert('File JSON không hợp lệ.');
+      alert('Invalid JSON file.');
     }
     e.target.value = '';
   };
   reader.readAsText(file);
 });
 document.getElementById('resetBtn').addEventListener('click', ()=>{
-  if(!confirm('Xóa toàn bộ dữ liệu cá nhân (ghi chú, tiến độ, highlight, điểm, phản tư)? Hành động này không thể hoàn tác.')) return;
+  if(!confirm('Delete all personal data (notes, progress, highlights, scores, reflections)? This cannot be undone.')) return;
   const keys = [];
   for(let i=0;i<localStorage.length;i++){
     const k = localStorage.key(i);
     if(k && k.startsWith('elt_')) keys.push(k);
   }
   keys.forEach(k=>store.del(k));
-  toast('Đã xoá toàn bộ dữ liệu');
+  toast('All personal data deleted');
   setTimeout(()=>location.reload(), 800);
 });
 
 /* ==========================================================
    MY NOTES
    ========================================================== */
+function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
 function renderMyNotes(){
   const c = document.getElementById('notesCollection');
   if(!c) return;
@@ -2511,18 +2498,17 @@ function renderMyNotes(){
     }
   });
   if(items.length === 0){
-    c.innerHTML = '<div class="empty-state">Chưa có ghi chú nào. Hãy thêm ghi chú ở các phần học tập.</div>';
+    c.innerHTML = '<div class="empty-state">No notes yet. Add notes in each lesson section.</div>';
     return;
   }
   c.innerHTML = items.map(it=>(
     '<div class="gloss-item"><h4>'+it.title+'</h4>'
-    + '<p style="white-space:pre-wrap;font-size:.92rem">'+escapeHtml(it.text)+'</p></div>'
+    + '<p style="white-space:pre-wrap;font-size:.9rem">'+escapeHtml(it.text)+'</p></div>'
   )).join('');
 }
-function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 document.getElementById('exportNotesMd').addEventListener('click', ()=>{
-  const lines = ['# Ghi chú khóa học — Core Roles of an English Language Teacher\n'];
+  const lines = ['# Course Notes — Core Roles of an English Language Teacher\n'];
   SECTIONS.forEach(s=>{
     const v = store.get('elt_note_'+s, '');
     if(v){
@@ -2534,16 +2520,16 @@ document.getElementById('exportNotesMd').addEventListener('click', ()=>{
   });
   REFLECTIONS.forEach((q,i)=>{
     const v = store.get('elt_reflect_'+i, '');
-    if(v){ lines.push('## Phản tư ' + (i+1) + ': ' + q); lines.push(v + '\n'); }
+    if(v){ lines.push('## Reflection ' + (i+1) + ': ' + q); lines.push(v + '\n'); }
   });
-  if(lines.length === 1){ toast('Chưa có ghi chú để xuất'); return; }
+  if(lines.length === 1){ toast('No notes to export'); return; }
   const blob = new Blob([lines.join('\n')], {type:'text/markdown'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'ghi-chu-elt.md';
+  a.href = url; a.download = 'elt-notes.md';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  toast('Đã xuất ghi chú');
+  toast('Notes exported');
 });
 
 /* ==========================================================
@@ -2581,13 +2567,9 @@ setTimeout(()=>{
   observeSections();
   observeNav();
   renderAllHL();
-}, 60);
+}, 80);
 
-// Re-render my-notes when navigating to it
 document.querySelector('a[href="#my-notes"]').addEventListener('click', renderMyNotes);
-
-// Update dashboard after quiz
-const origGrade = gradeAssessment;
 window.addEventListener('focus', renderDashboard);
 </script>
 </body>
